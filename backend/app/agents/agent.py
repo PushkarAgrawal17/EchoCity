@@ -8,6 +8,7 @@ or AI. Those are separate subsystems introduced in later milestones.
 from dataclasses import dataclass
 
 from app.agents.agent_state import AgentState
+from app.simulation.location import Location
 
 
 @dataclass
@@ -20,15 +21,15 @@ class Agent:
         state: Current AgentState.
         goal: Free-text description of what the agent is currently trying
             to do. ``None`` means the agent has no active goal.
-        location: Free-text identifier of where the agent currently is.
-            ``None`` means location is not yet set.
+        location: The Location this agent currently occupies. ``None``
+            means location is not yet set.
     """
 
     agent_id: str
     name: str
     state: AgentState = AgentState.IDLE
     goal: str | None = None
-    location: str | None = None
+    location: Location | None = None
 
     def update(self) -> None:
         """Update this agent for the current simulation tick.

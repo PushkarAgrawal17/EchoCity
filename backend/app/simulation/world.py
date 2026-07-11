@@ -9,9 +9,12 @@ logic — those belong to later milestones.
 import logging
 
 from app.agents.agent_manager import AgentManager
+from app.conversation.gossip_engine import GossipEngine
 from app.events.event import Event
 from app.events.event_bus import EventBus
 from app.events.event_type import EventType
+from app.memory.memory_manager import MemoryManager
+from app.services.conversation_engine import ConversationEngine
 from app.simulation.clock import Clock
 from app.simulation.scheduler import Scheduler
 
@@ -40,6 +43,9 @@ class World:
         scheduler: Scheduler | None = None,
         agent_manager: AgentManager | None = None,
         event_bus: EventBus | None = None,
+        memory_manager: MemoryManager | None = None,
+        conversation_engine: ConversationEngine | None = None,
+        gossip_engine: GossipEngine | None = None,
     ) -> None:
         """Create a new World in a stopped state, at tick zero.
 
@@ -51,6 +57,15 @@ class World:
             agent_manager: AgentManager to use. Defaults to a new,
                 empty ``AgentManager()``.
             event_bus: EventBus to use. Defaults to a new ``EventBus()``.
+            memory_manager: MemoryManager to use. Defaults to a new,
+                empty ``MemoryManager()``.
+            conversation_engine: ConversationEngine to use. Defaults to a
+                new one bound to ``memory_manager``. If you pass your own,
+                make sure it is bound to the same ``memory_manager``.
+            gossip_engine: GossipEngine to use. Defaults to a new one bound
+                to ``agent_manager``, ``memory_manager``, and
+                ``conversation_engine``. If you pass your own, make sure it
+                is bound to the same instances.
         """
         self.is_running: bool = False
         self.tick_count: int = 0
@@ -59,6 +74,17 @@ class World:
         self.scheduler = scheduler if scheduler is not None else Scheduler(self.clock)
         self.agent_manager = agent_manager if agent_manager is not None else AgentManager()
         self.event_bus = event_bus if event_bus is not None else EventBus()
+        self.memory_manager = memory_manager if memory_manager is not None else MemoryManager()
+        self.conversation_engine = (
+            conversation_engine
+            if conversation_engine is not None
+            else ConversationEngine(self.memory_manager)
+        )
+        self.gossip_engine = (
+            gossip_engine
+            if gossip_engine is not None
+            else GossipEngine(self.agent_manager, self.memory_manager, self.conversation_engine)
+        )
 
     def start(self) -> None:
         """Start the simulation and publish a ``WORLD_STARTED`` event.
@@ -113,11 +139,13 @@ class World:
         1. Advance the Clock.
         2. Execute due scheduled tasks.
         3. Update all agents.
-        4. Publish a ``TICK`` event.
+        4. Run one gossip tick (post-movement).
+        5. Publish a ``TICK`` event.
         """
         self.clock.advance()
         self.scheduler.run_due_tasks()
         self.agent_manager.update_all()
+        self.gossip_engine.process_tick(self.clock.current_time)
         self.event_bus.publish(
             Event(
                 event_type=EventType.TICK,

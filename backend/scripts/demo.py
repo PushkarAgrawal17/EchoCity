@@ -17,6 +17,9 @@ from app.core.logging import setup_logging
 from app.events.event import Event
 from app.events.event_type import EventType
 from app.simulation.world import World
+from app.simulation.location import Location
+from app.simulation.location_manager import LocationManager
+from app.simulation.location_type import LocationType
 
 TICKS_TO_RUN = 5
 
@@ -34,7 +37,24 @@ def main() -> None:
     world = World()
     world.event_bus.subscribe(EventType.TICK, on_tick)
 
-    noah = Agent(agent_id="npc_noah", name="Noah", location="Bank")
+    location_manager = LocationManager()
+
+    location_manager.register_location(
+        Location(
+            id="cafe",
+            name="The Cafe",
+            type=LocationType.CAFE,
+        )
+    )
+
+    cafe = location_manager.get_location("cafe")
+
+    noah = Agent(
+        agent_id="npc_noah",
+        name="Noah",
+        location=cafe,
+    )
+
     world.agent_manager.register(noah)
     print(f"Registered agent: {noah.name} at {noah.location}")
 
