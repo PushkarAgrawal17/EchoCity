@@ -28,3 +28,4 @@ class Memory:
     timestamp: float
     confidence: float
     shared: bool = False
+    subject_id: str | None = None

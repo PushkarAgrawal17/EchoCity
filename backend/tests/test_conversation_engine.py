@@ -2,11 +2,11 @@
 
 import pytest
 
+from app.conversation.conversation import Conversation
+from app.conversation.conversation_engine import ConversationEngine
 from app.memory.memory import Memory
 from app.memory.memory_manager import MemoryManager
 from app.memory.memory_type import MemoryType
-from app.services.conversation import Conversation
-from app.services.conversation_engine import ConversationEngine
 
 
 def make_memory(memory_id: str = "m1") -> Memory:

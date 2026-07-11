@@ -1,5 +1,7 @@
 """Manages the player's collected Evidence."""
 
+from collections.abc import Callable
+
 from app.court.evidence import Evidence
 from app.memory.memory import Memory
 
@@ -12,11 +14,19 @@ class EvidenceManager:
     no-op rather than creating a duplicate.
     """
 
-    def __init__(self) -> None:
-        """Initialize an empty evidence collection."""
+    def __init__(self, current_time: Callable[[], float] = lambda: 0.0) -> None:
+        """Initialize an empty evidence collection.
+
+        Args:
+            current_time: Callable returning the current time to stamp
+                newly collected Evidence with. Defaults to a constant
+                0.0 until the simulation Clock is wired in.
+        """
+        self._current_time = current_time
         self._evidence_by_memory_id: dict[str, Evidence] = {}
 
-    def collect(self, memory: Memory, collected_at: float) -> Evidence:
+
+    def collect(self, memory: Memory) -> tuple[Evidence, bool]:
         """Collect a memory as evidence.
 
         If this memory has already been collected, returns the existing
@@ -24,18 +34,21 @@ class EvidenceManager:
 
         Args:
             memory: The Memory to collect as evidence.
-            collected_at: Simulation time of collection.
 
         Returns:
-            The Evidence for this memory (new or previously existing).
+            A tuple of (Evidence, created), where created is True only
+            if this call produced a new Evidence.
         """
         existing = self._evidence_by_memory_id.get(memory.id)
         if existing is not None:
-            return existing
+            return existing, False
 
-        evidence = Evidence(id=f"evidence_{memory.id}", memory=memory, collected_at=collected_at)
+        evidence = Evidence(
+            id=f"evidence_{memory.id}", memory=memory, collected_at=self._current_time()
+        )
         self._evidence_by_memory_id[memory.id] = evidence
-        return evidence
+        return evidence, True
+
 
     def list_evidence(self) -> list[Evidence]:
         """Return all collected evidence.

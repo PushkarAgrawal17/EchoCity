@@ -24,10 +24,10 @@ def test_collect_returns_evidence_wrapping_the_memory() -> None:
     manager = EvidenceManager()
     memory = make_memory()
 
-    evidence = manager.collect(memory, collected_at=10.0)
+    evidence, created = manager.collect(memory)
 
+    assert created is True
     assert evidence.memory == memory
-    assert evidence.collected_at == 10.0
 
 
 def test_collect_same_memory_twice_does_not_duplicate() -> None:
@@ -35,8 +35,11 @@ def test_collect_same_memory_twice_does_not_duplicate() -> None:
     manager = EvidenceManager()
     memory = make_memory()
 
-    first = manager.collect(memory, collected_at=10.0)
-    second = manager.collect(memory, collected_at=20.0)
+    first, created1 = manager.collect(memory)
+    second, created2 = manager.collect(memory)
+
+    assert created1 is True
+    assert created2 is False
 
     assert first is second
     assert len(manager.list_evidence()) == 1
@@ -45,8 +48,8 @@ def test_collect_same_memory_twice_does_not_duplicate() -> None:
 def test_list_evidence_returns_all_collected() -> None:
     """list_evidence should return every distinct piece of evidence."""
     manager = EvidenceManager()
-    manager.collect(make_memory("m1"), collected_at=1.0)
-    manager.collect(make_memory("m2"), collected_at=2.0)
+    manager.collect(make_memory("m1"))
+    manager.collect(make_memory("m2"))
 
     assert len(manager.list_evidence()) == 2
 
@@ -54,10 +57,10 @@ def test_list_evidence_returns_all_collected() -> None:
 def test_remove_deletes_evidence() -> None:
     """remove should delete evidence by its evidence id."""
     manager = EvidenceManager()
-    evidence = manager.collect(make_memory("m1"), collected_at=1.0)
+    evidence, _ = manager.collect(make_memory("m1"))
 
     manager.remove(evidence.id)
-
+    
     assert manager.list_evidence() == []
 
 
@@ -71,8 +74,8 @@ def test_remove_unknown_id_raises() -> None:
 def test_clear_removes_all_evidence() -> None:
     """clear should empty the entire evidence collection."""
     manager = EvidenceManager()
-    manager.collect(make_memory("m1"), collected_at=1.0)
-    manager.collect(make_memory("m2"), collected_at=2.0)
+    manager.collect(make_memory("m1"))
+    manager.collect(make_memory("m2"))
 
     manager.clear()
 

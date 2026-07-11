@@ -89,6 +89,7 @@ class CrimeEngine:
                 source="self",
                 timestamp=crime.timestamp,
                 confidence=0.9,
+                subject_id=crime.culprit_id,
             ),
         )
 
@@ -101,5 +102,6 @@ class CrimeEngine:
                 source=_WITNESS_AGENT_ID,
                 timestamp=crime.timestamp,
                 confidence=0.5,
+                subject_id=crime.culprit_id,
             ),
         )

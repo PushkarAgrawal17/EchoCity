@@ -3,11 +3,11 @@
 from app.agents.agent import Agent
 from app.agents.agent_manager import AgentManager
 from app.agents.agent_state import AgentState
+from app.conversation.conversation_engine import ConversationEngine
 from app.conversation.gossip_engine import GossipEngine
 from app.memory.memory import Memory
 from app.memory.memory_manager import MemoryManager
 from app.memory.memory_type import MemoryType
-from app.services.conversation_engine import ConversationEngine
 from app.simulation.location import Location
 from app.simulation.location_type import LocationType
 

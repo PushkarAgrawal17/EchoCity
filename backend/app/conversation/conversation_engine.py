@@ -2,8 +2,8 @@
 
 from dataclasses import replace
 
+from app.conversation.conversation import Conversation
 from app.memory.memory_manager import MemoryManager
-from app.services.conversation import Conversation
 
 
 class ConversationEngine:

@@ -16,10 +16,10 @@ from app.core.config import get_settings
 from app.core.logging import setup_logging
 from app.events.event import Event
 from app.events.event_type import EventType
-from app.simulation.world import World
 from app.simulation.location import Location
 from app.simulation.location_manager import LocationManager
 from app.simulation.location_type import LocationType
+from app.simulation.world import World
 
 TICKS_TO_RUN = 5
 

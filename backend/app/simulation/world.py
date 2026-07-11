@@ -9,12 +9,12 @@ logic — those belong to later milestones.
 import logging
 
 from app.agents.agent_manager import AgentManager
+from app.conversation.conversation_engine import ConversationEngine
 from app.conversation.gossip_engine import GossipEngine
 from app.events.event import Event
 from app.events.event_bus import EventBus
 from app.events.event_type import EventType
 from app.memory.memory_manager import MemoryManager
-from app.services.conversation_engine import ConversationEngine
 from app.simulation.clock import Clock
 from app.simulation.scheduler import Scheduler
 
