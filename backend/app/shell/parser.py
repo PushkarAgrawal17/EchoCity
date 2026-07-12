@@ -16,6 +16,12 @@ _ARG_COUNTS: dict[str, tuple[int, int]] = {
     "clear": (0, 0),
     "accuse": (1, 1),
     "submit": (0, 0),
+    "suggest": (1, 1),
+    "warn": (1, 1),
+    "comfort": (1, 1),
+    "encourage": (1, 1),
+    "remember": (2, 2),
+    "coincidence": (2, 2),
 }
 
 
@@ -49,8 +55,6 @@ class Parser:
 
         min_args, max_args = _ARG_COUNTS[name]
         if not (min_args <= len(arguments) <= max_args):
-            raise ParseError(
-                f"'{name}' expects between {min_args} and {max_args} argument(s)."
-            )
+            raise ParseError(f"'{name}' expects between {min_args} and {max_args} argument(s).")
 
         return Command(name=name, arguments=arguments)

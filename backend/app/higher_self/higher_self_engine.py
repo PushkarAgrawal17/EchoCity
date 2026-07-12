@@ -6,6 +6,9 @@ citizens know or believe. Everything else emerges from the existing
 simulation.
 """
 
+from collections.abc import Sequence
+from dataclasses import replace
+
 from app.agents.agent_manager import AgentManager
 from app.higher_self.influence import Influence
 from app.higher_self.influence_result import InfluenceResult
@@ -18,8 +21,28 @@ _SUGGEST_TEMPLATES = [
     "I have a feeling something isn't right.",
     "Something about today feels off.",
     "I can't shake this feeling of unease.",
-    "There's a thought I can't quite place.",
 ]
+
+_WARN_TEMPLATES = [
+    "Something feels dangerous about this place.",
+    "I should be careful about who I trust.",
+    "I have a bad feeling about what's coming.",
+]
+
+_COMFORT_TEMPLATES = [
+    "It's going to be alright.",
+    "I don't need to worry so much.",
+    "Things will work out in the end.",
+]
+
+_ENCOURAGE_TEMPLATES = [
+    "I can handle whatever happens next.",
+    "I should trust my own judgment more.",
+    "I'm capable of figuring this out.",
+]
+
+_COINCIDENCE_CONFIDENCE_BOOST = 0.2
+
 
 class HigherSelfEngine:
     """Applies player Influences to the city's cognitive state.
@@ -71,7 +94,6 @@ class HigherSelfEngine:
             case _:
                 raise AssertionError(f"Unhandled InfluenceType: {influence.type}")
 
-
     def _validate_targets(self, influence: Influence) -> InfluenceResult | None:
         """Validate that the agent(s) targeted by an Influence exist.
 
@@ -101,7 +123,6 @@ class HigherSelfEngine:
 
         return None
 
-
     def _apply_suggest(self, influence: Influence) -> InfluenceResult:
         """Plant a vague suspicion in the target's mind.
 
@@ -112,7 +133,8 @@ class HigherSelfEngine:
         summary = _SUGGEST_TEMPLATES[memory_count % len(_SUGGEST_TEMPLATES)]
 
         memory = Memory(
-            id=f"mem_higher_self_{self._memory_manager.next_memory_id()}",            summary=summary,
+            id=f"mem_higher_self_{self._memory_manager.next_memory_id()}",
+            summary=summary,
             type=MemoryType.PERSONAL,
             source="self",
             timestamp=0.0,
@@ -126,37 +148,56 @@ class HigherSelfEngine:
             affected_agents=[influence.primary_target],
         )
 
-
     def _apply_remember(self, influence: Influence) -> InfluenceResult:
-        """Placeholder handler for REMEMBER. Not yet implemented."""
+        """Resurface a memory the target already holds.
+
+        Duplicates an existing memory under a fresh id. Never invents
+        new knowledge — fails if the referenced memory doesn't exist.
+        """
+        if influence.reference is None:
+            return InfluenceResult(
+                success=False,
+                message="No memory reference was provided.",
+                affected_agents=[],
+            )
+
+        original = self._memory_manager.get_memory(influence.primary_target, influence.reference)
+        if original is None:
+            return InfluenceResult(
+                success=False,
+                message=f"No such memory '{influence.reference}' to remember.",
+                affected_agents=[],
+            )
+
+        resurfaced = replace(
+            original,
+            id=f"mem_higher_self_{self._memory_manager.next_memory_id()}",
+            timestamp=0.0,
+        )
+        self._memory_manager.add_memory(influence.primary_target, resurfaced)
+
         return InfluenceResult(
-            success=False,
-            message="'remember' is not yet implemented.",
-            affected_agents=[],
+            success=True,
+            message="A memory has resurfaced.",
+            affected_agents=[influence.primary_target],
         )
 
     def _apply_warn(self, influence: Influence) -> InfluenceResult:
-        """Placeholder handler for WARN. Not yet implemented."""
-        return InfluenceResult(
-            success=False,
-            message="'warn' is not yet implemented.",
-            affected_agents=[],
+        """Instill a vague sense of danger or caution."""
+        return self._apply_template_influence(
+            influence, _WARN_TEMPLATES, "A sense of caution has taken hold."
         )
 
     def _apply_comfort(self, influence: Influence) -> InfluenceResult:
-        """Placeholder handler for COMFORT. Not yet implemented."""
-        return InfluenceResult(
-            success=False,
-            message="'comfort' is not yet implemented.",
-            affected_agents=[],
+        """Instill vague reassurance."""
+        return self._apply_template_influence(
+            influence, _COMFORT_TEMPLATES, "A sense of comfort has taken hold."
         )
 
     def _apply_encourage(self, influence: Influence) -> InfluenceResult:
-        """Placeholder handler for ENCOURAGE. Not yet implemented."""
-        return InfluenceResult(
-            success=False,
-            message="'encourage' is not yet implemented.",
-            affected_agents=[],
+        """Instill a vague positive expectation."""
+        return self._apply_template_influence(
+            influence, _ENCOURAGE_TEMPLATES, "A sense of encouragement has taken hold."
         )
 
     def _apply_connect(self, influence: Influence) -> InfluenceResult:
@@ -168,9 +209,61 @@ class HigherSelfEngine:
         )
 
     def _apply_coincidence(self, influence: Influence) -> InfluenceResult:
-        """Placeholder handler for COINCIDENCE. Not yet implemented."""
+        """Resurface a memory the target already holds, as a spontaneous
+        realization.
+
+        Mechanically identical to REMEMBER's resurfacing — the distinct
+        gameplay effect comes from GossipEngine's per-speaker rotation,
+        which now makes an appended memory eligible for a future
+        conversation rather than being permanently unreachable.
+        """
+        if influence.reference is None:
+            return InfluenceResult(
+                success=False,
+                message="No memory reference was provided.",
+                affected_agents=[],
+            )
+
+        original = self._memory_manager.get_memory(influence.primary_target, influence.reference)
+        if original is None:
+            return InfluenceResult(
+                success=False,
+                message=f"No such memory '{influence.reference}' for coincidence.",
+                affected_agents=[],
+            )
+
+        resurfaced = replace(
+            original,
+            id=f"mem_higher_self_{self._memory_manager.next_memory_id()}",
+            timestamp=0.0,
+        )
+        self._memory_manager.add_memory(influence.primary_target, resurfaced)
+
         return InfluenceResult(
-            success=False,
-            message="'coincidence' is not yet implemented.",
-            affected_agents=[],
+            success=True,
+            message="A coincidence has drawn new attention to something already known.",
+            affected_agents=[influence.primary_target],
+        )
+
+    def _apply_template_influence(
+        self, influence: Influence, templates: Sequence[str], success_message: str
+    ) -> InfluenceResult:
+        """Shared mechanic for template-based, fact-free influences."""
+        memory_count = len(self._memory_manager.get_memories(influence.primary_target))
+        summary = templates[memory_count % len(templates)]
+
+        memory = Memory(
+            id=f"mem_higher_self_{self._memory_manager.next_memory_id()}",
+            summary=summary,
+            type=MemoryType.PERSONAL,
+            source="self",
+            timestamp=0.0,
+            confidence=0.3,
+        )
+        self._memory_manager.add_memory(influence.primary_target, memory)
+
+        return InfluenceResult(
+            success=True,
+            message=success_message,
+            affected_agents=[influence.primary_target],
         )

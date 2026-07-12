@@ -21,8 +21,16 @@ def test_bootstrap_registers_locations() -> None:
 def test_bootstrap_creates_expected_demo_agents() -> None:
     game = GameFactory.build()
 
-    expected_ids = {"agent_1", "agent_2", "agent_3", "agent_4",
-                     "agent_5", "agent_6", "agent_7", "agent_8"}
+    expected_ids = {
+        "agent_1",
+        "agent_2",
+        "agent_3",
+        "agent_4",
+        "agent_5",
+        "agent_6",
+        "agent_7",
+        "agent_8",
+    }
     actual_ids = {agent.agent_id for agent in game.world.agent_manager}
 
     assert actual_ids == expected_ids
@@ -36,10 +44,7 @@ def test_bootstrap_seeds_crime() -> None:
     heard_memories = game.world.memory_manager.get_memories("agent_4")
 
     assert len(witness_memories) == 1
-    assert any(
-        memory.subject_id == "agent_2"
-        for memory in heard_memories
-    )
+    assert any(memory.subject_id == "agent_2" for memory in heard_memories)
     assert witness_memories[0].subject_id == "agent_2"
     assert heard_memories[0].subject_id == "agent_2"
 
@@ -54,6 +59,4 @@ def test_bootstrap_propagates_gossip_before_returning() -> None:
     # At least one agent outside the original witness/heard pair should
     # now know something, proving gossip actually propagated.
     other_agents = [a for a in game.world.agent_manager if a.agent_id not in {"agent_3", "agent_4"}]
-    assert any(
-        game.world.memory_manager.get_memories(agent.agent_id) for agent in other_agents
-    )
+    assert any(game.world.memory_manager.get_memories(agent.agent_id) for agent in other_agents)

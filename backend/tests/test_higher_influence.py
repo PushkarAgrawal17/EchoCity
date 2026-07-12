@@ -8,11 +8,44 @@ simulation.
 
 from collections.abc import Callable
 
+from app.agents.agent import Agent
 from app.agents.agent_manager import AgentManager
+from app.higher_self.higher_self_engine import HigherSelfEngine
 from app.higher_self.influence import Influence
 from app.higher_self.influence_result import InfluenceResult
 from app.higher_self.influence_type import InfluenceType
+from app.memory.memory import Memory
 from app.memory.memory_manager import MemoryManager
+from app.memory.memory_type import MemoryType
+
+
+def _make_memory_manager_with_memory(agent_id: str, memory_id: str) -> MemoryManager:
+    """Create a MemoryManager seeded with one memory."""
+    manager = MemoryManager()
+    manager.add_memory(
+        agent_id,
+        Memory(
+            id=memory_id,
+            summary="Saw Emma leave the Cafe.",
+            type=MemoryType.WITNESS,
+            source="self",
+            timestamp=5.0,
+            confidence=0.9,
+            subject_id="agent_2",
+        ),
+    )
+    return manager
+
+
+def _make_engine_with_agent(
+    agent_id: str = "agent_1",
+) -> tuple[HigherSelfEngine, MemoryManager]:
+    """Create a HigherSelfEngine with one registered agent."""
+    memory_manager = MemoryManager()
+    agent_manager = AgentManager()
+    agent_manager.register(Agent(agent_id=agent_id, name="Agent One"))
+    engine = HigherSelfEngine(memory_manager, agent_manager)
+    return engine, memory_manager
 
 
 class HigherSelfEngine:
@@ -130,3 +163,258 @@ class HigherSelfEngine:
             message=f"'{influence.type.value}' is not yet implemented.",
             affected_agents=[],
         )
+
+    def test_suggest_adds_one_memory() -> None:
+        """SUGGEST should add exactly one memory to the target agent."""
+        memory_manager = MemoryManager()
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        result = engine.apply(Influence(type=InfluenceType.SUGGEST, primary_target="agent_1"))
+
+        assert result.success is True
+        assert result.affected_agents == ["agent_1"]
+        assert len(memory_manager.get_memories("agent_1")) == 1
+
+    def test_suggest_memory_has_no_subject_id() -> None:
+        """SUGGEST must never point at a specific agent as subject."""
+        memory_manager = MemoryManager()
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        engine.apply(Influence(type=InfluenceType.SUGGEST, primary_target="agent_1"))
+
+        memory = memory_manager.get_memories("agent_1")[0]
+        assert memory.subject_id is None
+
+    def test_remember_duplicates_existing_memory() -> None:
+        """A successful REMEMBER should add a copy of the referenced memory."""
+        memory_manager = _make_memory_manager_with_memory("agent_1", "mem_a")
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        result = engine.apply(
+            Influence(type=InfluenceType.REMEMBER, primary_target="agent_1", reference="mem_a")
+        )
+
+        assert result.success is True
+        assert len(memory_manager.get_memories("agent_1")) == 2
+
+    def test_remember_new_copy_has_different_id() -> None:
+        """The resurfaced memory must have a fresh id, not the original's."""
+        memory_manager = _make_memory_manager_with_memory("agent_1", "mem_a")
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        engine.apply(
+            Influence(type=InfluenceType.REMEMBER, primary_target="agent_1", reference="mem_a")
+        )
+
+        ids = [m.id for m in memory_manager.get_memories("agent_1")]
+        assert len(set(ids)) == 2
+
+    def test_remember_does_not_mutate_original() -> None:
+        """The original memory must remain untouched after REMEMBER."""
+        memory_manager = _make_memory_manager_with_memory("agent_1", "mem_a")
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        engine.apply(
+            Influence(type=InfluenceType.REMEMBER, primary_target="agent_1", reference="mem_a")
+        )
+
+        original = memory_manager.get_memory("agent_1", "mem_a")
+        assert original is not None
+        assert original.summary == "Saw Emma leave the Cafe."
+        assert original.confidence == 0.9
+
+    def test_remember_missing_reference_fails() -> None:
+        """REMEMBER with no reference should fail without creating a memory."""
+        engine, memory_manager = _make_engine_with_agent()
+
+        result = engine.apply(Influence(type=InfluenceType.REMEMBER, primary_target="agent_1"))
+
+        assert result.success is False
+        assert memory_manager.get_memories("agent_1") == []
+
+    def test_remember_unknown_memory_fails() -> None:
+        """REMEMBER pointing at a nonexistent memory should fail cleanly."""
+        engine, memory_manager = _make_engine_with_agent()
+
+        result = engine.apply(
+            Influence(type=InfluenceType.REMEMBER, primary_target="agent_1", reference="ghost")
+        )
+
+        assert result.success is False
+        assert memory_manager.get_memories("agent_1") == []
+
+    def test_remember_preserves_semantic_fields() -> None:
+        """The resurfaced memory should keep all meaning-bearing fields,
+        while receiving a fresh id and timestamp."""
+        engine, memory_manager = _make_engine_with_agent()
+
+        engine.apply(
+            Influence(type=InfluenceType.REMEMBER, primary_target="agent_1", reference="mem_a")
+        )
+
+        original = memory_manager.get_memory("agent_1", "mem_a")
+        resurfaced = next(m for m in memory_manager.get_memories("agent_1") if m.id != "mem_a")
+
+        assert resurfaced.summary == original.summary
+        assert resurfaced.subject_id == original.subject_id
+        assert resurfaced.type == original.type
+        assert resurfaced.source == original.source
+        assert resurfaced.confidence == original.confidence
+        assert resurfaced.id != original.id
+        assert resurfaced.timestamp == 0.0
+
+    def test_coincidence_duplicates_existing_memory() -> None:
+        memory_manager = _make_memory_manager_with_memory("agent_1", "mem_a")
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        result = engine.apply(
+            Influence(type=InfluenceType.COINCIDENCE, primary_target="agent_1", reference="mem_a")
+        )
+
+        assert result.success is True
+        assert len(memory_manager.get_memories("agent_1")) == 2
+
+    def test_coincidence_increases_confidence() -> None:
+        """The resurfaced copy should have higher confidence than the original."""
+        memory_manager = _make_memory_manager_with_memory("agent_1", "mem_a")
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        engine.apply(
+            Influence(type=InfluenceType.COINCIDENCE, primary_target="agent_1", reference="mem_a")
+        )
+
+        original = memory_manager.get_memory("agent_1", "mem_a")
+        resurfaced = next(m for m in memory_manager.get_memories("agent_1") if m.id != "mem_a")
+
+        assert resurfaced.confidence > original.confidence
+        assert resurfaced.confidence == min(original.confidence + 0.2, 1.0)
+
+    def test_coincidence_confidence_caps_at_one() -> None:
+        """Confidence boost should never exceed 1.0."""
+        memory_manager = MemoryManager()
+        memory_manager.add_memory(
+            "agent_1",
+            Memory(
+                id="mem_high",
+                summary="Definitely saw it happen.",
+                type=MemoryType.WITNESS,
+                source="self",
+                timestamp=1.0,
+                confidence=0.95,
+            ),
+        )
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        engine.apply(
+            Influence(
+                type=InfluenceType.COINCIDENCE, primary_target="agent_1", reference="mem_high"
+            )
+        )
+
+        resurfaced = next(m for m in memory_manager.get_memories("agent_1") if m.id != "mem_high")
+        assert resurfaced.confidence == 1.0
+
+    def test_coincidence_new_copy_has_different_id() -> None:
+        memory_manager = _make_memory_manager_with_memory("agent_1", "mem_a")
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        engine.apply(
+            Influence(type=InfluenceType.COINCIDENCE, primary_target="agent_1", reference="mem_a")
+        )
+
+        ids = [m.id for m in memory_manager.get_memories("agent_1")]
+        assert len(set(ids)) == 2
+
+    def test_coincidence_preserves_semantic_fields() -> None:
+        memory_manager = _make_memory_manager_with_memory("agent_1", "mem_a")
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        engine.apply(
+            Influence(type=InfluenceType.COINCIDENCE, primary_target="agent_1", reference="mem_a")
+        )
+
+        original = memory_manager.get_memory("agent_1", "mem_a")
+        resurfaced = next(m for m in memory_manager.get_memories("agent_1") if m.id != "mem_a")
+
+        assert resurfaced.summary == original.summary
+        assert resurfaced.subject_id == original.subject_id
+        assert resurfaced.type == original.type
+        assert resurfaced.source == original.source
+        assert resurfaced.confidence == original.confidence
+        assert resurfaced.timestamp == 0.0
+
+    def test_coincidence_missing_reference_fails() -> None:
+        memory_manager = MemoryManager()
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        result = engine.apply(Influence(type=InfluenceType.COINCIDENCE, primary_target="agent_1"))
+
+        assert result.success is False
+        assert memory_manager.get_memories("agent_1") == []
+
+    def test_coincidence_unknown_memory_fails() -> None:
+        memory_manager = MemoryManager()
+        agent_manager = AgentManager()
+        agent_manager.register(Agent(agent_id="agent_1", name="Agent One"))
+        engine = HigherSelfEngine(memory_manager, agent_manager)
+
+        result = engine.apply(
+            Influence(type=InfluenceType.COINCIDENCE, primary_target="agent_1", reference="ghost")
+        )
+
+        assert result.success is False
+        assert memory_manager.get_memories("agent_1") == []
+
+    def test_warn_adds_one_memory() -> None:
+        engine, memory_manager = _make_engine_with_agent()
+
+        result = engine.apply(Influence(type=InfluenceType.WARN, primary_target="agent_1"))
+
+        assert result.success is True
+        assert result.affected_agents == ["agent_1"]
+        assert len(memory_manager.get_memories("agent_1")) == 1
+
+    def test_comfort_adds_one_memory() -> None:
+        engine, memory_manager = _make_engine_with_agent()
+
+        result = engine.apply(Influence(type=InfluenceType.COMFORT, primary_target="agent_1"))
+
+        assert result.success is True
+        assert len(memory_manager.get_memories("agent_1")) == 1
+
+    def test_encourage_adds_one_memory() -> None:
+        engine, memory_manager = _make_engine_with_agent()
+
+        result = engine.apply(Influence(type=InfluenceType.ENCOURAGE, primary_target="agent_1"))
+
+        assert result.success is True
+        assert len(memory_manager.get_memories("agent_1")) == 1
+
+    def test_warn_memory_has_no_subject_id() -> None:
+        engine, memory_manager = _make_engine_with_agent()
+
+        engine.apply(Influence(type=InfluenceType.WARN, primary_target="agent_1"))
+
+        assert memory_manager.get_memories("agent_1")[0].subject_id is None

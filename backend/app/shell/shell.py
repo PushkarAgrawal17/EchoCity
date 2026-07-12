@@ -6,6 +6,9 @@ from typing import Any, cast
 from app.court.case_file import CaseFile
 from app.court.court_engine import CourtEngine
 from app.court.evidence_manager import EvidenceManager
+from app.higher_self.higher_self_engine import HigherSelfEngine
+from app.higher_self.influence import Influence
+from app.higher_self.influence_type import InfluenceType
 from app.investigation.investigation_service import InvestigationService
 from app.memory.memory import Memory
 from app.shell.command import Command
@@ -44,16 +47,16 @@ class Shell:
         evidence_manager: EvidenceManager,
         case_file: CaseFile,
         court_engine: CourtEngine,
+        higher_self_engine: HigherSelfEngine,
     ) -> None:
-        """Create a Shell bound to backend services."""
         self._investigation_service = investigation_service
         self._evidence_manager = evidence_manager
         self._case_file = case_file
         self._court_engine = court_engine
+        self._higher_self_engine = higher_self_engine
         self._parser = Parser()
         self._path: list[str] = []
         self._accusation: str | None = None
-
 
     def execute_line(self, line: str) -> str:
         """Parse and execute one line of input.
@@ -71,7 +74,6 @@ class Shell:
 
         return self._dispatch(command)
 
-
     def _dispatch(self, command: Command) -> str:
         handlers: dict[str, Callable[[tuple[str, ...]], str]] = {
             "help": self._cmd_help,
@@ -87,9 +89,14 @@ class Shell:
             "clear": self._cmd_clear,
             "accuse": self._cmd_accuse,
             "submit": self._cmd_submit,
+            "suggest": self._cmd_suggest,
+            "warn": self._cmd_warn,
+            "comfort": self._cmd_comfort,
+            "encourage": self._cmd_encourage,
+            "remember": self._cmd_remember,
+            "coincidence": self._cmd_coincidence,
         }
         return handlers[command.name](command.arguments)
-
 
     def _current_node(self) -> dict[str, Any]:
         node: dict[str, Any] = cast(dict[str, Any], _ROOT["locations"])
@@ -97,24 +104,19 @@ class Shell:
             node = cast(dict[str, Any], node[segment])
         return node
 
-
     def _cmd_help(self, _arguments: tuple[str, ...]) -> str:
         return _HELP_TEXT
 
-
     def _cmd_pwd(self, _arguments: tuple[str, ...]) -> str:
         return "/" + "/".join(self._path)
-
 
     def _cmd_ls(self, _arguments: tuple[str, ...]) -> str:
         children = list(self._current_node().keys())
         return "\n".join(children) if children else "(empty)"
 
-
     def _cmd_tree(self, _arguments: tuple[str, ...]) -> str:
         lines = ["/"] + [f"  {name}" for name in _ROOT["locations"]]
         return "\n".join(lines)
-
 
     def _cmd_cd(self, arguments: tuple[str, ...]) -> str:
         if not arguments or arguments[0] == "/":
@@ -134,7 +136,6 @@ class Shell:
         self._path.append(target)
         return self._cmd_pwd(())
 
-
     def _cmd_observe(self, arguments: tuple[str, ...]) -> str:
         location_id = arguments[0] if arguments else (self._path[-1] if self._path else None)
         if location_id is None:
@@ -144,7 +145,6 @@ class Shell:
         if not agents:
             return f"No one is at '{location_id}'."
         return "\n".join(agent.agent_id for agent in agents)
-
 
     def _cmd_question(self, arguments: tuple[str, ...]) -> str:
         agent_id = arguments[0]
@@ -161,26 +161,13 @@ class Shell:
     def _cmd_collect(self, arguments: tuple[str, ...]) -> str:
         agent_id, index_str = arguments
 
-        agent = self._investigation_service.get_agent(agent_id)
-        if agent is None:
-            return f"No such agent: '{agent_id}'."
+        result = self._resolve_memory(agent_id, index_str)
+        if isinstance(result, str):
+            return result
 
-        try:
-            index = int(index_str)
-        except ValueError:
-            return "Invalid memory index."
-
-        memories = self._investigation_service.get_agent_memories(agent_id)
-        if not (1 <= index <= len(memories)):
-            return "Memory not found."
-
-        memory = memories[index - 1]
-        evidence, created = self._evidence_manager.collect(memory)
-
+        evidence, created = self._evidence_manager.collect(result)
         self._case_file.add_evidence(evidence)
-
         return "Evidence collected." if created else "Evidence already collected."
-
 
     def _cmd_case(self, _arguments: tuple[str, ...]) -> str:
         evidence_list = self._case_file.list_evidence()
@@ -189,7 +176,6 @@ class Shell:
         return "\n".join(
             f"[{i}] {evidence.memory.summary}" for i, evidence in enumerate(evidence_list, start=1)
         )
-
 
     def _cmd_remove(self, arguments: tuple[str, ...]) -> str:
         try:
@@ -204,13 +190,11 @@ class Shell:
         self._case_file.remove_evidence(evidence_list[index - 1].id)
         return "Evidence removed."
 
-
     def _cmd_clear(self, _arguments: tuple[str, ...]) -> str:
         if not self._case_file.list_evidence():
             return "Case file already empty."
         self._case_file.clear()
         return "Case file cleared."
-
 
     def _cmd_accuse(self, arguments: tuple[str, ...]) -> str:
         agent_id = arguments[0]
@@ -219,7 +203,6 @@ class Shell:
 
         self._accusation = agent_id
         return f"You accuse '{agent_id}'."
-
 
     def _cmd_submit(self, _arguments: tuple[str, ...]) -> str:
         if self._accusation is None:
@@ -236,8 +219,7 @@ class Shell:
         elif not verdict.success:
             lines.append("Insufficient evidence.")
             lines.append(
-                f"You correctly identified {verdict.culprit_id}, "
-                "but failed to prove the case."
+                f"You correctly identified {verdict.culprit_id}, " "but failed to prove the case."
             )
             lines.append(f"The Court acquits {verdict.culprit_id}.")
         else:
@@ -245,6 +227,102 @@ class Shell:
             lines.append(f"The Court convicts {verdict.culprit_id}.")
 
         return "\n".join(lines)
+
+    def _cmd_suggest(self, arguments: tuple[str, ...]) -> str:
+        agent_id = arguments[0]
+        if self._investigation_service.get_agent(agent_id) is None:
+            return f"No such agent: '{agent_id}'."
+        result = self._higher_self_engine.apply(
+            Influence(type=InfluenceType.SUGGEST, primary_target=agent_id)
+        )
+        return result.message
+
+    def _cmd_warn(self, arguments: tuple[str, ...]) -> str:
+        agent_id = arguments[0]
+        if self._investigation_service.get_agent(agent_id) is None:
+            return f"No such agent: '{agent_id}'."
+        result = self._higher_self_engine.apply(
+            Influence(type=InfluenceType.WARN, primary_target=agent_id)
+        )
+        return result.message
+
+    def _cmd_comfort(self, arguments: tuple[str, ...]) -> str:
+        agent_id = arguments[0]
+        if self._investigation_service.get_agent(agent_id) is None:
+            return f"No such agent: '{agent_id}'."
+        result = self._higher_self_engine.apply(
+            Influence(type=InfluenceType.COMFORT, primary_target=agent_id)
+        )
+        return result.message
+
+    def _cmd_encourage(self, arguments: tuple[str, ...]) -> str:
+        agent_id = arguments[0]
+        if self._investigation_service.get_agent(agent_id) is None:
+            return f"No such agent: '{agent_id}'."
+        result = self._higher_self_engine.apply(
+            Influence(type=InfluenceType.ENCOURAGE, primary_target=agent_id)
+        )
+        return result.message
+
+
+    def _cmd_remember(self, arguments: tuple[str, ...]) -> str:
+        agent_id, index_str = arguments
+
+        if self._investigation_service.get_agent(agent_id) is None:
+            return f"No such agent: '{agent_id}'."
+
+        try:
+            index = int(index_str)
+        except ValueError:
+            return "Invalid memory index."
+
+        memories = self._investigation_service.get_agent_memories(agent_id)
+        if not (1 <= index <= len(memories)):
+            return "Memory not found."
+
+        memory = memories[index - 1]
+        result = self._higher_self_engine.apply(
+            Influence(type=InfluenceType.REMEMBER, primary_target=agent_id, reference=memory.id)
+        )
+        return result.message
+
+    def _cmd_coincidence(self, arguments: tuple[str, ...]) -> str:
+        agent_id, index_str = arguments
+
+        if self._investigation_service.get_agent(agent_id) is None:
+            return f"No such agent: '{agent_id}'."
+
+        try:
+            index = int(index_str)
+        except ValueError:
+            return "Invalid memory index."
+
+        memories = self._investigation_service.get_agent_memories(agent_id)
+        if not (1 <= index <= len(memories)):
+            return "Memory not found."
+
+        memory = memories[index - 1]
+        result = self._higher_self_engine.apply(
+            Influence(type=InfluenceType.COINCIDENCE, primary_target=agent_id, reference=memory.id)
+        )
+        return result.message
+
+    def _apply_simple_influence(self, agent_id: str, influence_type: InfluenceType) -> str:
+        if self._investigation_service.get_agent(agent_id) is None:
+            return f"No such agent: '{agent_id}'."
+        result = self._higher_self_engine.apply(Influence(type=influence_type, primary_target=agent_id))
+        return result.message
+
+    def _apply_reference_influence(
+        self, agent_id: str, index_str: str, influence_type: InfluenceType
+    ) -> str:
+        memory = self._resolve_memory(agent_id, index_str)
+        if isinstance(memory, str):
+            return memory
+        result = self._higher_self_engine.apply(
+            Influence(type=influence_type, primary_target=agent_id, reference=memory.id)
+        )
+        return result.message
 
 
     def _format_memories(self, memories: list[Memory]) -> str:
@@ -257,3 +335,24 @@ class Shell:
         if not memories:
             return ""
         return "\n".join(f"[{i}] {memory.summary}" for i, memory in enumerate(memories, start=1))
+
+
+    def _resolve_memory(self, agent_id: str, index_str: str) -> Memory | str:
+        """Resolve an agent_id + 1-based index into a Memory.
+
+        Returns the Memory on success, or an error string on failure —
+        callers should check the type before use.
+        """
+        if self._investigation_service.get_agent(agent_id) is None:
+            return f"No such agent: '{agent_id}'."
+
+        try:
+            index = int(index_str)
+        except ValueError:
+            return "Invalid memory index."
+
+        memories = self._investigation_service.get_agent_memories(agent_id)
+        if not (1 <= index <= len(memories)):
+            return "Memory not found."
+
+        return memories[index - 1]

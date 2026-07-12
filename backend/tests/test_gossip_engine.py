@@ -117,3 +117,24 @@ def test_pairing_is_deterministic_across_runs() -> None:
     gossip_engine.process_tick(timestamp=2.0)
 
     assert len(memory_manager.get_memories("agent_b")) == 1
+
+
+def test_speaker_rotates_through_memories_across_calls() -> None:
+    """A speaker with multiple memories shares a different one each call,
+    in order, and wraps back to the start once exhausted."""
+    _, memory_manager, gossip_engine = build_engine()
+
+    memory_manager.add_memory("agent_a", make_memory("m1"))
+    memory_manager.add_memory("agent_a", make_memory("m2"))
+    memory_manager.add_memory("agent_a", make_memory("m3"))
+
+    # Test _attempt_share directly because process_tick() combines
+    # pairing, rotation and memory selection. A fresh listener is used
+    # each call so ConversationEngine's deduplication doesn't affect
+    # the memory-rotation behavior being tested.
+    expected_order = ["m1", "m2", "m3", "m1"]
+
+    for i, expected_id in enumerate(expected_order):
+        listener_id = f"listener_{i}"
+        gossip_engine._attempt_share("agent_a", listener_id, timestamp=float(i))
+        assert memory_manager.get_memories(listener_id)[-1].id == expected_id

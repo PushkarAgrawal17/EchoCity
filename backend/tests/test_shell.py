@@ -3,12 +3,17 @@
 from types import SimpleNamespace
 from unittest.mock import MagicMock
 
+from app.agents.agent import Agent
+from app.agents.agent_manager import AgentManager
 from app.court.case_file import CaseFile
 from app.court.court_engine import CourtEngine
 from app.court.evidence_manager import EvidenceManager
 from app.crime.crime_engine import CrimeEngine
+from app.higher_self.higher_self_engine import HigherSelfEngine
 from app.investigation.investigation_service import InvestigationService
+from app.memory.memory import Memory
 from app.memory.memory_manager import MemoryManager
+from app.memory.memory_type import MemoryType
 from app.shell.shell import Shell
 
 
@@ -19,7 +24,38 @@ def _make_shell() -> tuple[Shell, MagicMock]:
     crime_engine = CrimeEngine(MemoryManager())
     crime_engine.create_crime()
     court_engine = CourtEngine(crime_engine)
-    return Shell(service, evidence_manager, case_file, court_engine), service
+
+    agent_manager = AgentManager()
+    memory_manager = MemoryManager()
+    higher_self_engine = HigherSelfEngine(memory_manager, agent_manager)
+
+    shell = Shell(service, evidence_manager, case_file, court_engine, higher_self_engine)
+    return shell, service
+
+
+def make_memory(memory_id: str) -> Memory:
+    return Memory(
+        id=memory_id, summary="Saw something.", type=MemoryType.WITNESS,
+        source="self", timestamp=0.0, confidence=0.9,
+    )
+
+
+def _make_shell_with_higher_self() -> tuple[Shell, MagicMock, AgentManager, MemoryManager]:
+    """Build a Shell wired with a real HigherSelfEngine, for Higher Self
+    command tests that need to verify actual memory-manager state."""
+    service = MagicMock(spec=InvestigationService)
+    evidence_manager = EvidenceManager()
+    case_file = CaseFile()
+    crime_engine = CrimeEngine(MemoryManager())
+    crime_engine.create_crime()
+    court_engine = CourtEngine(crime_engine)
+
+    agent_manager = AgentManager()
+    memory_manager = MemoryManager()
+    higher_self_engine = HigherSelfEngine(memory_manager, agent_manager)
+
+    shell = Shell(service, evidence_manager, case_file, court_engine, higher_self_engine)
+    return shell, service, agent_manager, memory_manager
 
 
 def test_pwd_starts_at_root() -> None:
@@ -291,6 +327,7 @@ def test_submit_correct_culprit_but_insufficient_evidence() -> None:
     assert "Insufficient evidence." in result
     assert "acquits agent_2" in result
 
+
 def test_submit_correct_culprit_with_sufficient_evidence() -> None:
     shell, service = _make_shell()
     service.get_agent.return_value = MagicMock()
@@ -307,3 +344,87 @@ def test_submit_correct_culprit_with_sufficient_evidence() -> None:
 
     assert "Correct." in result
     assert "convicts agent_2" in result
+
+
+def test_suggest_unknown_agent() -> None:
+    shell, service, _, _ = _make_shell_with_higher_self()
+    service.get_agent.return_value = None
+
+    result = shell.execute_line("suggest agent_99")
+
+    assert result == "No such agent: 'agent_99'."
+
+
+def test_suggest_success_adds_memory() -> None:
+    shell, service, agent_manager, memory_manager = _make_shell_with_higher_self()
+    service.get_agent.return_value = MagicMock()
+    agent_manager.register(Agent(agent_id="agent_3", name="Agent Three"))
+
+    result = shell.execute_line("suggest agent_3")
+
+    assert result == "A subtle influence has taken hold."
+    assert len(memory_manager.get_memories("agent_3")) == 1
+
+
+def test_warn_success_adds_memory() -> None:
+    shell, service, agent_manager, memory_manager = _make_shell_with_higher_self()
+    service.get_agent.return_value = MagicMock()
+    agent_manager.register(Agent(agent_id="agent_3", name="Agent Three"))
+    shell.execute_line("warn agent_3")
+    assert len(memory_manager.get_memories("agent_3")) == 1
+
+
+def test_comfort_unknown_agent() -> None:
+    shell, service, _, _ = _make_shell_with_higher_self()
+    service.get_agent.return_value = None
+    assert shell.execute_line("comfort agent_99") == "No such agent: 'agent_99'."
+
+
+def test_encourage_success_adds_memory() -> None:
+    shell, service, agent_manager, memory_manager = _make_shell_with_higher_self()
+    service.get_agent.return_value = MagicMock()
+    agent_manager.register(Agent(agent_id="agent_3", name="Agent Three"))
+    shell.execute_line("encourage agent_3")
+    assert len(memory_manager.get_memories("agent_3")) == 1
+
+
+def test_remember_unknown_agent() -> None:
+    shell, service, _, _ = _make_shell_with_higher_self()
+    service.get_agent.return_value = None
+    assert shell.execute_line("remember agent_99 1") == "No such agent: 'agent_99'."
+
+
+def test_remember_index_out_of_range() -> None:
+    shell, service, agent_manager, _ = _make_shell_with_higher_self()
+    service.get_agent.return_value = MagicMock()
+    service.get_agent_memories.return_value = []
+    agent_manager.register(Agent(agent_id="agent_3", name="Agent Three"))
+    assert shell.execute_line("remember agent_3 1") == "Memory not found."
+
+
+def test_remember_success_duplicates_memory() -> None:
+    shell, service, agent_manager, memory_manager = _make_shell_with_higher_self()
+    agent_manager.register(Agent(agent_id="agent_3", name="Agent Three"))
+    memory_manager.add_memory("agent_3", make_memory("mem_x"))
+    service.get_agent.return_value = MagicMock()
+    service.get_agent_memories.return_value = memory_manager.get_memories("agent_3")
+    shell.execute_line("remember agent_3 1")
+    assert len(memory_manager.get_memories("agent_3")) == 2
+
+
+def test_coincidence_index_out_of_range() -> None:
+    shell, service, agent_manager, _ = _make_shell_with_higher_self()
+    service.get_agent.return_value = MagicMock()
+    service.get_agent_memories.return_value = []
+    agent_manager.register(Agent(agent_id="agent_3", name="Agent Three"))
+    assert shell.execute_line("coincidence agent_3 1") == "Memory not found."
+
+
+def test_coincidence_success_duplicates_memory() -> None:
+    shell, service, agent_manager, memory_manager = _make_shell_with_higher_self()
+    agent_manager.register(Agent(agent_id="agent_3", name="Agent Three"))
+    memory_manager.add_memory("agent_3", make_memory("mem_x"))
+    service.get_agent.return_value = MagicMock()
+    service.get_agent_memories.return_value = memory_manager.get_memories("agent_3")
+    shell.execute_line("coincidence agent_3 1")
+    assert len(memory_manager.get_memories("agent_3")) == 2

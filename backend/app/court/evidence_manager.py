@@ -25,7 +25,6 @@ class EvidenceManager:
         self._current_time = current_time
         self._evidence_by_memory_id: dict[str, Evidence] = {}
 
-
     def collect(self, memory: Memory) -> tuple[Evidence, bool]:
         """Collect a memory as evidence.
 
@@ -48,7 +47,6 @@ class EvidenceManager:
         )
         self._evidence_by_memory_id[memory.id] = evidence
         return evidence, True
-
 
     def list_evidence(self) -> list[Evidence]:
         """Return all collected evidence.

@@ -45,9 +45,7 @@ class CrimeEngine:
             self._crime = Crime(
                 id=_CRIME_ID,
                 title="Theft of the Silver Necklace",
-                description=(
-                    f"{_CULPRIT_ID} stole a necklace from {_VICTIM_ID} at the Cafe."
-                ),
+                description=(f"{_CULPRIT_ID} stole a necklace from {_VICTIM_ID} at the Cafe."),
                 culprit_id=_CULPRIT_ID,
                 victim_id=_VICTIM_ID,
                 location_id=_LOCATION_ID,

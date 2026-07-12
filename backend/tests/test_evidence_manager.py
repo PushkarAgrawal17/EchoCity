@@ -60,7 +60,7 @@ def test_remove_deletes_evidence() -> None:
     evidence, _ = manager.collect(make_memory("m1"))
 
     manager.remove(evidence.id)
-    
+
     assert manager.list_evidence() == []
 
 

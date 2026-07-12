@@ -34,9 +34,7 @@ class CourtEngine:
         evidence_list = case_file.list_evidence()
 
         correct_count = sum(
-            1
-            for evidence in evidence_list
-            if evidence.memory.subject_id == crime.culprit_id
+            1 for evidence in evidence_list if evidence.memory.subject_id == crime.culprit_id
         )
 
         success = correct_count >= _REQUIRED_CORRECT_EVIDENCE

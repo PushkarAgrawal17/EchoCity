@@ -34,29 +34,29 @@ class GossipEngine:
         self._memory_manager = memory_manager
         self._conversation_engine = conversation_engine
         self._tick_index = 0
+        self._next_memory_index: dict[str, int] = {}
 
     def process_tick(self, timestamp: float) -> None:
-            """Run one gossip tick: pair up co-located agents and let each
-            speaker share at most one memory.
+        """Run one gossip tick: pair up co-located agents and let each
+        speaker share at most one memory.
 
-            Pairing rotates the full agent list each tick, so every agent
-            eventually acts as both speaker and listener, enabling gradual
-            rumor diffusion in a static-location world without randomness.
+        Pairing rotates the full agent list each tick, so every agent
+        eventually acts as both speaker and listener, enabling gradual
+        rumor diffusion in a static-location world without randomness.
 
-            Args:
-                timestamp: Current simulation time, stamped on any
-                    Conversation created this tick.
-            """
-            groups = self._group_agents_by_location()
+        Args:
+            timestamp: Current simulation time, stamped on any
+                Conversation created this tick.
+        """
+        groups = self._group_agents_by_location()
 
-            for location_id in sorted(groups):
-                agent_ids = sorted(groups[location_id])
-                rotated = self._rotate(agent_ids, self._tick_index)
-                for speaker_id, listener_id in self._pair_up(rotated):
-                    self._attempt_share(speaker_id, listener_id, timestamp)
+        for location_id in sorted(groups):
+            agent_ids = sorted(groups[location_id])
+            rotated = self._rotate(agent_ids, self._tick_index)
+            for speaker_id, listener_id in self._pair_up(rotated):
+                self._attempt_share(speaker_id, listener_id, timestamp)
 
-            self._tick_index += 1
-
+        self._tick_index += 1
 
     def _group_agents_by_location(self) -> dict[str, list[str]]:
         """Group agent_ids by the id of their current Location.
@@ -70,7 +70,6 @@ class GossipEngine:
             groups.setdefault(agent.location.id, []).append(agent.agent_id)
         return groups
 
-
     @staticmethod
     def _pair_up(agent_ids: list[str]) -> list[tuple[str, str]]:
         """Pair up a sorted list of agent_ids two at a time, deterministically.
@@ -78,8 +77,6 @@ class GossipEngine:
         An odd agent out (no partner) is left unpaired this tick.
         """
         return [(agent_ids[i], agent_ids[i + 1]) for i in range(0, len(agent_ids) - 1, 2)]
-
-
 
     @staticmethod
     def _rotate(agent_ids: list[str], tick_index: int) -> list[str]:
@@ -89,14 +86,16 @@ class GossipEngine:
         offset = tick_index % len(agent_ids)
         return agent_ids[offset:] + agent_ids[:offset]
 
-
     def _attempt_share(self, speaker_id: str, listener_id: str, timestamp: float) -> None:
-        """Have speaker share its first memory with listener, if it has one."""
+        """Have speaker share its next rotation memory with listener, if it has one."""
         speaker_memories = self._memory_manager.get_memories(speaker_id)
         if not speaker_memories:
             return
 
-        memory_id = speaker_memories[0].id
+        index = self._next_memory_index.get(speaker_id, 0) % len(speaker_memories)
+        memory_id = speaker_memories[index].id
+        self._next_memory_index[speaker_id] = index + 1
+
         conversation = Conversation(
             speaker_id=speaker_id,
             listener_id=listener_id,

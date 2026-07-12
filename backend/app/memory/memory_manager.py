@@ -17,12 +17,10 @@ class MemoryManager:
         self._memories: dict[str, list[Memory]] = {}
         self._next_id = 0
 
-
     def next_memory_id(self) -> str:
         """Generate the next unique memory identifier."""
         self._next_id += 1
         return str(self._next_id)
-
 
     def add_memory(self, agent_id: str, memory: Memory) -> None:
         """Add a memory to the given agent's memory list.
@@ -32,7 +30,6 @@ class MemoryManager:
             memory: The Memory to add.
         """
         self._memories.setdefault(agent_id, []).append(memory)
-
 
     def get_memories(self, agent_id: str) -> list[Memory]:
         """Return all memories held by the given agent.
@@ -44,7 +41,6 @@ class MemoryManager:
             A list of Memory objects. Empty list if the agent has none.
         """
         return list(self._memories.get(agent_id, []))
-
 
     def get_memory(self, agent_id: str, memory_id: str) -> Memory | None:
         """Return a specific memory held by the given agent, if it exists.
@@ -65,7 +61,6 @@ class MemoryManager:
                 return memory
 
         return None
-
 
     def share_memory(self, agent_id: str, memory_id: str) -> None:
         """Mark a memory as shared.

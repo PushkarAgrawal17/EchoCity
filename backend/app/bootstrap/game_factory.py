@@ -14,6 +14,7 @@ from app.court.case_file import CaseFile
 from app.court.court_engine import CourtEngine
 from app.court.evidence_manager import EvidenceManager
 from app.crime.crime_engine import CrimeEngine
+from app.higher_self.higher_self_engine import HigherSelfEngine
 from app.investigation.investigation_service import InvestigationService
 from app.shell.shell import Shell
 from app.simulation.location import Location
@@ -55,6 +56,7 @@ class Game:
     world: World
     shell: Shell
     location_manager: LocationManager
+
 
 class GameFactory:
     """Builds a complete, playable EchoCity object graph.
@@ -107,11 +109,9 @@ class GameFactory:
         case_file = CaseFile()
         court_engine = CourtEngine(crime_engine)
         investigation_service = InvestigationService(world.agent_manager, world.memory_manager)
-        shell = Shell(investigation_service, evidence_manager, case_file, court_engine)
-
-
-        return Game(
-            world=world,
-            shell=shell,
-            location_manager=location_manager
+        higher_self_engine = HigherSelfEngine(world.memory_manager, world.agent_manager)
+        shell = Shell(
+            investigation_service, evidence_manager, case_file, court_engine, higher_self_engine
         )
+
+        return Game(world=world, shell=shell, location_manager=location_manager)
