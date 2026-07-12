@@ -1,74 +1,103 @@
-"""Console demonstration of the integrated EchoCity simulation.
+"""Interactive console entrypoint for the EchoCity demo.
 
-Run with:
-    uv run python scripts/demo.py
-
-Drives World directly (not through SimulationEngine) so the demo runs
-instantly and deterministically rather than sleeping in real time between
-ticks — SimulationEngine's job is real-time pacing, which isn't useful for
-a quick console demonstration.
+Thin CLI shell around GameFactory + Shell. Contains no gameplay logic —
+every game command is delegated to Shell.execute_line(). This script
+only handles the terminal loop, banner, and its own 'help' text.
 """
 
-import logging
+from app.bootstrap.game_factory import GameFactory
+from app.shell.shell import Shell
 
-from app.agents.agent import Agent
-from app.core.config import get_settings
-from app.core.logging import setup_logging
-from app.events.event import Event
-from app.events.event_type import EventType
-from app.simulation.location import Location
-from app.simulation.location_manager import LocationManager
-from app.simulation.location_type import LocationType
-from app.simulation.world import World
+_BANNER = """\
+=================================
+        EchoCity Demo
+=================================
+Solve the mystery.
+Explore the city.
+Question NPCs.
+Collect evidence.
+Build your case.
+Accuse the culprit.
 
-TICKS_TO_RUN = 5
+Type 'help' for available commands.
 
+Suggested first steps:
 
-def on_tick(event: Event) -> None:
-    """Print progress each time a TICK event is published."""
-    print(f"[tick {event.payload['tick_count']}] simulation time = {event.timestamp:.0f}s")
+  ls
+  cd cafe
+  observe
+
+Type 'exit' to quit.
+"""
+
+_HELP_TEXT = """\
+Navigation
+  ls
+  tree
+  pwd
+  cd <location>
+
+Investigation
+  observe
+  question <agent>
+  collect <agent> <index>
+
+Case
+  case
+  remove <index>
+  clear
+
+Court
+  accuse <agent>
+  submit
+
+Other
+  help
+  exit
+  quit"""
+
+_EXIT_COMMANDS = {"exit", "quit"}
 
 
 def main() -> None:
-    """Build a small World, register an agent, schedule a task, and run it."""
-    setup_logging(get_settings())
-    logging.getLogger(__name__).info("Starting EchoCity console demo.")
+    """Build the game and run the interactive command loop."""
+    game = GameFactory.build()
 
-    world = World()
-    world.event_bus.subscribe(EventType.TICK, on_tick)
+    print(_BANNER)
+    print()
+    print("Locations:")
+    for location in game.location_manager.list_locations():
+        print(f"  - {location.id}")
+    print()
 
-    location_manager = LocationManager()
+    try:
+        _run_loop(game.shell)
+    except KeyboardInterrupt:
+        print("\nGoodbye.")
 
-    location_manager.register_location(
-        Location(
-            id="cafe",
-            name="The Cafe",
-            type=LocationType.CAFE,
-        )
-    )
 
-    cafe = location_manager.get_location("cafe")
+def _run_loop(shell: Shell) -> None:
+    """Read, dispatch, and print commands until the player exits.
 
-    noah = Agent(
-        agent_id="npc_noah",
-        name="Noah",
-        location=cafe,
-    )
+    Args:
+        shell: The Shell instance to execute non-local commands through.
+    """
+    while True:
+        line = input("> ").strip()
+        if not line:
+            continue
 
-    world.agent_manager.register(noah)
-    print(f"Registered agent: {noah.name} at {noah.location}")
+        command = line.split()[0].lower()
 
-    def greet() -> None:
-        print(f"[scheduled task] {noah.name} says hello.")
+        if command in _EXIT_COMMANDS:
+            print("Goodbye.")
+            return
 
-    world.scheduler.schedule_at(run_at=world.clock.current_time + 120.0, task=greet)
+        if command == "help":
+            print(_HELP_TEXT)
+            continue
 
-    world.start()
-    for _ in range(TICKS_TO_RUN):
-        world.tick()
-    world.stop()
-
-    print(f"Demo finished after {world.tick_count} ticks.")
+        print(shell.execute_line(line))
 
 
 if __name__ == "__main__":
