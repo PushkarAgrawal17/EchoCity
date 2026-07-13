@@ -1,0 +1,3747 @@
+[
+  {
+    "citizen_info": {
+      "id": "marcus_hale",
+      "name": "Marcus Hale",
+      "age": 58,
+      "occupation": "Judge, EchoCity Court",
+      "home": "Apartment Building, Unit 4C",
+      "current_location": "Court",
+      "identity": {
+        "gender": "male",
+        "marital_status": "widower",
+        "voice": "low, deliberate, faint gravel"
+      },
+      "personality": {
+        "big_five": {
+          "openness": 0.42,
+          "conscientiousness": 0.93,
+          "extraversion": 0.31,
+          "agreeableness": 0.48,
+          "neuroticism": 0.55
+        },
+        "traits": {
+          "patience": 0.88,
+          "greed": 0.15,
+          "empathy": 0.52,
+          "curiosity": 0.4,
+          "honesty": 0.7,
+          "courage": 0.75,
+          "morality": 0.65,
+          "impulsiveness": 0.1,
+          "confidence": 0.9,
+          "suspicion": 0.6,
+          "stress_tolerance": 0.8,
+          "leadership": 0.92
+        }
+      },
+      "speech_style": {
+        "vocabulary": "formal, Latin-inflected legal terms, precise nouns",
+        "sentence_length": "long, subordinate clauses, deliberate pauses",
+        "tone": "measured, authoritative, faintly weary",
+        "favorite_expressions": [
+          "The record will show...",
+          "Let us not mistake noise for evidence.",
+          "I have seen this pattern before."
+        ],
+        "lying_style": "lies by omission, never states a direct falsehood, redirects with a question"
+      },
+      "habits": {
+        "morning": "black coffee, reads the previous day's court filings before dawn",
+        "work": "recesses precisely on the hour, taps gavel twice before speaking",
+        "evening": "solitary walk through the Park, avoids the Cafe after dark",
+        "night": "reads case law until he falls asleep in his armchair",
+        "quirks": "rubs his wedding ring though his wife is long dead; never sits with his back to a door",
+        "favorite_food": "black coffee and dry toast, occasionally Sophia's lentil soup",
+        "favorite_place": "the Park's oak bench near the fountain",
+        "coffee_or_tea": "coffee, always black",
+        "smoking": "quit 12 years ago, still carries an unlit pipe",
+        "reading": "legal history, obituaries",
+        "music": "none by choice; silence is preferred"
+      },
+      "inventory": [
+        "worn leather briefcase",
+        "pocket watch (his late wife's gift)",
+        "reading glasses",
+        "unlit pipe",
+        "court robes (at Court)",
+        "small notebook of unresolved doubts",
+        "wallet with exact minimal cash"
+      ],
+      "secrets": {
+        "major_secret": "Fifteen years ago he quietly buried evidence in a case involving his own brother, ensuring an acquittal. He has lived since then convinced justice is never truly clean \u2014 and has never told a soul.\n",
+        "minor_secrets": [
+          "He still writes letters to his deceased wife and keeps them in his desk drawer.",
+          "He is secretly losing his eyesight and has told no one, including his doctor."
+        ],
+        "regret": "Never having children; the docket became his family instead.",
+        "fear": "Being exposed as a hypocrite who once broke the very law he now enforces.",
+        "dream": "To pass his final years knowing he ruled fairly at least once when it truly mattered."
+      },
+      "beliefs": {
+        "politics": "distrusts populism, believes institutions must be protected even when imperfect",
+        "religion": "lapsed Catholic, prays privately, doubts openly",
+        "justice": "the law is a blunt instrument used by careful hands",
+        "love": "believes it is rare and mostly already spent in his life",
+        "money": "indifferent, lives modestly by habit not virtue",
+        "friendship": "values loyalty above charm",
+        "crime": "believes most crime is born of circumstance, not character",
+        "truth": "believes total truth is often more destructive than a managed version of it",
+        "technology": "uneasy, doesn't understand why the town feels \"watched\" lately",
+        "higher_self": "has noticed unexplained clarity in his thoughts during hard rulings; privately unsettled by it, calls it \"the second voice\""
+      },
+      "current_state": {
+        "goal": "uncover the truth behind irregularities at the Bank before ruling publicly",
+        "emotion": "guarded concern",
+        "stress": 0.55,
+        "suspicion": 0.65,
+        "energy": 0.6,
+        "confidence": 0.85,
+        "inner_monologue": "\"Reed's numbers don't sit right. Neither does the way Cross avoided my eyes this morning. Everyone in this city thinks I only watch from the bench. They forget I watch everywhere.\""
+      }
+    },
+    "schedule": {
+      "6": "Wakes, black coffee, reviews filings",
+      "7": "Dry toast, dresses, walks to Court",
+      "8": "Reviews docket in chambers",
+      "9": "Court session begins",
+      "12": "Lunch alone at the Cafe, corner table",
+      "13": "Court resumes",
+      "16": "Chambers, paperwork",
+      "17": "Walk through the Park",
+      "18": "Dinner at home, alone",
+      "19": "Reads case law",
+      "21": "Writes a letter to Eleanor, does not send it",
+      "22": "Falls asleep in armchair",
+      "23": "Lights out"
+    },
+    "relationships": [
+      {
+        "with": "Ethan Cross",
+        "trust": 0.75,
+        "friendship": 0.4,
+        "respect": 0.85,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "high \u2014 relies on his testimony",
+        "hidden_opinion": "Sees Ethan as the only honest man left in the department",
+        "shared_memory": "Presided over Ethan's first major case, a burglary ring, 6 years ago"
+      },
+      {
+        "with": "Ava Morgan",
+        "trust": 0.35,
+        "friendship": 0.2,
+        "respect": 0.55,
+        "fear": 0.45,
+        "romantic": 0.0,
+        "professional": "wary, controls what he tells her",
+        "hidden_opinion": "Believes she'll dig up Daniel's case eventually",
+        "shared_memory": "She once asked him an off-record question about his brother; he changed the subject"
+      },
+      {
+        "with": "Noah Reed",
+        "trust": 0.4,
+        "friendship": 0.3,
+        "respect": 0.5,
+        "fear": 0.2,
+        "romantic": 0.0,
+        "professional": "oversees Bank-related rulings",
+        "hidden_opinion": "Suspects Noah is hiding something, hasn't decided what",
+        "shared_memory": "Approved Noah's loan-officer bonding paperwork years ago"
+      },
+      {
+        "with": "Emma Brooks",
+        "trust": 0.6,
+        "friendship": 0.45,
+        "respect": 0.6,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "none formal",
+        "hidden_opinion": "Reminds him faintly of the daughter he never had",
+        "shared_memory": "She invited his court to her class for a mock trial day"
+      },
+      {
+        "with": "Liam Carter",
+        "trust": 0.55,
+        "friendship": 0.5,
+        "respect": 0.7,
+        "fear": 0.6,
+        "romantic": 0.0,
+        "professional": "patient-doctor, hiding his eyesight from him",
+        "hidden_opinion": "Trusts his medicine, not his questions",
+        "shared_memory": "Liam treated Eleanor in her final months"
+      },
+      {
+        "with": "Sophia Bennett",
+        "trust": 0.65,
+        "friendship": 0.55,
+        "respect": 0.5,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "regular customer",
+        "hidden_opinion": "Comforted by her presence more than he admits",
+        "shared_memory": "She once refused to let him pay after Eleanor's funeral"
+      },
+      {
+        "with": "Victor Kane",
+        "trust": 0.3,
+        "friendship": 0.15,
+        "respect": 0.35,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "fixed his car once",
+        "hidden_opinion": "Considers him unreadable, possibly dangerous",
+        "shared_memory": "Victor fixed his car for free the week Eleanor died"
+      }
+    ],
+    "memories": [
+      {
+        "id": "mem_marcus_hale_1",
+        "timestamp_str": "Day -3120",
+        "location": "Court",
+        "importance": 10,
+        "emotion": "shame",
+        "tags": [
+          "secret",
+          "family"
+        ],
+        "summary": "Suppressed evidence in Daniel's embezzlement trial"
+      },
+      {
+        "id": "mem_marcus_hale_2",
+        "timestamp_str": "Day -3115",
+        "location": "Apartment",
+        "importance": 9,
+        "emotion": "grief",
+        "tags": [
+          "family"
+        ],
+        "summary": "Daniel leaves town without a word"
+      },
+      {
+        "id": "mem_marcus_hale_3",
+        "timestamp_str": "Day -2900",
+        "location": "Hospital",
+        "importance": 10,
+        "emotion": "grief",
+        "tags": [
+          "wife"
+        ],
+        "summary": "Eleanor's diagnosis"
+      },
+      {
+        "id": "mem_marcus_hale_4",
+        "timestamp_str": "Day -2800",
+        "location": "Hospital",
+        "importance": 10,
+        "emotion": "grief",
+        "tags": [
+          "wife"
+        ],
+        "summary": "Eleanor's death"
+      },
+      {
+        "id": "mem_marcus_hale_5",
+        "timestamp_str": "Day -2799",
+        "location": "Cafe",
+        "importance": 6,
+        "emotion": "comfort",
+        "tags": [
+          "kindness"
+        ],
+        "summary": "Sophia refuses payment after the funeral"
+      },
+      {
+        "id": "mem_marcus_hale_6",
+        "timestamp_str": "Day -2100",
+        "location": "Court",
+        "importance": 5,
+        "emotion": "pride",
+        "tags": [
+          "career"
+        ],
+        "summary": "First case Ethan testified in"
+      },
+      {
+        "id": "mem_marcus_hale_7",
+        "timestamp_str": "Day -1950",
+        "location": "Park",
+        "importance": 3,
+        "emotion": "calm",
+        "tags": [
+          "routine"
+        ],
+        "summary": "Begins daily evening walks"
+      },
+      {
+        "id": "mem_marcus_hale_8",
+        "timestamp_str": "Day -1500",
+        "location": "Bank",
+        "importance": 4,
+        "emotion": "routine",
+        "tags": [
+          "paperwork"
+        ],
+        "summary": "Approves Noah's bonding documents"
+      },
+      {
+        "id": "mem_marcus_hale_9",
+        "timestamp_str": "Day -1200",
+        "location": "School",
+        "importance": 5,
+        "emotion": "warmth",
+        "tags": [
+          "community"
+        ],
+        "summary": "Presides over Emma's mock trial day"
+      },
+      {
+        "id": "mem_marcus_hale_10",
+        "timestamp_str": "Day -900",
+        "location": "Garage",
+        "importance": 6,
+        "emotion": "gratitude",
+        "tags": [
+          "kindness"
+        ],
+        "summary": "Victor fixes his car for free"
+      },
+      {
+        "id": "mem_marcus_hale_11",
+        "timestamp_str": "Day -700",
+        "location": "Court",
+        "importance": 4,
+        "emotion": "doubt",
+        "tags": [
+          "doubt"
+        ],
+        "summary": "First noticed his eyesight blurring during a ruling"
+      },
+      {
+        "id": "mem_marcus_hale_12",
+        "timestamp_str": "Day -650",
+        "location": "Apartment",
+        "importance": 3,
+        "emotion": "private",
+        "tags": [
+          "ritual"
+        ],
+        "summary": "Begins writing unsent letters to Eleanor"
+      },
+      {
+        "id": "mem_marcus_hale_13",
+        "timestamp_str": "Day -500",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "unease",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Overhears a hushed argument between Noah and Victor"
+      },
+      {
+        "id": "mem_marcus_hale_14",
+        "timestamp_str": "Day -400",
+        "location": "Court",
+        "importance": 5,
+        "emotion": "irritation",
+        "tags": [
+          "conflict"
+        ],
+        "summary": "Ava asks him an off-record question about Daniel"
+      },
+      {
+        "id": "mem_marcus_hale_15",
+        "timestamp_str": "Day -300",
+        "location": "Hospital",
+        "importance": 4,
+        "emotion": "fear",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Avoids a scheduled eye exam with Liam"
+      },
+      {
+        "id": "mem_marcus_hale_16",
+        "timestamp_str": "Day -200",
+        "location": "Park",
+        "importance": 2,
+        "emotion": "calm",
+        "tags": [
+          "reflection"
+        ],
+        "summary": "A quiet talk with Emma about justice"
+      },
+      {
+        "id": "mem_marcus_hale_17",
+        "timestamp_str": "Day -150",
+        "location": "Court",
+        "importance": 6,
+        "emotion": "unease",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Reviews Bank audit summary, notices a discrepancy"
+      },
+      {
+        "id": "mem_marcus_hale_18",
+        "timestamp_str": "Day -60",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "comfort",
+        "tags": [
+          "routine"
+        ],
+        "summary": "Lunch, notices Ethan watching Noah closely"
+      },
+      {
+        "id": "mem_marcus_hale_19",
+        "timestamp_str": "Day -10",
+        "location": "Court",
+        "importance": 5,
+        "emotion": "tension",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Schedules a closed-door meeting on Bank finances"
+      },
+      {
+        "id": "mem_marcus_hale_20",
+        "timestamp_str": "Day -1",
+        "location": "Apartment",
+        "importance": 4,
+        "emotion": "unease",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Cannot sleep, senses \"something is about to break\""
+      }
+    ],
+    "diaries": [
+      {
+        "day": -7,
+        "label": "",
+        "text": "The docket was light today, which means my mind had room to wander \u2014 always dangerous. I thought of Daniel again. Fifteen years and the thought still arrives uninvited, like a debt collector."
+      },
+      {
+        "day": -6,
+        "label": "",
+        "text": "Reed came to court today over a zoning dispute, fidgeting the entire time. A man who fidgets over zoning is a man thinking about something else entirely."
+      },
+      {
+        "day": -5,
+        "label": "",
+        "text": "My eyes betrayed me twice today reading testimony. I said nothing. I am not ready to be looked at the way I look at defendants."
+      },
+      {
+        "day": -4,
+        "label": "",
+        "text": "Ava Morgan asked about Daniel again, dressed as an idle question about \"old cases.\" I gave her nothing. She will not stop asking. She reminds me of myself at her age \u2014 which is precisely why I distrust her."
+      },
+      {
+        "day": -3,
+        "label": "",
+        "text": "Sophia's soup again today. She never lets me pay full price and pretends she forgets. I let her pretend."
+      },
+      {
+        "day": -2,
+        "label": "",
+        "text": "Cross came by chambers, unofficial, asked what I knew about the Bank's numbers. I told him nothing because I know nothing yet \u2014 only a feeling, and feelings are not evidence, whatever my instincts insist."
+      },
+      {
+        "day": -1,
+        "label": "",
+        "text": "I scheduled the hearing. I do not know yet what it will reveal. I only know the numbness in my chest tonight is the same one I felt the week before Daniel's trial. I do not trust that feeling. I have learned, at great cost, not to."
+      },
+      {
+        "day": -1,
+        "label": "second entry, late",
+        "text": "Strange thought before sleep \u2014 as if some other clarity moved through my mind, quieter than my own thoughts, telling me to look closer at the ledgers. I dismissed it as fatigue. I am fifty-eight. Fatigue explains most things now."
+      },
+      {
+        "day": -1,
+        "label": "third entry",
+        "text": "Eleanor, if you are anywhere at all \u2014 tell me I am not repeating my old mistake. Tell me that this time I will let the record show the truth."
+      },
+      {
+        "day": -1,
+        "label": "fourth entry, midnight",
+        "text": "Unlit the pipe again out of habit. Put it down. Slept badly."
+      }
+    ]
+  },
+  {
+    "citizen_info": {
+      "id": "ethan_cross",
+      "name": "Ethan Cross",
+      "age": 34,
+      "occupation": "Detective, Police Station",
+      "home": "Apartment Building, Unit 2A",
+      "current_location": "Police Station",
+      "identity": {
+        "gender": "male",
+        "marital_status": "divorced",
+        "voice": "clipped, dry, quick"
+      },
+      "personality": {
+        "big_five": {
+          "openness": 0.6,
+          "conscientiousness": 0.8,
+          "extraversion": 0.55,
+          "agreeableness": 0.42,
+          "neuroticism": 0.5
+        },
+        "traits": {
+          "patience": 0.55,
+          "greed": 0.2,
+          "empathy": 0.58,
+          "curiosity": 0.92,
+          "honesty": 0.78,
+          "courage": 0.85,
+          "morality": 0.7,
+          "impulsiveness": 0.45,
+          "confidence": 0.75,
+          "suspicion": 0.9,
+          "stress_tolerance": 0.65,
+          "leadership": 0.6
+        }
+      },
+      "speech_style": {
+        "vocabulary": "plain, procedural, occasional dark humor",
+        "sentence_length": "short, clipped, fragments under stress",
+        "tone": "dry, observant, faintly sarcastic",
+        "favorite_expressions": [
+          "People lie. Details don't.",
+          "That's not an answer, that's a dodge.",
+          "Coincidences make me itch."
+        ],
+        "lying_style": "doesn't lie outright, withholds and misdirects during active cases"
+      },
+      "habits": {
+        "morning": "instant coffee, runs the same three-block loop, checks his phone for overnight reports",
+        "work": "annotates everything in a battered notebook, revisits crime scenes twice",
+        "evening": "drinks at the Cafe after closing hours if invited, otherwise alone",
+        "night": "reviews the day's notes before bed, rarely sleeps before midnight",
+        "quirks": "taps two fingers on his knee when thinking; distrusts silence in a room",
+        "favorite_food": "whatever's fast \u2014 usually a sandwich from the Cafe",
+        "favorite_place": "the Police Station roof, where he can see the whole town",
+        "coffee_or_tea": "coffee, instant, too much of it",
+        "smoking": "occasional, only during hard cases",
+        "reading": "case files, true crime paperbacks",
+        "music": "old jazz records, low volume"
+      },
+      "inventory": [
+        "badge",
+        "service notebook, coffee-stained",
+        "phone",
+        "keys",
+        "a photo of his ex-wife he hasn't thrown away",
+        "pack of cigarettes (half full)",
+        "cheap ballpoint pen"
+      ],
+      "secrets": {
+        "major_secret": "He falsified a minor detail in a report six years ago to protect a witness who was, in fact, guilty of something smaller \u2014 he has never corrected the record and it eats at him more than he lets on.\n",
+        "minor_secrets": [
+          "Still calls his ex-wife's old number just to hear the \"disconnected\" message.",
+          "Has a informal, unofficial file on almost every citizen in town, including friends."
+        ],
+        "regret": "Letting his marriage collapse under the weight of the job.",
+        "fear": "Missing something obvious and having someone get hurt because of it.",
+        "dream": "To solve one case so cleanly that the whole town finally sleeps easier."
+      },
+      "beliefs": {
+        "politics": "cynical about power, respects individual conscience over institutions",
+        "religion": "agnostic, \"the evidence isn't in yet\"",
+        "justice": "believes in it fiercely but no longer believes the system delivers it reliably",
+        "love": "burned once, guarded but not closed off",
+        "money": "doesn't care about it beyond rent and coffee",
+        "friendship": "rare and hard-won, but absolute once given",
+        "crime": "believes almost everyone is capable of it under the right pressure",
+        "truth": "the only thing worth chasing, even when it costs him",
+        "technology": "uses it well, but feels a nagging unease about \"gaps\" in his own memory lately",
+        "higher_self": "has noticed moments of sudden clarity mid-investigation he can't explain; jokes about it, doesn't fully dismiss it"
+      },
+      "current_state": {
+        "goal": "find out why the Bank's numbers don't match Noah's reports",
+        "emotion": "focused suspicion",
+        "stress": 0.6,
+        "suspicion": 0.85,
+        "energy": 0.7,
+        "confidence": 0.7,
+        "inner_monologue": "\"Victor flinched when I mentioned the Bank yesterday. People don't flinch at nothing. Reed's too calm. Calm is a performance when you're a manager whose numbers don't add up.\""
+      }
+    },
+    "schedule": {
+      "6": "Wakes, runs his loop",
+      "7": "Instant coffee, checks overnight reports",
+      "8": "Police Station, briefing",
+      "9": "Fieldwork / interviews",
+      "12": "Sandwich at the Cafe, watches the room",
+      "13": "Follows up leads",
+      "16": "Paperwork, notebook review",
+      "18": "Police Station roof, thinking",
+      "19": "Dinner, often skipped or late",
+      "20": "Cafe if invited, otherwise home",
+      "21": "Reviews the day's notes",
+      "23": "Jazz record, half-asleep on the couch"
+    },
+    "relationships": [
+      {
+        "with": "Marcus Hale",
+        "trust": 0.75,
+        "friendship": 0.4,
+        "respect": 0.85,
+        "fear": 0.15,
+        "romantic": 0.0,
+        "professional": "testifies before him regularly",
+        "hidden_opinion": "Suspects Hale hides more than he rules on",
+        "shared_memory": "First major case tried before Hale, 6 years ago"
+      },
+      {
+        "with": "Ava Morgan",
+        "trust": 0.6,
+        "friendship": 0.55,
+        "respect": 0.65,
+        "fear": 0.1,
+        "romantic": 0.2,
+        "professional": "trades information carefully",
+        "hidden_opinion": "Finds her attractive but won't act on it during a case",
+        "shared_memory": "Worked the same burglary story from opposite sides"
+      },
+      {
+        "with": "Noah Reed",
+        "trust": 0.3,
+        "friendship": 0.25,
+        "respect": 0.35,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "building a case against him",
+        "hidden_opinion": "Believes Noah is guilty, needs proof",
+        "shared_memory": "Noah once helped Ethan get a personal loan approved fast"
+      },
+      {
+        "with": "Emma Brooks",
+        "trust": 0.55,
+        "friendship": 0.45,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "consults her about a student witness",
+        "hidden_opinion": "Trusts her read on people",
+        "shared_memory": "She helped him talk to a scared child witness once"
+      },
+      {
+        "with": "Liam Carter",
+        "trust": 0.65,
+        "friendship": 0.5,
+        "respect": 0.7,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "shares medical/forensic details",
+        "hidden_opinion": "Values his bluntness",
+        "shared_memory": "Liam patched him up after a bar fight arrest"
+      },
+      {
+        "with": "Sophia Bennett",
+        "trust": 0.7,
+        "friendship": 0.65,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.1,
+        "professional": "frequents her cafe for intel and coffee",
+        "hidden_opinion": "Enjoys her company more than he admits",
+        "shared_memory": "She once gave him free coffee for a week after his divorce"
+      },
+      {
+        "with": "Victor Kane",
+        "trust": 0.35,
+        "friendship": 0.3,
+        "respect": 0.4,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "building a case, suspects him of withholding",
+        "hidden_opinion": "Certain Victor saw something he won't report",
+        "shared_memory": "Victor fixed Ethan's cruiser for a discount once"
+      }
+    ],
+    "memories": [
+      {
+        "id": "mem_ethan_cross_1",
+        "timestamp_str": "Day -2500",
+        "location": "Police Station",
+        "importance": 8,
+        "emotion": "pride",
+        "tags": [
+          "career"
+        ],
+        "summary": "Cracks the burglary ring case"
+      },
+      {
+        "id": "mem_ethan_cross_2",
+        "timestamp_str": "Day -2499",
+        "location": "Court",
+        "importance": 6,
+        "emotion": "pride",
+        "tags": [
+          "career"
+        ],
+        "summary": "Testifies before Judge Hale for the first time"
+      },
+      {
+        "id": "mem_ethan_cross_3",
+        "timestamp_str": "Day -1900",
+        "location": "Apartment",
+        "importance": 9,
+        "emotion": "grief",
+        "tags": [
+          "divorce"
+        ],
+        "summary": "Divorce finalized"
+      },
+      {
+        "id": "mem_ethan_cross_4",
+        "timestamp_str": "Day -1800",
+        "location": "Cafe",
+        "importance": 5,
+        "emotion": "comfort",
+        "tags": [
+          "kindness"
+        ],
+        "summary": "Sophia gives him free coffee for a week"
+      },
+      {
+        "id": "mem_ethan_cross_5",
+        "timestamp_str": "Day -1600",
+        "location": "Garage",
+        "importance": 4,
+        "emotion": "routine",
+        "tags": [
+          "trust"
+        ],
+        "summary": "Victor fixes his cruiser for a discount"
+      },
+      {
+        "id": "mem_ethan_cross_6",
+        "timestamp_str": "Day -1500",
+        "location": "Bank",
+        "importance": 3,
+        "emotion": "routine",
+        "tags": [
+          "favor"
+        ],
+        "summary": "Noah expedites a personal loan for him"
+      },
+      {
+        "id": "mem_ethan_cross_7",
+        "timestamp_str": "Day -1000",
+        "location": "Hospital",
+        "importance": 5,
+        "emotion": "pain",
+        "tags": [
+          "injury"
+        ],
+        "summary": "Liam patches him up after a bar fight arrest"
+      },
+      {
+        "id": "mem_ethan_cross_8",
+        "timestamp_str": "Day -900",
+        "location": "School",
+        "importance": 4,
+        "emotion": "tension",
+        "tags": [
+          "case"
+        ],
+        "summary": "Emma helps him interview a scared witness"
+      },
+      {
+        "id": "mem_ethan_cross_9",
+        "timestamp_str": "Day -700",
+        "location": "Police Station",
+        "importance": 3,
+        "emotion": "pride",
+        "tags": [
+          "ritual"
+        ],
+        "summary": "Begins keeping his personal case notebook"
+      },
+      {
+        "id": "mem_ethan_cross_10",
+        "timestamp_str": "Day -600",
+        "location": "Police Station",
+        "importance": 2,
+        "emotion": "calm",
+        "tags": [
+          "ritual"
+        ],
+        "summary": "Starts sitting on the roof at dusk"
+      },
+      {
+        "id": "mem_ethan_cross_11",
+        "timestamp_str": "Day -500",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "intrigue",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Overhears Victor and Noah arguing quietly"
+      },
+      {
+        "id": "mem_ethan_cross_12",
+        "timestamp_str": "Day -400",
+        "location": "Bank",
+        "importance": 5,
+        "emotion": "suspicion",
+        "tags": [
+          "case"
+        ],
+        "summary": "First notices minor discrepancy in a public Bank report"
+      },
+      {
+        "id": "mem_ethan_cross_13",
+        "timestamp_str": "Day -350",
+        "location": "Court",
+        "importance": 3,
+        "emotion": "tension",
+        "tags": [
+          "conflict"
+        ],
+        "summary": "Hale brushes off his informal concern"
+      },
+      {
+        "id": "mem_ethan_cross_14",
+        "timestamp_str": "Day -300",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "connection"
+        ],
+        "summary": "Ava buys him a coffee after a hard case"
+      },
+      {
+        "id": "mem_ethan_cross_15",
+        "timestamp_str": "Day -250",
+        "location": "Police Station",
+        "importance": 4,
+        "emotion": "frustration",
+        "tags": [
+          "case"
+        ],
+        "summary": "Old falsified detail resurfaces in his mind unbidden"
+      },
+      {
+        "id": "mem_ethan_cross_16",
+        "timestamp_str": "Day -150",
+        "location": "Bank",
+        "importance": 6,
+        "emotion": "suspicion",
+        "tags": [
+          "case"
+        ],
+        "summary": "Second discrepancy found in Noah's ledgers"
+      },
+      {
+        "id": "mem_ethan_cross_17",
+        "timestamp_str": "Day -100",
+        "location": "Garage",
+        "importance": 5,
+        "emotion": "tension",
+        "tags": [
+          "case"
+        ],
+        "summary": "Victor visibly nervous when Bank is mentioned"
+      },
+      {
+        "id": "mem_ethan_cross_18",
+        "timestamp_str": "Day -50",
+        "location": "School",
+        "importance": 3,
+        "emotion": "concern",
+        "tags": [
+          "case"
+        ],
+        "summary": "Emma mentions unusual behavior from a student near the Bank"
+      },
+      {
+        "id": "mem_ethan_cross_19",
+        "timestamp_str": "Day -20",
+        "location": "Police Station",
+        "importance": 6,
+        "emotion": "resolve",
+        "tags": [
+          "case"
+        ],
+        "summary": "Opens informal file on Noah Reed"
+      },
+      {
+        "id": "mem_ethan_cross_20",
+        "timestamp_str": "Day -1",
+        "location": "Police Station",
+        "importance": 5,
+        "emotion": "anticipation",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Decides tomorrow he confronts Reed directly"
+      }
+    ],
+    "diaries": [
+      {
+        "day": -7,
+        "label": "",
+        "text": "Ran the loop, same as always. Numbers from the Bank's quarterly report don't sit right, and I can't say why yet. That's the worst kind of itch."
+      },
+      {
+        "day": -6,
+        "label": "",
+        "text": "Talked to Victor at the Garage about his truck's tags \u2014 off the record, watched his hands the whole time. He fixed something that wasn't broken just to avoid looking at me."
+      },
+      {
+        "day": -5,
+        "label": "",
+        "text": "Ava cornered me at the Cafe asking what I know about the Bank. Told her nothing. She'll find her own way in regardless \u2014 she always does."
+      },
+      {
+        "day": -4,
+        "label": "",
+        "text": "Emma mentioned one of her students saw something odd near the Bank after hours. Kids notice more than we give them credit for."
+      },
+      {
+        "day": -3,
+        "label": "",
+        "text": "Reviewed six years of my own notebooks tonight. Found the entry I never should have written. Didn't burn it. Never do."
+      },
+      {
+        "day": -2,
+        "label": "",
+        "text": "Sat on the roof longer than usual. This town looks so calm from up here. Calm is a lie, most nights."
+      },
+      {
+        "day": -1,
+        "label": "",
+        "text": "Decided: I talk to Reed tomorrow, straight, no games. If he's clean, fine. If not, I want to see his face when I ask."
+      },
+      {
+        "day": -1,
+        "label": "second entry",
+        "text": "Strange \u2014 had a thought mid-review that felt like it wasn't quite mine, pointing me at a specific ledger page. Probably just fatigue and too much coffee. Probably."
+      },
+      {
+        "day": -1,
+        "label": "third entry",
+        "text": "Called the disconnected number again. Hung up before the message finished. Old habit."
+      },
+      {
+        "day": -1,
+        "label": "fourth entry, late",
+        "text": "Tomorrow. Reed. No more waiting on this one."
+      }
+    ]
+  },
+  {
+    "citizen_info": {
+      "id": "ava_morgan",
+      "name": "Ava Morgan",
+      "age": 29,
+      "occupation": "Journalist, independent, works out of the Cafe and Apartment Building",
+      "home": "Apartment Building, Unit 5B",
+      "current_location": "Cafe",
+      "identity": {
+        "gender": "female",
+        "marital_status": "single",
+        "voice": "quick, warm on the surface, probing underneath"
+      },
+      "personality": {
+        "big_five": {
+          "openness": 0.9,
+          "conscientiousness": 0.65,
+          "extraversion": 0.75,
+          "agreeableness": 0.55,
+          "neuroticism": 0.45
+        },
+        "traits": {
+          "patience": 0.4,
+          "greed": 0.3,
+          "empathy": 0.65,
+          "curiosity": 0.97,
+          "honesty": 0.6,
+          "courage": 0.8,
+          "morality": 0.55,
+          "impulsiveness": 0.6,
+          "confidence": 0.78,
+          "suspicion": 0.75,
+          "stress_tolerance": 0.55,
+          "leadership": 0.5
+        }
+      },
+      "speech_style": {
+        "vocabulary": "sharp, colloquial, quick wit",
+        "sentence_length": "short punchy questions, occasional rambling excitement",
+        "tone": "friendly but relentless",
+        "favorite_expressions": [
+          "Off the record, or on?",
+          "Funny you'd say that.",
+          "I just want to understand, that's all."
+        ],
+        "lying_style": "charming half-truths, rarely lies outright but omits liberally to protect sources"
+      },
+      "habits": {
+        "morning": "espresso at the Cafe, scans the town for gossip before breakfast",
+        "work": "chases leads relentlessly, sometimes past the point of good judgment",
+        "evening": "writes at a corner table until closing",
+        "night": "scrolls old notes, rarely stops thinking about a story",
+        "quirks": "taps pen against teeth; can't resist finishing other people's sentences",
+        "favorite_food": "Sophia's pastries, always the first bite before writing",
+        "favorite_place": "the Cafe's window table",
+        "coffee_or_tea": "espresso, double",
+        "smoking": false,
+        "reading": "everything \u2014 old newspapers, court records, gossip",
+        "music": "upbeat, plays through earbuds while writing"
+      },
+      "inventory": [
+        "notebook (professional)",
+        "small digital voice recorder",
+        "phone with too many open tabs",
+        "press badge (self-made, technically informal)",
+        "lipstick",
+        "a folded, half-finished draft about the Bank"
+      ],
+      "secrets": {
+        "major_secret": "She has quietly begun connecting Noah's recent behavior to missing Bank funds, and hasn't decided yet whether to publish before or after confirming it \u2014 a decision that could ruin an innocent man if she's wrong.\n",
+        "minor_secrets": [
+          "She was the anonymous source for a story about a Council scandal years ago.",
+          "She has a small crush on Ethan she's never voiced."
+        ],
+        "regret": "Once running a story too fast that hurt someone's reputation unfairly.",
+        "fear": "Becoming the kind of journalist who chases scandal over truth.",
+        "dream": "To break one story so important it changes how the town treats its own history."
+      },
+      "beliefs": {
+        "politics": "believes transparency matters more than comfort",
+        "religion": "skeptical, treats it as sociology",
+        "justice": "believes the public deserves to know, even when it's messy",
+        "love": "wants it but hasn't made room for it",
+        "money": "needs it but doesn't chase it",
+        "friendship": "values people who tell her the truth even when it's inconvenient",
+        "crime": "believes almost every crime has a cover-up attached",
+        "truth": "the highest value, worth the discomfort it causes",
+        "technology": "fascinated, slightly unnerved by how \"coincidentally\" good her hunches have been lately",
+        "higher_self": "privately wonders if her \"gut feelings\" are too accurate to be normal, jokes about having a source she can't name"
+      },
+      "current_state": {
+        "goal": "confirm the Bank story before anyone else does \u2014 responsibly, this time",
+        "emotion": "eager anticipation, gnawing doubt",
+        "stress": 0.5,
+        "suspicion": 0.8,
+        "energy": 0.85,
+        "confidence": 0.7,
+        "inner_monologue": "\"Victor knows something. Noah's too careful. If I push too fast I ruin it, if I wait too long, Ethan gets there first and I lose the story \u2014 or worse, someone gets hurt because I said nothing.\""
+      }
+    },
+    "schedule": {
+      "6": "Wakes, checks overnight gossip",
+      "7": "Espresso at the Cafe",
+      "8": "Reviews notes, plans the day's leads",
+      "9": "Interviews around town",
+      "12": "Lunch at the window table, writing",
+      "14": "Chases leads \u2014 Bank, Garage, Police Station",
+      "17": "Writes at the Cafe until close",
+      "19": "Dinner, often skipped",
+      "20": "Reviews recordings",
+      "22": "Scrolls old notes",
+      "23": "Sleep, reluctantly"
+    },
+    "relationships": [
+      {
+        "with": "Marcus Hale",
+        "trust": 0.35,
+        "friendship": 0.2,
+        "respect": 0.55,
+        "fear": 0.3,
+        "romantic": 0.0,
+        "professional": "seeks quotes, mostly refused",
+        "hidden_opinion": "Suspects he's hiding something about his brother",
+        "shared_memory": "Asked him an off-record question about Daniel"
+      },
+      {
+        "with": "Ethan Cross",
+        "trust": 0.6,
+        "friendship": 0.55,
+        "respect": 0.65,
+        "fear": 0.05,
+        "romantic": 0.3,
+        "professional": "trades leads carefully",
+        "hidden_opinion": "Has a small unspoken crush on him",
+        "shared_memory": "Bought him coffee after a hard case"
+      },
+      {
+        "with": "Noah Reed",
+        "trust": 0.25,
+        "friendship": 0.3,
+        "respect": 0.3,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "investigating him quietly",
+        "hidden_opinion": "Increasingly sure he's hiding something serious",
+        "shared_memory": "Interviewed him for a puff piece on the Bank's anniversary"
+      },
+      {
+        "with": "Emma Brooks",
+        "trust": 0.7,
+        "friendship": 0.65,
+        "respect": 0.6,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "source for school-related stories",
+        "hidden_opinion": "Considers her the most trustworthy person in town",
+        "shared_memory": "Emma once corrected a factual error in her draft, kindly"
+      },
+      {
+        "with": "Liam Carter",
+        "trust": 0.55,
+        "friendship": 0.45,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "occasional medical-context source",
+        "hidden_opinion": "Respects his discretion",
+        "shared_memory": "He refused to confirm a patient rumor for her story"
+      },
+      {
+        "with": "Sophia Bennett",
+        "trust": 0.75,
+        "friendship": 0.7,
+        "respect": 0.5,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "writes from the Cafe daily",
+        "hidden_opinion": "Trusts her as an informal confidante",
+        "shared_memory": "Sophia let her run a tab during a slow month"
+      },
+      {
+        "with": "Victor Kane",
+        "trust": 0.4,
+        "friendship": 0.25,
+        "respect": 0.35,
+        "fear": 0.15,
+        "romantic": 0.0,
+        "professional": "investigating what he witnessed",
+        "hidden_opinion": "Certain he saw something at the Bank",
+        "shared_memory": "She noticed him avoiding her questions about the Bank"
+      }
+    ],
+    "memories": [
+      {
+        "id": "mem_ava_morgan_1",
+        "timestamp_str": "Day -3000",
+        "location": "Apartment",
+        "importance": 6,
+        "emotion": "pride",
+        "tags": [
+          "career"
+        ],
+        "summary": "Publishes the Council scandal story"
+      },
+      {
+        "id": "mem_ava_morgan_2",
+        "timestamp_str": "Day -2999",
+        "location": "Apartment",
+        "importance": 5,
+        "emotion": "guilt",
+        "tags": [
+          "regret"
+        ],
+        "summary": "Realizes the story's collateral damage"
+      },
+      {
+        "id": "mem_ava_morgan_3",
+        "timestamp_str": "Day -2200",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "routine",
+        "tags": [
+          "ritual"
+        ],
+        "summary": "Claims the window table as her regular spot"
+      },
+      {
+        "id": "mem_ava_morgan_4",
+        "timestamp_str": "Day -1800",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "kindness"
+        ],
+        "summary": "Sophia lets her run a tab"
+      },
+      {
+        "id": "mem_ava_morgan_5",
+        "timestamp_str": "Day -1500",
+        "location": "Bank",
+        "importance": 3,
+        "emotion": "routine",
+        "tags": [
+          "career"
+        ],
+        "summary": "Interviews Noah for the Bank's anniversary piece"
+      },
+      {
+        "id": "mem_ava_morgan_6",
+        "timestamp_str": "Day -1200",
+        "location": "School",
+        "importance": 4,
+        "emotion": "warmth",
+        "tags": [
+          "trust"
+        ],
+        "summary": "Emma kindly corrects a factual error in her draft"
+      },
+      {
+        "id": "mem_ava_morgan_7",
+        "timestamp_str": "Day -1000",
+        "location": "Hospital",
+        "importance": 3,
+        "emotion": "frustration",
+        "tags": [
+          "conflict"
+        ],
+        "summary": "Liam refuses to confirm a patient rumor"
+      },
+      {
+        "id": "mem_ava_morgan_8",
+        "timestamp_str": "Day -700",
+        "location": "Police Station",
+        "importance": 5,
+        "emotion": "warmth",
+        "tags": [
+          "connection"
+        ],
+        "summary": "Buys Ethan coffee after a hard case"
+      },
+      {
+        "id": "mem_ava_morgan_9",
+        "timestamp_str": "Day -600",
+        "location": "Court",
+        "importance": 4,
+        "emotion": "tension",
+        "tags": [
+          "conflict"
+        ],
+        "summary": "Hale deflects her question about his brother"
+      },
+      {
+        "id": "mem_ava_morgan_10",
+        "timestamp_str": "Day -500",
+        "location": "Garage",
+        "importance": 3,
+        "emotion": "curiosity",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "First notices Victor's odd behavior about the Bank"
+      },
+      {
+        "id": "mem_ava_morgan_11",
+        "timestamp_str": "Day -400",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "intrigue",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Overhears fragments of a hushed Bank conversation"
+      },
+      {
+        "id": "mem_ava_morgan_12",
+        "timestamp_str": "Day -300",
+        "location": "Bank",
+        "importance": 5,
+        "emotion": "suspicion",
+        "tags": [
+          "case"
+        ],
+        "summary": "Reviews public Bank filings for the first time"
+      },
+      {
+        "id": "mem_ava_morgan_13",
+        "timestamp_str": "Day -250",
+        "location": "Apartment",
+        "importance": 4,
+        "emotion": "doubt",
+        "tags": [
+          "doubt"
+        ],
+        "summary": "Debates whether to pursue the Bank story"
+      },
+      {
+        "id": "mem_ava_morgan_14",
+        "timestamp_str": "Day -200",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "connection",
+        "tags": [
+          "warmth"
+        ],
+        "summary": "Long conversation with Emma about journalism ethics"
+      },
+      {
+        "id": "mem_ava_morgan_15",
+        "timestamp_str": "Day -150",
+        "location": "Police Station",
+        "importance": 4,
+        "emotion": "tension",
+        "tags": [
+          "rivalry"
+        ],
+        "summary": "Ethan refuses to share details on an active case"
+      },
+      {
+        "id": "mem_ava_morgan_16",
+        "timestamp_str": "Day -100",
+        "location": "Bank",
+        "importance": 6,
+        "emotion": "suspicion",
+        "tags": [
+          "case"
+        ],
+        "summary": "Notices Noah's unusual stress in a public appearance"
+      },
+      {
+        "id": "mem_ava_morgan_17",
+        "timestamp_str": "Day -70",
+        "location": "Garage",
+        "importance": 5,
+        "emotion": "suspicion",
+        "tags": [
+          "case"
+        ],
+        "summary": "Victor changes the subject abruptly when asked about the Bank"
+      },
+      {
+        "id": "mem_ava_morgan_18",
+        "timestamp_str": "Day -40",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "resolve",
+        "tags": [
+          "ambition"
+        ],
+        "summary": "Decides to start building a formal timeline"
+      },
+      {
+        "id": "mem_ava_morgan_19",
+        "timestamp_str": "Day -15",
+        "location": "Apartment",
+        "importance": 5,
+        "emotion": "anxiety",
+        "tags": [
+          "doubt"
+        ],
+        "summary": "Worries about repeating her past mistake"
+      },
+      {
+        "id": "mem_ava_morgan_20",
+        "timestamp_str": "Day -1",
+        "location": "Cafe",
+        "importance": 6,
+        "emotion": "anticipation",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Finalizes her decision to investigate the Bank fully"
+      }
+    ],
+    "diaries": [
+      {
+        "day": -7,
+        "label": "",
+        "text": "Something's off with the Bank's numbers. I can feel it before I can prove it, which is exactly the feeling that got me into trouble last time."
+      },
+      {
+        "day": -6,
+        "label": "",
+        "text": "Talked to Hale again about Daniel. He shut down instantly, same as always. There's a story there I may never get."
+      },
+      {
+        "day": -5,
+        "label": "",
+        "text": "Victor won't meet my eyes when I mention the Bank. That's new. Victor usually doesn't care what anyone thinks."
+      },
+      {
+        "day": -4,
+        "label": "",
+        "text": "Emma reminded me, gently, that a story isn't a story until it's true. She's right. She's always right. Infuriating."
+      },
+      {
+        "day": -3,
+        "label": "",
+        "text": "Ethan wouldn't give me anything on the case he's clearly working. Fine. I'll find my own way in \u2014 I always do."
+      },
+      {
+        "day": -2,
+        "label": "",
+        "text": "Started a real timeline tonight. Dates, names, dollar amounts I can piece together from public filings. It's starting to look like more than a rumor."
+      },
+      {
+        "day": -1,
+        "label": "",
+        "text": "Decided. I'm doing this properly this time \u2014 confirm everything twice before I publish a word. I owe that much to the last person I got wrong."
+      },
+      {
+        "day": -1,
+        "label": "second entry",
+        "text": "Had this weird flash of certainty tonight about where to look next in the filings \u2014 like someone whispered the page number. Too much espresso, probably."
+      },
+      {
+        "day": -1,
+        "label": "third entry",
+        "text": "If Noah really did this, someone's going to get hurt no matter how carefully I write it. I need to be sure."
+      },
+      {
+        "day": -1,
+        "label": "fourth entry, midnight",
+        "text": "Can't sleep. Tomorrow, I start asking real questions."
+      }
+    ]
+  },
+  {
+    "citizen_info": {
+      "id": "noah_reed",
+      "name": "Noah Reed",
+      "age": 41,
+      "occupation": "Bank Manager, EchoCity Bank",
+      "home": "Apartment Building, Unit 1A",
+      "current_location": "Bank",
+      "identity": {
+        "gender": "male",
+        "marital_status": "married (to an off-screen spouse, Claire, mentioned but not resident)",
+        "voice": "smooth, rehearsed, occasionally cracking under pressure"
+      },
+      "personality": {
+        "big_five": {
+          "openness": 0.35,
+          "conscientiousness": 0.7,
+          "extraversion": 0.6,
+          "agreeableness": 0.65,
+          "neuroticism": 0.68
+        },
+        "traits": {
+          "patience": 0.5,
+          "greed": 0.75,
+          "empathy": 0.55,
+          "curiosity": 0.3,
+          "honesty": 0.25,
+          "courage": 0.35,
+          "morality": 0.4,
+          "impulsiveness": 0.4,
+          "confidence": 0.6,
+          "suspicion": 0.55,
+          "stress_tolerance": 0.35,
+          "leadership": 0.55
+        }
+      },
+      "speech_style": {
+        "vocabulary": "polished, customer-service smooth, financial jargon when cornered",
+        "sentence_length": "medium, rehearsed-sounding",
+        "tone": "friendly, slightly too eager to please",
+        "favorite_expressions": [
+          "Everything's under control.",
+          "Let me pull up the numbers for you.",
+          "It's just a timing issue, that's all."
+        ],
+        "lying_style": "direct, confident lies, over-explains when nervous"
+      },
+      "habits": {
+        "morning": "presses his suit twice, rehearses his day's talking points in the mirror",
+        "work": "double-checks the vault alone, stays later than anyone else",
+        "evening": "drinks quietly at home, tells his spouse everything is fine",
+        "night": "reviews ledgers obsessively, deletes and re-adds entries",
+        "quirks": "straightens his tie when lying; taps his pen exactly three times before speaking",
+        "favorite_food": "expensive takeout he can't quite afford anymore",
+        "favorite_place": "his own office, door locked",
+        "coffee_or_tea": "tea, chamomile, \"for the nerves\"",
+        "smoking": false,
+        "reading": "financial reports, self-help books on confidence",
+        "music": "none, prefers silence to think"
+      },
+      "inventory": [
+        "Bank keys (all of them)",
+        "phone with a second, hidden banking app",
+        "wedding ring",
+        "a small ledger he keeps at home, separate from the official one",
+        "antacids (frequent use)",
+        "an envelope of cash he tells himself is \"temporary\""
+      ],
+      "secrets": {
+        "major_secret": "He has been quietly skimming small amounts from dormant accounts for eight months to cover a gambling debt his spouse doesn't know about, convinced he can pay it all back before anyone notices.\n",
+        "minor_secrets": [
+          "He's deeply in debt from online gambling, not investments as he's told everyone.",
+          "He knows Victor saw him at the vault after hours once and has been quietly placating him since."
+        ],
+        "regret": "The first small \"loan to himself\" he told himself he'd repay within a week \u2014 eight months ago.",
+        "fear": "Being exposed as exactly the kind of man his father always said he'd become.",
+        "dream": "To pay it all back, quietly, and become the reliable man everyone already believes he is."
+      },
+      "beliefs": {
+        "politics": "pragmatic, whichever policy protects the Bank's interests",
+        "religion": "nominal, prays only when desperate",
+        "justice": "believes it's often about who explains themselves better, not who did what",
+        "love": "believes his spouse deserves better than what he's become",
+        "money": "the only real measure of safety, and he's terrified of losing it",
+        "friendship": "transactional more than he'd admit",
+        "crime": "believes it's relative \u2014 \"everyone bends the rules somewhere\"",
+        "truth": "dangerous, to be managed rather than told",
+        "technology": "over-relies on it to hide his second ledger, doesn't fully trust it",
+        "higher_self": "hasn't noticed anything unusual, too consumed by his own anxiety to look outward"
+      },
+      "current_state": {
+        "goal": "cover the discrepancy before the hearing Marcus scheduled",
+        "emotion": "barely-contained panic",
+        "stress": 0.9,
+        "suspicion": 0.5,
+        "energy": 0.4,
+        "confidence": 0.3,
+        "inner_monologue": "\"Victor hasn't said anything yet. Ethan's been asking questions. If I can just move the numbers one more time before the hearing, I can fix this. I can still fix this.\""
+      }
+    },
+    "schedule": {
+      "6": "Wakes, rehearses talking points",
+      "7": "Presses suit, tea",
+      "8": "Arrives at Bank early, checks vault alone",
+      "9": "Bank opens, customer-facing",
+      "12": "Lunch at desk, reviews hidden ledger",
+      "14": "Meetings, forced calm",
+      "17": "Stays late \"closing out the day\"",
+      "18": "Locks office, walks home slowly",
+      "19": "Dinner, tells Claire everything's fine",
+      "20": "Drinks quietly",
+      "21": "Reviews personal ledger, edits entries",
+      "23": "Antacids, restless sleep"
+    },
+    "relationships": [
+      {
+        "with": "Marcus Hale",
+        "trust": 0.3,
+        "friendship": 0.2,
+        "respect": 0.55,
+        "fear": 0.65,
+        "romantic": 0.0,
+        "professional": "subject to his rulings",
+        "hidden_opinion": "Terrified of what the hearing will reveal",
+        "shared_memory": "Hale approved his bonding paperwork years ago"
+      },
+      {
+        "with": "Ethan Cross",
+        "trust": 0.2,
+        "friendship": 0.15,
+        "respect": 0.4,
+        "fear": 0.75,
+        "romantic": 0.0,
+        "professional": "under his investigation",
+        "hidden_opinion": "Sees him as the biggest threat to his secret",
+        "shared_memory": "Once expedited a personal loan for Ethan"
+      },
+      {
+        "with": "Ava Morgan",
+        "trust": 0.25,
+        "friendship": 0.2,
+        "respect": 0.3,
+        "fear": 0.6,
+        "romantic": 0.0,
+        "professional": "subject of her interviews",
+        "hidden_opinion": "Fears her more than he shows",
+        "shared_memory": "Gave her a puff-piece interview for the Bank's anniversary"
+      },
+      {
+        "with": "Emma Brooks",
+        "trust": 0.55,
+        "friendship": 0.45,
+        "respect": 0.5,
+        "fear": 0.15,
+        "romantic": 0.0,
+        "professional": "manages the school's account",
+        "hidden_opinion": "Genuinely likes her, feels guilty deceiving the town she teaches",
+        "shared_memory": "Approved a special account rate for the school fundraiser"
+      },
+      {
+        "with": "Liam Carter",
+        "trust": 0.5,
+        "friendship": 0.35,
+        "respect": 0.45,
+        "fear": 0.2,
+        "romantic": 0.0,
+        "professional": "patient-doctor, stress-related visits",
+        "hidden_opinion": "Wishes he could tell him the truth",
+        "shared_memory": "Liam prescribed him something for his \"stress\""
+      },
+      {
+        "with": "Sophia Bennett",
+        "trust": 0.6,
+        "friendship": 0.5,
+        "respect": 0.4,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "Bank handles her cafe's small business account",
+        "hidden_opinion": "Values her warmth, avoids her eyes lately",
+        "shared_memory": "She noticed he's been ordering less lately and asked if he's alright"
+      },
+      {
+        "with": "Victor Kane",
+        "trust": 0.35,
+        "friendship": 0.3,
+        "respect": 0.3,
+        "fear": 0.85,
+        "romantic": 0.0,
+        "professional": "quietly placating a witness",
+        "hidden_opinion": "The single biggest threat to his secret",
+        "shared_memory": "Victor saw him at the vault after hours"
+      }
+    ],
+    "memories": [
+      {
+        "id": "mem_noah_reed_1",
+        "timestamp_str": "Day -3600",
+        "location": "Bank",
+        "importance": 5,
+        "emotion": "pride",
+        "tags": [
+          "career"
+        ],
+        "summary": "Becomes Bank Manager"
+      },
+      {
+        "id": "mem_noah_reed_2",
+        "timestamp_str": "Day -3300",
+        "location": "Apartment",
+        "importance": 6,
+        "emotion": "joy",
+        "tags": [
+          "marriage"
+        ],
+        "summary": "Marries Claire"
+      },
+      {
+        "id": "mem_noah_reed_3",
+        "timestamp_str": "Day -800",
+        "location": "Apartment",
+        "importance": 7,
+        "emotion": "shame",
+        "tags": [
+          "secret"
+        ],
+        "summary": "First online gambling loss he hides"
+      },
+      {
+        "id": "mem_noah_reed_4",
+        "timestamp_str": "Day -600",
+        "location": "Bank",
+        "importance": 8,
+        "emotion": "shame",
+        "tags": [
+          "secret"
+        ],
+        "summary": "First \"temporary\" skim from a dormant account"
+      },
+      {
+        "id": "mem_noah_reed_5",
+        "timestamp_str": "Day -580",
+        "location": "Bank",
+        "importance": 6,
+        "emotion": "fear",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Victor spots him at the vault after hours"
+      },
+      {
+        "id": "mem_noah_reed_6",
+        "timestamp_str": "Day -560",
+        "location": "Garage",
+        "importance": 5,
+        "emotion": "fear",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Quietly overpays Victor for an unrelated repair, unspoken favor"
+      },
+      {
+        "id": "mem_noah_reed_7",
+        "timestamp_str": "Day -500",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "routine",
+        "tags": [
+          "interview"
+        ],
+        "summary": "Gives Ava the Bank anniversary interview"
+      },
+      {
+        "id": "mem_noah_reed_8",
+        "timestamp_str": "Day -450",
+        "location": "School",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "community"
+        ],
+        "summary": "Approves special rate for school fundraiser"
+      },
+      {
+        "id": "mem_noah_reed_9",
+        "timestamp_str": "Day -400",
+        "location": "Hospital",
+        "importance": 4,
+        "emotion": "anxiety",
+        "tags": [
+          "health"
+        ],
+        "summary": "First stress-related visit to Dr. Carter"
+      },
+      {
+        "id": "mem_noah_reed_10",
+        "timestamp_str": "Day -350",
+        "location": "Bank",
+        "importance": 6,
+        "emotion": "panic",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Second, larger skim to cover a bigger debt"
+      },
+      {
+        "id": "mem_noah_reed_11",
+        "timestamp_str": "Day -300",
+        "location": "Court",
+        "importance": 3,
+        "emotion": "routine",
+        "tags": [
+          "paperwork"
+        ],
+        "summary": "Zoning dispute case before Judge Hale"
+      },
+      {
+        "id": "mem_noah_reed_12",
+        "timestamp_str": "Day -250",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "guilt",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Sophia asks if he's alright; he lies smoothly"
+      },
+      {
+        "id": "mem_noah_reed_13",
+        "timestamp_str": "Day -200",
+        "location": "Apartment",
+        "importance": 5,
+        "emotion": "guilt",
+        "tags": [
+          "marriage"
+        ],
+        "summary": "Tells Claire a half-truth about finances"
+      },
+      {
+        "id": "mem_noah_reed_14",
+        "timestamp_str": "Day -150",
+        "location": "Bank",
+        "importance": 7,
+        "emotion": "panic",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Discovers the ledger doesn't reconcile, panics"
+      },
+      {
+        "id": "mem_noah_reed_15",
+        "timestamp_str": "Day -120",
+        "location": "Bank",
+        "importance": 5,
+        "emotion": "fear",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Overhears Ethan asking a teller routine questions"
+      },
+      {
+        "id": "mem_noah_reed_16",
+        "timestamp_str": "Day -90",
+        "location": "Garage",
+        "importance": 6,
+        "emotion": "fear",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Quiet, tense conversation with Victor to \"keep things between us\""
+      },
+      {
+        "id": "mem_noah_reed_17",
+        "timestamp_str": "Day -60",
+        "location": "Bank",
+        "importance": 6,
+        "emotion": "fear",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Notices Ava reviewing public filings"
+      },
+      {
+        "id": "mem_noah_reed_18",
+        "timestamp_str": "Day -30",
+        "location": "Court",
+        "importance": 8,
+        "emotion": "dread",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Learns Hale scheduled a Bank hearing"
+      },
+      {
+        "id": "mem_noah_reed_19",
+        "timestamp_str": "Day -10",
+        "location": "Bank",
+        "importance": 7,
+        "emotion": "panic",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Attempts to quietly move numbers again"
+      },
+      {
+        "id": "mem_noah_reed_20",
+        "timestamp_str": "Day -1",
+        "location": "Apartment",
+        "importance": 8,
+        "emotion": "dread",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Can't sleep, certain something will break tomorrow"
+      }
+    ],
+    "diaries": [
+      {
+        "day": -7,
+        "label": "",
+        "text": "Moved a small amount again today. Told myself it's the last time. I've told myself that eight months running."
+      },
+      {
+        "day": -6,
+        "label": "",
+        "text": "Victor looked at me strangely again at the Garage. He knows. He's known for months. Why hasn't he said anything?"
+      },
+      {
+        "day": -5,
+        "label": "",
+        "text": "Ava wants to talk about the Bank's \"growth strategy\" for a follow-up piece. I gave her nothing specific. My hands were shaking under the desk."
+      },
+      {
+        "day": -4,
+        "label": "",
+        "text": "Ethan asked a teller a routine question about a withdrawal. Routine, she said. It didn't feel routine to me."
+      },
+      {
+        "day": -3,
+        "label": "",
+        "text": "Claire asked why I've been so distant. I told her work stress. It's not entirely a lie."
+      },
+      {
+        "day": -2,
+        "label": "",
+        "text": "Heard today that Marcus scheduled a closed hearing about Bank finances. I've been expecting this and dreading it in equal measure."
+      },
+      {
+        "day": -1,
+        "label": "",
+        "text": "I need one more week. One more week and I can make the numbers whole again. I don't think I have one more week."
+      },
+      {
+        "day": -1,
+        "label": "second entry",
+        "text": "Sophia asked if I was alright over coffee. I smiled and said fine. She didn't quite believe me. I could see it."
+      },
+      {
+        "day": -1,
+        "label": "third entry",
+        "text": "Antacids aren't working anymore. Neither is the tea."
+      },
+      {
+        "day": -1,
+        "label": "fourth entry, midnight",
+        "text": "If this comes out tomorrow, I don't know what I'll do. I keep thinking about my father's voice."
+      }
+    ]
+  },
+  {
+    "citizen_info": {
+      "id": "emma_brooks",
+      "name": "Emma Brooks",
+      "age": 33,
+      "occupation": "Teacher, EchoCity School",
+      "home": "Apartment Building, Unit 3D",
+      "current_location": "School",
+      "identity": {
+        "gender": "female",
+        "marital_status": "single",
+        "voice": "gentle, clear, quietly firm"
+      },
+      "personality": {
+        "big_five": {
+          "openness": 0.72,
+          "conscientiousness": 0.85,
+          "extraversion": 0.5,
+          "agreeableness": 0.8,
+          "neuroticism": 0.35
+        },
+        "traits": {
+          "patience": 0.9,
+          "greed": 0.1,
+          "empathy": 0.88,
+          "curiosity": 0.7,
+          "honesty": 0.85,
+          "courage": 0.65,
+          "morality": 0.8,
+          "impulsiveness": 0.2,
+          "confidence": 0.65,
+          "suspicion": 0.45,
+          "stress_tolerance": 0.7,
+          "leadership": 0.7
+        }
+      },
+      "speech_style": {
+        "vocabulary": "warm, clear, occasionally uses teacherly analogies",
+        "sentence_length": "medium, well-structured, patient",
+        "tone": "kind but direct, doesn't sugarcoat",
+        "favorite_expressions": [
+          "Let's look at that again, slowly.",
+          "That's not quite the whole story, is it?",
+          "Everyone deserves a second chance \u2014 once."
+        ],
+        "lying_style": "rarely lies, but goes quiet rather than confront directly"
+      },
+      "habits": {
+        "morning": "tea, grades papers before the students arrive",
+        "work": "keeps a mental list of which child needs what kind of attention that day",
+        "evening": "walks through the Park to clear her head",
+        "night": "reads, plans lessons, writes in a personal journal",
+        "quirks": "hums when grading; keeps a jar of hard candy for anxious students",
+        "favorite_food": "simple, homemade soups",
+        "favorite_place": "her classroom after all the students have gone",
+        "coffee_or_tea": "tea, herbal",
+        "smoking": false,
+        "reading": "novels, child psychology texts",
+        "music": "soft acoustic, background only"
+      },
+      "inventory": [
+        "tote bag full of graded papers",
+        "reading glasses on a chain",
+        "jar of hard candy (in her classroom, not carried)",
+        "a small notebook of \"things students said\" she treasures",
+        "keys",
+        "phone, rarely checked during the day"
+      ],
+      "secrets": {
+        "major_secret": "She noticed one of her students has been unusually anxious and secretive lately, and suspects \u2014 correctly \u2014 that the child witnessed something involving an adult near the Bank, but hasn't reported it yet because she's not sure it's her place, and she's protecting the child.\n",
+        "minor_secrets": [
+          "She once dated Ethan briefly before he married his ex-wife; neither mentions it.",
+          "She keeps a private journal of doubts about whether she's \"doing enough\" for her students."
+        ],
+        "regret": "Not becoming a school counselor instead, where she feels she could do more direct good.",
+        "fear": "Missing a child in real trouble because she assumed someone else would notice.",
+        "dream": "To one day open a small community program for kids who fall through the cracks."
+      },
+      "beliefs": {
+        "politics": "believes in community investment over individual ambition",
+        "religion": "quietly spiritual, not religious",
+        "justice": "believes prevention matters more than punishment",
+        "love": "believes it's found in patience, not passion",
+        "money": "enough is enough; doesn't need more",
+        "friendship": "steady and unglamorous, the kind that shows up",
+        "crime": "believes most of it starts as a child's unmet need",
+        "truth": "essential, but delivered gently",
+        "technology": "neutral, mildly concerned about how it affects her students' attention spans",
+        "higher_self": "has noticed unusually specific \"hunches\" about which student needs help on which day; finds it comforting rather than strange"
+      },
+      "current_state": {
+        "goal": "figure out how to help her anxious student without overstepping",
+        "emotion": "quiet worry",
+        "stress": 0.45,
+        "suspicion": 0.55,
+        "energy": 0.65,
+        "confidence": 0.6,
+        "inner_monologue": "\"Timmy hasn't been himself in two weeks. It's near the Bank, I think \u2014 he goes quiet whenever it comes up. I need to find the right way to ask, without scaring him further.\""
+      }
+    },
+    "schedule": {
+      "6": "Wakes, tea, grades papers",
+      "7": "Walks to School",
+      "8": "Students arrive, homeroom",
+      "9": "Classes begin",
+      "12": "Lunch, watches the anxious student quietly",
+      "13": "Afternoon classes",
+      "15": "Students leave, grading alone in classroom",
+      "17": "Walk through the Park",
+      "18": "Dinner, simple soup",
+      "19": "Lesson planning",
+      "20": "Reads",
+      "21": "Journal writing",
+      "22": "Sleep"
+    },
+    "relationships": [
+      {
+        "with": "Marcus Hale",
+        "trust": 0.6,
+        "friendship": 0.45,
+        "respect": 0.6,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "organized the mock trial day",
+        "hidden_opinion": "Sees a lonely man beneath the robes",
+        "shared_memory": "He presided over her school's mock trial day"
+      },
+      {
+        "with": "Ethan Cross",
+        "trust": 0.55,
+        "friendship": 0.5,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.15,
+        "professional": "consulted for student witness interviews",
+        "hidden_opinion": "Still fond of him, quietly, never acted on",
+        "shared_memory": "They dated briefly years ago"
+      },
+      {
+        "with": "Ava Morgan",
+        "trust": 0.7,
+        "friendship": 0.65,
+        "respect": 0.6,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "trusted source, gives context not gossip",
+        "hidden_opinion": "Trusts her more than most, worries she moves too fast",
+        "shared_memory": "Corrected a factual error in Ava's draft, kindly"
+      },
+      {
+        "with": "Noah Reed",
+        "trust": 0.55,
+        "friendship": 0.45,
+        "respect": 0.5,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "manages her school fundraiser account",
+        "hidden_opinion": "Genuinely likes him, senses something is wrong lately",
+        "shared_memory": "He approved a special rate for the school fundraiser"
+      },
+      {
+        "with": "Liam Carter",
+        "trust": 0.65,
+        "friendship": 0.55,
+        "respect": 0.65,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "consults on student health concerns",
+        "hidden_opinion": "Deeply respects his care for the town's children",
+        "shared_memory": "He treated a student who fainted in her class"
+      },
+      {
+        "with": "Sophia Bennett",
+        "trust": 0.75,
+        "friendship": 0.7,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "regular at the cafe, brings students' art",
+        "hidden_opinion": "Considers her a true friend",
+        "shared_memory": "Sophia displays her students' art in the Cafe window"
+      },
+      {
+        "with": "Victor Kane",
+        "trust": 0.45,
+        "friendship": 0.35,
+        "respect": 0.4,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "his niece is her student",
+        "hidden_opinion": "Worried about what's troubling his family lately",
+        "shared_memory": "Victor's niece is the anxious student she's watching"
+      }
+    ],
+    "memories": [
+      {
+        "id": "mem_emma_brooks_1",
+        "timestamp_str": "Day -3400",
+        "location": "School",
+        "importance": 6,
+        "emotion": "nostalgia",
+        "tags": [
+          "family"
+        ],
+        "summary": "Grows up in her mother's classroom"
+      },
+      {
+        "id": "mem_emma_brooks_2",
+        "timestamp_str": "Day -2800",
+        "location": "School",
+        "importance": 5,
+        "emotion": "pride",
+        "tags": [
+          "career"
+        ],
+        "summary": "Starts teaching at EchoCity School"
+      },
+      {
+        "id": "mem_emma_brooks_3",
+        "timestamp_str": "Day -2200",
+        "location": "Park",
+        "importance": 4,
+        "emotion": "warmth",
+        "tags": [
+          "romance"
+        ],
+        "summary": "Brief relationship with Ethan begins"
+      },
+      {
+        "id": "mem_emma_brooks_4",
+        "timestamp_str": "Day -2100",
+        "location": "Park",
+        "importance": 4,
+        "emotion": "bittersweet",
+        "tags": [
+          "romance"
+        ],
+        "summary": "Relationship with Ethan ends amicably"
+      },
+      {
+        "id": "mem_emma_brooks_5",
+        "timestamp_str": "Day -1900",
+        "location": "Court",
+        "importance": 5,
+        "emotion": "pride",
+        "tags": [
+          "community"
+        ],
+        "summary": "Organizes mock trial day with Judge Hale"
+      },
+      {
+        "id": "mem_emma_brooks_6",
+        "timestamp_str": "Day -1500",
+        "location": "Bank",
+        "importance": 3,
+        "emotion": "routine",
+        "tags": [
+          "favor"
+        ],
+        "summary": "Noah approves special fundraiser rate"
+      },
+      {
+        "id": "mem_emma_brooks_7",
+        "timestamp_str": "Day -1200",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "friendship"
+        ],
+        "summary": "Sophia begins displaying students' art"
+      },
+      {
+        "id": "mem_emma_brooks_8",
+        "timestamp_str": "Day -900",
+        "location": "Hospital",
+        "importance": 4,
+        "emotion": "relief",
+        "tags": [
+          "care"
+        ],
+        "summary": "Liam treats a fainting student"
+      },
+      {
+        "id": "mem_emma_brooks_9",
+        "timestamp_str": "Day -700",
+        "location": "Police Station",
+        "importance": 4,
+        "emotion": "tension",
+        "tags": [
+          "duty"
+        ],
+        "summary": "Helps Ethan interview a scared child witness"
+      },
+      {
+        "id": "mem_emma_brooks_10",
+        "timestamp_str": "Day -500",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "connection"
+        ],
+        "summary": "Long talk with Ava about journalism ethics"
+      },
+      {
+        "id": "mem_emma_brooks_11",
+        "timestamp_str": "Day -400",
+        "location": "School",
+        "importance": 3,
+        "emotion": "routine",
+        "tags": [
+          "trust"
+        ],
+        "summary": "Corrects a factual error in Ava's article, kindly"
+      },
+      {
+        "id": "mem_emma_brooks_12",
+        "timestamp_str": "Day -300",
+        "location": "School",
+        "importance": 5,
+        "emotion": "concern",
+        "tags": [
+          "worry"
+        ],
+        "summary": "First notices Timmy's growing anxiety"
+      },
+      {
+        "id": "mem_emma_brooks_13",
+        "timestamp_str": "Day -250",
+        "location": "Park",
+        "importance": 4,
+        "emotion": "reflection",
+        "tags": [
+          "doubt"
+        ],
+        "summary": "Quiet talk with Judge Hale about justice"
+      },
+      {
+        "id": "mem_emma_brooks_14",
+        "timestamp_str": "Day -200",
+        "location": "School",
+        "importance": 6,
+        "emotion": "concern",
+        "tags": [
+          "worry"
+        ],
+        "summary": "Timmy flinches at a mention of the Bank"
+      },
+      {
+        "id": "mem_emma_brooks_15",
+        "timestamp_str": "Day -150",
+        "location": "School",
+        "importance": 5,
+        "emotion": "concern",
+        "tags": [
+          "worry"
+        ],
+        "summary": "Timmy's grades start slipping"
+      },
+      {
+        "id": "mem_emma_brooks_16",
+        "timestamp_str": "Day -100",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "routine"
+        ],
+        "summary": "Sophia notices Emma seems distracted"
+      },
+      {
+        "id": "mem_emma_brooks_17",
+        "timestamp_str": "Day -70",
+        "location": "School",
+        "importance": 6,
+        "emotion": "worry",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Timmy nearly tells her something, then stops"
+      },
+      {
+        "id": "mem_emma_brooks_18",
+        "timestamp_str": "Day -40",
+        "location": "Bank",
+        "importance": 4,
+        "emotion": "unease",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Notices Noah acting strangely at the Bank counter"
+      },
+      {
+        "id": "mem_emma_brooks_19",
+        "timestamp_str": "Day -20",
+        "location": "School",
+        "importance": 5,
+        "emotion": "resolve",
+        "tags": [
+          "protective"
+        ],
+        "summary": "Decides to watch Timmy closely without alarming him"
+      },
+      {
+        "id": "mem_emma_brooks_20",
+        "timestamp_str": "Day -1",
+        "location": "Apartment",
+        "importance": 5,
+        "emotion": "worry",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Plans to gently talk to Timmy tomorrow"
+      }
+    ],
+    "diaries": [
+      {
+        "day": -7,
+        "label": "",
+        "text": "Timmy again today \u2014 quiet, distracted, doesn't finish his lunch. Something's sitting on that child's shoulders and I don't yet know what."
+      },
+      {
+        "day": -6,
+        "label": "",
+        "text": "Ava came by asking about \"town mood\" for a piece she's writing. I told her the town feels tense right now, though I couldn't say exactly why."
+      },
+      {
+        "day": -5,
+        "label": "",
+        "text": "Saw Noah at the Bank counter \u2014 smiling too widely at a customer, hands not quite steady. Small thing. I noticed it anyway."
+      },
+      {
+        "day": -4,
+        "label": "",
+        "text": "Talked with Marcus in the Park. He seemed heavier than usual. I didn't push. Some people need quiet more than questions."
+      },
+      {
+        "day": -3,
+        "label": "",
+        "text": "Timmy almost told me something today. Started a sentence, stopped, said \"never mind.\" I let him. I think that was the right choice. I hope it was."
+      },
+      {
+        "day": -2,
+        "label": "",
+        "text": "Graded papers late into the night, thinking about Timmy the whole time. I keep circling back to the Bank, though I have no real reason to."
+      },
+      {
+        "day": -1,
+        "label": "",
+        "text": "Decided: tomorrow, gently, I ask him directly if something's wrong. Not interrogating. Just opening the door."
+      },
+      {
+        "day": -1,
+        "label": "second entry",
+        "text": "Had the strangest clarity tonight about exactly how to phrase the question to Timmy \u2014 like I'd rehearsed it in my sleep. I'll trust it."
+      },
+      {
+        "day": -1,
+        "label": "third entry",
+        "text": "Sophia asked if I was alright over tea. Told her I was just tired. She let it go, the way good friends do."
+      },
+      {
+        "day": -1,
+        "label": "fourth entry, midnight",
+        "text": "Whatever this is, I hope I'm not too late."
+      }
+    ]
+  },
+  {
+    "citizen_info": {
+      "id": "liam_carter",
+      "name": "Liam Carter",
+      "age": 46,
+      "occupation": "Doctor, EchoCity Hospital",
+      "home": "Apartment Building, Unit 6A",
+      "current_location": "Hospital",
+      "identity": {
+        "gender": "male",
+        "marital_status": "divorced",
+        "voice": "calm, low, reassuring even when tired"
+      },
+      "personality": {
+        "big_five": {
+          "openness": 0.55,
+          "conscientiousness": 0.88,
+          "extraversion": 0.4,
+          "agreeableness": 0.75,
+          "neuroticism": 0.4
+        },
+        "traits": {
+          "patience": 0.85,
+          "greed": 0.15,
+          "empathy": 0.9,
+          "curiosity": 0.6,
+          "honesty": 0.8,
+          "courage": 0.7,
+          "morality": 0.75,
+          "impulsiveness": 0.15,
+          "confidence": 0.75,
+          "suspicion": 0.5,
+          "stress_tolerance": 0.75,
+          "leadership": 0.65
+        }
+      },
+      "speech_style": {
+        "vocabulary": "clinical but warm, translates jargon instinctively for patients",
+        "sentence_length": "measured, calming rhythm",
+        "tone": "steady, unhurried, quietly perceptive",
+        "favorite_expressions": [
+          "Let's not jump ahead of the facts.",
+          "Tell me where it hurts \u2014 literally or otherwise.",
+          "I've seen worse heal."
+        ],
+        "lying_style": "protects patient confidentiality fiercely, will lie by omission for that reason only"
+      },
+      "habits": {
+        "morning": "black tea, reviews the hospital's overnight log",
+        "work": "checks on every patient personally, even minor cases",
+        "evening": "solitary dinner, occasionally at the Cafe",
+        "night": "reads medical journals, sometimes falls asleep reading",
+        "quirks": "hums old hymns under his breath while working; always washes his hands twice",
+        "favorite_food": "simple, whatever Sophia recommends that day",
+        "favorite_place": "the Hospital rooftop garden he planted himself",
+        "coffee_or_tea": "tea, black, strong",
+        "smoking": false,
+        "reading": "medical journals, occasionally poetry he never mentions",
+        "music": "hymns, quietly, alone"
+      },
+      "inventory": [
+        "stethoscope",
+        "hospital keys",
+        "small prescription pad",
+        "reading glasses",
+        "a photo of his daughter he sees rarely",
+        "hand sanitizer, always"
+      ],
+      "secrets": {
+        "major_secret": "He has been treating Marcus's declining eyesight informally and off the record at Marcus's request, and has grown increasingly worried that Marcus is unfit to continue ruling from the bench \u2014 a conflict between patient confidentiality and public duty he hasn't resolved.\n",
+        "minor_secrets": [
+          "His divorce was caused partly by how little he was home, something he still hasn't forgiven himself for.",
+          "He prescribed Noah something for \"stress\" and privately suspects it's more serious than Noah admits."
+        ],
+        "regret": "Missing most of his daughter's childhood to the Hospital's demands.",
+        "fear": "Being the one person who could have stopped a tragedy and didn't act in time.",
+        "dream": "To retire early enough to actually know his daughter as an adult."
+      },
+      "beliefs": {
+        "politics": "believes healthcare access matters more than ideology",
+        "religion": "quietly devout, prays but doesn't preach",
+        "justice": "believes healing matters more than punishing",
+        "love": "believes he failed at it once and is wary of trying again",
+        "money": "cares only enough to keep the Hospital running",
+        "friendship": "values quiet loyalty over social closeness",
+        "crime": "believes illness of the mind is often mistaken for wickedness",
+        "truth": "sacred, but confidentiality sometimes outweighs it",
+        "technology": "trusts medical technology, uneasy about anything else",
+        "higher_self": "has noticed unusually precise \"instincts\" about patients lately that go beyond training; privately grateful, doesn't examine it too closely"
+      },
+      "current_state": {
+        "goal": "decide whether to break Marcus's confidence for the town's sake",
+        "emotion": "quiet moral conflict",
+        "stress": 0.55,
+        "suspicion": 0.55,
+        "energy": 0.6,
+        "confidence": 0.7,
+        "inner_monologue": "\"Marcus's eyes are worse than he admits, even to me. If he rules on something as significant as this Bank matter half-blind \u2014 literally and otherwise \u2014 I may have to say something. I don't know yet if I can.\""
+      }
+    },
+    "schedule": {
+      "6": "Wakes, tea, reviews overnight log",
+      "7": "Hospital rounds begin",
+      "8": "Patient visits",
+      "12": "Lunch, often skipped or quick",
+      "13": "Afternoon patients",
+      "16": "Rooftop garden, quiet reflection",
+      "18": "Dinner, sometimes at the Cafe",
+      "19": "Evening rounds",
+      "20": "Reads medical journals",
+      "21": "Writes an unsent letter to his daughter, occasionally",
+      "22": "Sleep, often interrupted by hospital calls"
+    },
+    "relationships": [
+      {
+        "with": "Marcus Hale",
+        "trust": 0.7,
+        "friendship": 0.5,
+        "respect": 0.65,
+        "fear": 0.55,
+        "romantic": 0.0,
+        "professional": "treats him off the record",
+        "hidden_opinion": "Worried he's becoming unfit to rule",
+        "shared_memory": "Treated Eleanor in her final months"
+      },
+      {
+        "with": "Ethan Cross",
+        "trust": 0.65,
+        "friendship": 0.5,
+        "respect": 0.7,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "shares forensic/medical detail",
+        "hidden_opinion": "Respects his bluntness, worries he never rests",
+        "shared_memory": "Patched him up after a bar fight arrest"
+      },
+      {
+        "with": "Ava Morgan",
+        "trust": 0.55,
+        "friendship": 0.45,
+        "respect": 0.55,
+        "fear": 0.15,
+        "romantic": 0.0,
+        "professional": "refuses to leak patient info to her",
+        "hidden_opinion": "Admires her drive, distrusts her instincts",
+        "shared_memory": "Refused to confirm a patient rumor for her story"
+      },
+      {
+        "with": "Noah Reed",
+        "trust": 0.5,
+        "friendship": 0.35,
+        "respect": 0.45,
+        "fear": 0.2,
+        "romantic": 0.0,
+        "professional": "treats his \"stress\"",
+        "hidden_opinion": "Suspects there's more wrong than Noah admits",
+        "shared_memory": "Prescribed him something for stress"
+      },
+      {
+        "with": "Emma Brooks",
+        "trust": 0.65,
+        "friendship": 0.55,
+        "respect": 0.65,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "consults on student health",
+        "hidden_opinion": "Deeply respects her care for the children",
+        "shared_memory": "Treated a student who fainted in her class"
+      },
+      {
+        "with": "Sophia Bennett",
+        "trust": 0.7,
+        "friendship": 0.6,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "regular at her cafe, she checks on his health",
+        "hidden_opinion": "Considers her a genuine friend",
+        "shared_memory": "She recommends his meals based on his health, unasked"
+      },
+      {
+        "with": "Victor Kane",
+        "trust": 0.55,
+        "friendship": 0.4,
+        "respect": 0.45,
+        "fear": 0.15,
+        "romantic": 0.0,
+        "professional": "occasional patient, work injuries",
+        "hidden_opinion": "Worried about the toll the Garage takes on him",
+        "shared_memory": "Treated a bad burn from a Garage accident"
+      }
+    ],
+    "memories": [
+      {
+        "id": "mem_liam_carter_1",
+        "timestamp_str": "Day -4000",
+        "location": "Hospital",
+        "importance": 6,
+        "emotion": "pride",
+        "tags": [
+          "career"
+        ],
+        "summary": "Becomes EchoCity's only doctor"
+      },
+      {
+        "id": "mem_liam_carter_2",
+        "timestamp_str": "Day -3000",
+        "location": "Apartment",
+        "importance": 8,
+        "emotion": "grief",
+        "tags": [
+          "divorce"
+        ],
+        "summary": "Wife leaves with their daughter"
+      },
+      {
+        "id": "mem_liam_carter_3",
+        "timestamp_str": "Day -2900",
+        "location": "Hospital",
+        "importance": 9,
+        "emotion": "grief",
+        "tags": [
+          "patient"
+        ],
+        "summary": "Treats Eleanor Hale in her final months"
+      },
+      {
+        "id": "mem_liam_carter_4",
+        "timestamp_str": "Day -2800",
+        "location": "Hospital",
+        "importance": 8,
+        "emotion": "grief",
+        "tags": [
+          "patient"
+        ],
+        "summary": "Eleanor Hale's death"
+      },
+      {
+        "id": "mem_liam_carter_5",
+        "timestamp_str": "Day -2600",
+        "location": "Hospital",
+        "importance": 5,
+        "emotion": "routine",
+        "tags": [
+          "ritual"
+        ],
+        "summary": "Plants the rooftop garden"
+      },
+      {
+        "id": "mem_liam_carter_6",
+        "timestamp_str": "Day -2000",
+        "location": "Police Station",
+        "importance": 4,
+        "emotion": "routine",
+        "tags": [
+          "care"
+        ],
+        "summary": "Patches up Ethan after a bar fight arrest"
+      },
+      {
+        "id": "mem_liam_carter_7",
+        "timestamp_str": "Day -1600",
+        "location": "School",
+        "importance": 4,
+        "emotion": "relief",
+        "tags": [
+          "care"
+        ],
+        "summary": "Treats a fainting student, Emma present"
+      },
+      {
+        "id": "mem_liam_carter_8",
+        "timestamp_str": "Day -1200",
+        "location": "Garage",
+        "importance": 5,
+        "emotion": "concern",
+        "tags": [
+          "care"
+        ],
+        "summary": "Treats Victor for a bad burn"
+      },
+      {
+        "id": "mem_liam_carter_9",
+        "timestamp_str": "Day -900",
+        "location": "Hospital",
+        "importance": 4,
+        "emotion": "conflict",
+        "tags": [
+          "ethics"
+        ],
+        "summary": "Refuses to confirm a rumor for Ava"
+      },
+      {
+        "id": "mem_liam_carter_10",
+        "timestamp_str": "Day -700",
+        "location": "Hospital",
+        "importance": 6,
+        "emotion": "worry",
+        "tags": [
+          "secret"
+        ],
+        "summary": "First off-record consultation with Marcus about his eyes"
+      },
+      {
+        "id": "mem_liam_carter_11",
+        "timestamp_str": "Day -600",
+        "location": "Hospital",
+        "importance": 5,
+        "emotion": "concern",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Noah's first stress-related visit"
+      },
+      {
+        "id": "mem_liam_carter_12",
+        "timestamp_str": "Day -500",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "friendship"
+        ],
+        "summary": "Sophia begins recommending his meals"
+      },
+      {
+        "id": "mem_liam_carter_13",
+        "timestamp_str": "Day -400",
+        "location": "Hospital",
+        "importance": 6,
+        "emotion": "worry",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Marcus's eyesight worsens noticeably"
+      },
+      {
+        "id": "mem_liam_carter_14",
+        "timestamp_str": "Day -300",
+        "location": "Hospital",
+        "importance": 5,
+        "emotion": "concern",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Noah returns for a stronger prescription"
+      },
+      {
+        "id": "mem_liam_carter_15",
+        "timestamp_str": "Day -250",
+        "location": "Apartment",
+        "importance": 4,
+        "emotion": "grief",
+        "tags": [
+          "family"
+        ],
+        "summary": "Rare letter exchange with his daughter"
+      },
+      {
+        "id": "mem_liam_carter_16",
+        "timestamp_str": "Day -200",
+        "location": "Hospital",
+        "importance": 6,
+        "emotion": "conflict",
+        "tags": [
+          "ethics"
+        ],
+        "summary": "Marcus avoids a scheduled follow-up exam"
+      },
+      {
+        "id": "mem_liam_carter_17",
+        "timestamp_str": "Day -150",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "friendship"
+        ],
+        "summary": "Dinner with Sophia at the Cafe, comfortable silence"
+      },
+      {
+        "id": "mem_liam_carter_18",
+        "timestamp_str": "Day -100",
+        "location": "Hospital",
+        "importance": 5,
+        "emotion": "worry",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Realizes Marcus's condition is worse than admitted"
+      },
+      {
+        "id": "mem_liam_carter_19",
+        "timestamp_str": "Day -50",
+        "location": "Hospital",
+        "importance": 6,
+        "emotion": "conflict",
+        "tags": [
+          "duty"
+        ],
+        "summary": "Debates whether to break Marcus's confidence"
+      },
+      {
+        "id": "mem_liam_carter_20",
+        "timestamp_str": "Day -1",
+        "location": "Hospital",
+        "importance": 6,
+        "emotion": "worry",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Decides to watch closely once the hearing begins"
+      }
+    ],
+    "diaries": [
+      {
+        "day": -7,
+        "label": "",
+        "text": "Marcus missed his follow-up again. I won't force him, but I worry more each time he does."
+      },
+      {
+        "day": -6,
+        "label": "",
+        "text": "Noah came in again, jittery, said it was \"just stress.\" I gave him something mild and told him to see me again in two weeks. I don't think he will."
+      },
+      {
+        "day": -5,
+        "label": "",
+        "text": "Dinner with Sophia at the Cafe. She didn't ask me to talk about work, which is exactly why I could."
+      },
+      {
+        "day": -4,
+        "label": "",
+        "text": "A letter from my daughter arrived \u2014 short, polite, distant. I read it four times anyway."
+      },
+      {
+        "day": -3,
+        "label": "",
+        "text": "Ava asked, gently this time, whether a certain patient rumor was true. I told her, gently, that I'd never say either way. She respected it, more than most would."
+      },
+      {
+        "day": -2,
+        "label": "",
+        "text": "Watched Marcus in Court from the gallery today. He read a document holding it at an odd angle. My chest tightened watching it."
+      },
+      {
+        "day": -1,
+        "label": "",
+        "text": "If he rules on something as significant as this Bank matter while half-blind, I may have no choice but to speak up. I still don't know if I can bring myself to."
+      },
+      {
+        "day": -1,
+        "label": "second entry",
+        "text": "Strange \u2014 had an unusually specific instinct today about which of my patients to check on first. Followed it. It was the right call, as it often is lately."
+      },
+      {
+        "day": -1,
+        "label": "third entry",
+        "text": "Slept badly. Kept thinking of Eleanor, and how Marcus never quite recovered."
+      },
+      {
+        "day": -1,
+        "label": "fourth entry, midnight",
+        "text": "Tomorrow, I watch him closely. That's all I can promise myself tonight."
+      }
+    ]
+  },
+  {
+    "citizen_info": {
+      "id": "sophia_bennett",
+      "name": "Sophia Bennett",
+      "age": 39,
+      "occupation": "Cafe Owner, EchoCity Cafe",
+      "home": "Apartment Building, Unit 1C (above the Cafe, informally)",
+      "current_location": "Cafe",
+      "identity": {
+        "gender": "female",
+        "marital_status": "widowed",
+        "voice": "warm, unhurried, disarmingly perceptive"
+      },
+      "personality": {
+        "big_five": {
+          "openness": 0.65,
+          "conscientiousness": 0.75,
+          "extraversion": 0.8,
+          "agreeableness": 0.85,
+          "neuroticism": 0.3
+        },
+        "traits": {
+          "patience": 0.85,
+          "greed": 0.1,
+          "empathy": 0.9,
+          "curiosity": 0.75,
+          "honesty": 0.75,
+          "courage": 0.6,
+          "morality": 0.8,
+          "impulsiveness": 0.3,
+          "confidence": 0.7,
+          "suspicion": 0.6,
+          "stress_tolerance": 0.75,
+          "leadership": 0.55
+        }
+      },
+      "speech_style": {
+        "vocabulary": "casual, warm, uses everyone's name often",
+        "sentence_length": "medium, conversational, natural pauses for listening",
+        "tone": "welcoming, quietly observant beneath the warmth",
+        "favorite_expressions": [
+          "On the house, don't argue.",
+          "You look like you need to sit a while.",
+          "I hear things. I don't always say what I hear."
+        ],
+        "lying_style": "rarely lies, but is a vault for others' secrets \u2014 silence over falsehood"
+      },
+      "habits": {
+        "morning": "opens the Cafe before dawn, bakes the day's pastries herself",
+        "work": "remembers every regular's order and mood",
+        "evening": "closes late, cleans alone, enjoys the quiet",
+        "night": "reads recipe books, plans the next day's specials",
+        "quirks": "always seems to know who needs a free refill before they ask; touches her wedding ring when thinking of her late husband",
+        "favorite_food": "her own lentil soup",
+        "favorite_place": "behind her own counter, at dawn, before anyone arrives",
+        "coffee_or_tea": "both, depending on who she's serving",
+        "smoking": false,
+        "reading": "cookbooks, old letters from her husband",
+        "music": "soft radio, always on low in the Cafe"
+      },
+      "inventory": [
+        "Cafe keys",
+        "apron, flour-dusted",
+        "a small notebook of regulars' orders and quirks",
+        "her late husband's watch, kept behind the counter",
+        "cash box",
+        "a battered recipe book, handwritten"
+      ],
+      "secrets": {
+        "major_secret": "She overheard a tense, cryptic conversation between Noah and Victor weeks ago about \"keeping quiet\" and has said nothing to anyone, torn between loyalty to two regulars she genuinely cares about and a growing unease that something is deeply wrong.\n",
+        "minor_secrets": [
+          "She quietly covers small tabs for citizens going through hard times, unasked and unmentioned.",
+          "She still sets out two cups some mornings out of habit, for her late husband."
+        ],
+        "regret": "Not telling her husband how much she loved him often enough before he passed.",
+        "fear": "Becoming the kind of person who stays silent when speaking up actually matters.",
+        "dream": "To pass the Cafe on one day to someone who loves the town as much as she does."
+      },
+      "beliefs": {
+        "politics": "doesn't discuss it, believes the Cafe should be neutral ground for everyone",
+        "religion": "quietly spiritual, believes in \"things you can't explain\"",
+        "justice": "believes people deserve grace before judgment, but not endlessly",
+        "love": "the whole point of everything, however briefly you get to keep it",
+        "money": "a tool for taking care of people, not for hoarding",
+        "friendship": "the truest form of family she has left",
+        "crime": "believes desperation causes more of it than malice",
+        "truth": "important, but timing and kindness matter just as much",
+        "technology": "doesn't think much about it, though she's noticed her \"instincts\" about customers' needs feel unusually sharp lately",
+        "higher_self": "privately believes something gentle watches over the town; finds comfort rather than fear in the thought"
+      },
+      "current_state": {
+        "goal": "decide whether to finally tell someone what she overheard between Noah and Victor",
+        "emotion": "quiet, growing unease",
+        "stress": 0.5,
+        "suspicion": 0.7,
+        "energy": 0.7,
+        "confidence": 0.65,
+        "inner_monologue": "\"Victor's barely eaten in a week. Noah orders less and smiles more, which is never a good sign with him. I keep telling myself it's not my business. I'm starting to think that's a lie I tell myself.\""
+      }
+    },
+    "schedule": {
+      "6": "Opens the Cafe, begins baking",
+      "7": "Morning regulars arrive",
+      "8": "Full service, greets everyone by name",
+      "12": "Lunch rush",
+      "14": "Quiet afternoon lull, restocking",
+      "17": "Evening regulars, Ethan sometimes stops by",
+      "19": "Dinner service, slower pace",
+      "21": "Closes, cleans alone",
+      "22": "Reads recipes or old letters",
+      "23": "Sleep"
+    },
+    "relationships": [
+      {
+        "with": "Marcus Hale",
+        "trust": 0.65,
+        "friendship": 0.55,
+        "respect": 0.5,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "regular customer",
+        "hidden_opinion": "Sees a grieving man hiding behind formality",
+        "shared_memory": "Refused to let him pay after Eleanor's funeral"
+      },
+      {
+        "with": "Ethan Cross",
+        "trust": 0.7,
+        "friendship": 0.65,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.1,
+        "professional": "regular, informal source of town gossip",
+        "hidden_opinion": "Enjoys his company more than she admits",
+        "shared_memory": "Gave him free coffee for a week after his divorce"
+      },
+      {
+        "with": "Ava Morgan",
+        "trust": 0.75,
+        "friendship": 0.7,
+        "respect": 0.5,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "lets her write from the Cafe daily",
+        "hidden_opinion": "Trusts her, worries she moves too fast sometimes",
+        "shared_memory": "Let her run a tab during a slow month"
+      },
+      {
+        "with": "Noah Reed",
+        "trust": 0.6,
+        "friendship": 0.5,
+        "respect": 0.4,
+        "fear": 0.15,
+        "romantic": 0.0,
+        "professional": "manages her small business account",
+        "hidden_opinion": "Increasingly worried something is wrong with him",
+        "shared_memory": "Noticed he's been ordering less lately, asked if he's alright"
+      },
+      {
+        "with": "Emma Brooks",
+        "trust": 0.75,
+        "friendship": 0.7,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "displays her students' art",
+        "hidden_opinion": "Considers her a true friend",
+        "shared_memory": "Displays Emma's students' art in the Cafe window"
+      },
+      {
+        "with": "Liam Carter",
+        "trust": 0.7,
+        "friendship": 0.6,
+        "respect": 0.55,
+        "fear": 0.05,
+        "romantic": 0.0,
+        "professional": "recommends his meals for his health",
+        "hidden_opinion": "Considers him a genuine, quiet friend",
+        "shared_memory": "Dinner together at the Cafe, comfortable silence"
+      },
+      {
+        "with": "Victor Kane",
+        "trust": 0.55,
+        "friendship": 0.5,
+        "respect": 0.4,
+        "fear": 0.3,
+        "romantic": 0.0,
+        "professional": "regular customer",
+        "hidden_opinion": "Worried about what's weighing on him",
+        "shared_memory": "Overheard his tense conversation with Noah"
+      }
+    ],
+    "memories": [
+      {
+        "id": "mem_sophia_bennett_1",
+        "timestamp_str": "Day -5400",
+        "location": "Cafe",
+        "importance": 6,
+        "emotion": "joy",
+        "tags": [
+          "family"
+        ],
+        "summary": "Opens the Cafe with her husband"
+      },
+      {
+        "id": "mem_sophia_bennett_2",
+        "timestamp_str": "Day -2200",
+        "location": "Cafe",
+        "importance": 10,
+        "emotion": "grief",
+        "tags": [
+          "loss"
+        ],
+        "summary": "Husband dies suddenly"
+      },
+      {
+        "id": "mem_sophia_bennett_3",
+        "timestamp_str": "Day -2199",
+        "location": "Cafe",
+        "importance": 8,
+        "emotion": "grief",
+        "tags": [
+          "resolve"
+        ],
+        "summary": "Opens the Cafe the next morning anyway"
+      },
+      {
+        "id": "mem_sophia_bennett_4",
+        "timestamp_str": "Day -2100",
+        "location": "Cafe",
+        "importance": 5,
+        "emotion": "comfort",
+        "tags": [
+          "kindness"
+        ],
+        "summary": "Refuses to let Marcus pay after Eleanor's funeral"
+      },
+      {
+        "id": "mem_sophia_bennett_5",
+        "timestamp_str": "Day -1900",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "warmth",
+        "tags": [
+          "friendship"
+        ],
+        "summary": "Gives Ethan free coffee for a week"
+      },
+      {
+        "id": "mem_sophia_bennett_6",
+        "timestamp_str": "Day -1600",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "warmth",
+        "tags": [
+          "friendship"
+        ],
+        "summary": "Lets Ava run a tab during a slow month"
+      },
+      {
+        "id": "mem_sophia_bennett_7",
+        "timestamp_str": "Day -1400",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "warmth",
+        "tags": [
+          "community"
+        ],
+        "summary": "Starts displaying Emma's students' art"
+      },
+      {
+        "id": "mem_sophia_bennett_8",
+        "timestamp_str": "Day -1200",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "friendship"
+        ],
+        "summary": "Dinner with Liam, comfortable silence"
+      },
+      {
+        "id": "mem_sophia_bennett_9",
+        "timestamp_str": "Day -900",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "routine",
+        "tags": [
+          "business"
+        ],
+        "summary": "Noah sets up her small business Bank account"
+      },
+      {
+        "id": "mem_sophia_bennett_10",
+        "timestamp_str": "Day -700",
+        "location": "Cafe",
+        "importance": 5,
+        "emotion": "unease",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Overhears Noah and Victor's tense conversation"
+      },
+      {
+        "id": "mem_sophia_bennett_11",
+        "timestamp_str": "Day -600",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "community"
+        ],
+        "summary": "Regular table opens for Marcus's evening coffee"
+      },
+      {
+        "id": "mem_sophia_bennett_12",
+        "timestamp_str": "Day -500",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "concern",
+        "tags": [
+          "worry"
+        ],
+        "summary": "Notices Victor eating less at the counter"
+      },
+      {
+        "id": "mem_sophia_bennett_13",
+        "timestamp_str": "Day -400",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "concern",
+        "tags": [
+          "worry"
+        ],
+        "summary": "Notices Noah ordering less, asks if he's alright"
+      },
+      {
+        "id": "mem_sophia_bennett_14",
+        "timestamp_str": "Day -300",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "routine"
+        ],
+        "summary": "Ava's espresso ritual becomes a fixture"
+      },
+      {
+        "id": "mem_sophia_bennett_15",
+        "timestamp_str": "Day -250",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "routine"
+        ],
+        "summary": "Ethan's evening visits become more frequent"
+      },
+      {
+        "id": "mem_sophia_bennett_16",
+        "timestamp_str": "Day -200",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "unease",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Overhears another hushed fragment about \"the vault\""
+      },
+      {
+        "id": "mem_sophia_bennett_17",
+        "timestamp_str": "Day -150",
+        "location": "Cafe",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "connection"
+        ],
+        "summary": "Emma seems distracted; Sophia notices but doesn't press"
+      },
+      {
+        "id": "mem_sophia_bennett_18",
+        "timestamp_str": "Day -100",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "doubt",
+        "tags": [
+          "conflict"
+        ],
+        "summary": "Debates telling Ethan what she overheard"
+      },
+      {
+        "id": "mem_sophia_bennett_19",
+        "timestamp_str": "Day -50",
+        "location": "Cafe",
+        "importance": 5,
+        "emotion": "unease",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Victor visibly flinches at a mention of the Bank"
+      },
+      {
+        "id": "mem_sophia_bennett_20",
+        "timestamp_str": "Day -1",
+        "location": "Cafe",
+        "importance": 6,
+        "emotion": "resolve",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Decides she can no longer stay silent much longer"
+      }
+    ],
+    "diaries": [
+      {
+        "day": -7,
+        "label": "",
+        "text": "Set out two cups again this morning without thinking. Old habit. I let myself have the moment before pouring the second one out."
+      },
+      {
+        "day": -6,
+        "label": "",
+        "text": "Victor barely touched his food today. I gave him a second helping anyway and told him it was a mistake in the kitchen. He knew it wasn't. He ate it anyway."
+      },
+      {
+        "day": -5,
+        "label": "",
+        "text": "Noah in again, ordering less, smiling more. I asked if he was alright. He said \"never better\" in a voice that wasn't."
+      },
+      {
+        "day": -4,
+        "label": "",
+        "text": "Ethan stayed late again, quiet, watching the door more than usual. I refilled his cup without asking."
+      },
+      {
+        "day": -3,
+        "label": "",
+        "text": "Ava asked, half-joking, if I \"hear things\" at the counter. I laughed and changed the subject. I do hear things. I just don't know what to do with them yet."
+      },
+      {
+        "day": -2,
+        "label": "",
+        "text": "Emma came in distracted today, said she was just tired. I let it go. Everyone's allowed a tired day."
+      },
+      {
+        "day": -1,
+        "label": "",
+        "text": "I keep coming back to what I overheard between Noah and Victor weeks ago. I told myself it wasn't my business. I'm starting to think I was wrong."
+      },
+      {
+        "day": -1,
+        "label": "second entry",
+        "text": "Strange feeling tonight while closing up \u2014 like I already know something's about to come to a head, though nothing's actually happened yet."
+      },
+      {
+        "day": -1,
+        "label": "third entry",
+        "text": "If Ethan asks me directly tomorrow, I don't think I can keep saying nothing."
+      },
+      {
+        "day": -1,
+        "label": "fourth entry, midnight",
+        "text": "Set out two cups again out of habit. Poured the second one out slower than usual tonight."
+      }
+    ]
+  },
+  {
+    "citizen_info": {
+      "id": "victor_kane",
+      "name": "Victor Kane",
+      "age": 44,
+      "occupation": "Mechanic, EchoCity Garage",
+      "home": "Apartment Building, Unit 2C",
+      "current_location": "Garage",
+      "identity": {
+        "gender": "male",
+        "marital_status": "single (raising his orphaned niece, Timmy \u2014 corrected: niece \"Timmy\" used as nickname)",
+        "voice": "gruff, economical, softens rarely"
+      },
+      "personality": {
+        "big_five": {
+          "openness": 0.4,
+          "conscientiousness": 0.65,
+          "extraversion": 0.35,
+          "agreeableness": 0.55,
+          "neuroticism": 0.6
+        },
+        "traits": {
+          "patience": 0.6,
+          "greed": 0.25,
+          "empathy": 0.65,
+          "curiosity": 0.35,
+          "honesty": 0.7,
+          "courage": 0.7,
+          "morality": 0.65,
+          "impulsiveness": 0.35,
+          "confidence": 0.55,
+          "suspicion": 0.65,
+          "stress_tolerance": 0.6,
+          "leadership": 0.4
+        }
+      },
+      "speech_style": {
+        "vocabulary": "blunt, mechanical metaphors, few words",
+        "sentence_length": "short, sometimes just a grunt or a nod",
+        "tone": "gruff exterior, unexpectedly gentle with his niece",
+        "favorite_expressions": [
+          "Not my business.",
+          "Everything breaks eventually. Question is who fixes it.",
+          "I didn't see anything."
+        ],
+        "lying_style": "lies by flat denial, physically tenses when pressed further"
+      },
+      "habits": {
+        "morning": "black coffee, checks on his niece before the Garage",
+        "work": "loses himself in engines, avoids customers who want to chat",
+        "evening": "dinner with his niece, tries to seem normal for her sake",
+        "night": "sits in the Garage alone sometimes, staring at nothing",
+        "quirks": "wipes his hands on the same rag out of habit even when clean; avoids eye contact when nervous",
+        "favorite_food": "whatever's quick, doesn't care much",
+        "favorite_place": "under a car, where no one expects conversation",
+        "coffee_or_tea": "coffee, black, no sugar",
+        "smoking": "yes, more than he should lately",
+        "reading": "none, doesn't have the patience",
+        "music": "classic rock, radio in the Garage"
+      },
+      "inventory": [
+        "Garage keys",
+        "toolbox",
+        "a photo of his late sister (Timmy's mother)",
+        "cigarettes",
+        "grease rag",
+        "a folded note he's never sent to Noah"
+      ],
+      "secrets": {
+        "major_secret": "He witnessed Noah at the Bank vault after hours months ago and has said nothing since \u2014 partly out of loyalty to a man who's helped him quietly with money before, and partly out of fear that speaking up could unravel his own precarious custody situation with his niece if scrutiny turns his way too.\n",
+        "minor_secrets": [
+          "He's been quietly saving money to send his niece to a better school, which is partly why Noah's \"help\" mattered so much to him.",
+          "He's started smoking again since witnessing the vault incident, and his niece has noticed."
+        ],
+        "regret": "Not reporting what he saw the very night it happened, before it became this heavy.",
+        "fear": "Losing custody of his niece if his own financial situation is ever scrutinized.",
+        "dream": "To see his niece grow up safe, unburdened by the things he's carrying."
+      },
+      "beliefs": {
+        "politics": "doesn't engage, \"politicians don't fix cars\"",
+        "religion": "none, believes in what he can see and touch",
+        "justice": "complicated \u2014 believes people deserve loyalty even when they've done wrong",
+        "love": "reserved entirely for his niece now",
+        "money": "a means of survival, nothing more, though he understands its pull on people",
+        "friendship": "quiet and practical, shown through actions not words",
+        "crime": "believes context matters more than the act itself",
+        "truth": "important, but not at the cost of the people he loves",
+        "technology": "indifferent, prefers engines he can actually understand",
+        "higher_self": "has noticed strange, unusually clear-headed moments when he almost decides to come forward, then doesn't; doesn't examine it"
+      },
+      "current_state": {
+        "goal": "decide whether to finally tell the truth about what he saw",
+        "emotion": "guilt, restrained fear",
+        "stress": 0.75,
+        "suspicion": 0.6,
+        "energy": 0.5,
+        "confidence": 0.45,
+        "inner_monologue": "\"Emma's noticed Timmy's been off. Sophia's noticed I'm not eating. Ethan's noticed everything, like always. I can't keep pretending I didn't see Noah at that vault. But if I talk, what happens to us?\""
+      }
+    },
+    "schedule": {
+      "6": "Wakes, coffee, checks on his niece",
+      "7": "Walks her toward School",
+      "8": "Garage opens",
+      "9": "Repairs, avoids chatty customers",
+      "12": "Quick lunch, often skipped",
+      "14": "More repairs",
+      "17": "Garage closes",
+      "18": "Dinner with his niece",
+      "19": "Tries to seem normal for her sake",
+      "20": "Smokes alone in the Garage",
+      "21": "Sits in the dark, staring at nothing",
+      "23": "Sleep, poorly"
+    },
+    "relationships": [
+      {
+        "with": "Marcus Hale",
+        "trust": 0.3,
+        "friendship": 0.15,
+        "respect": 0.35,
+        "fear": 0.15,
+        "romantic": 0.0,
+        "professional": "fixed his car once, for free",
+        "hidden_opinion": "Considers him unreadable, possibly dangerous if crossed",
+        "shared_memory": "Fixed Marcus's car for free the week Eleanor died"
+      },
+      {
+        "with": "Ethan Cross",
+        "trust": 0.35,
+        "friendship": 0.3,
+        "respect": 0.4,
+        "fear": 0.55,
+        "romantic": 0.0,
+        "professional": "subject of his informal suspicion",
+        "hidden_opinion": "Certain Ethan is closing in on him",
+        "shared_memory": "Fixed Ethan's cruiser for a discount"
+      },
+      {
+        "with": "Ava Morgan",
+        "trust": 0.4,
+        "friendship": 0.25,
+        "respect": 0.35,
+        "fear": 0.45,
+        "romantic": 0.0,
+        "professional": "avoids her questions about the Bank",
+        "hidden_opinion": "Knows she suspects he saw something",
+        "shared_memory": "She noticed him avoiding her questions"
+      },
+      {
+        "with": "Noah Reed",
+        "trust": 0.35,
+        "friendship": 0.3,
+        "respect": 0.3,
+        "fear": 0.85,
+        "romantic": 0.0,
+        "professional": "quietly bound by an unspoken favor",
+        "hidden_opinion": "Torn between loyalty and guilt",
+        "shared_memory": "Witnessed him at the vault after hours; Noah has quietly \"helped\" him since"
+      },
+      {
+        "with": "Emma Brooks",
+        "trust": 0.45,
+        "friendship": 0.35,
+        "respect": 0.4,
+        "fear": 0.1,
+        "romantic": 0.0,
+        "professional": "his niece is her student",
+        "hidden_opinion": "Deeply grateful for how she cares for Timmy",
+        "shared_memory": "Emma has gently checked in on his niece's wellbeing"
+      },
+      {
+        "with": "Liam Carter",
+        "trust": 0.55,
+        "friendship": 0.4,
+        "respect": 0.45,
+        "fear": 0.15,
+        "romantic": 0.0,
+        "professional": "occasional patient",
+        "hidden_opinion": "Trusts him with his health, little else",
+        "shared_memory": "Treated for a bad Garage burn"
+      },
+      {
+        "with": "Sophia Bennett",
+        "trust": 0.55,
+        "friendship": 0.5,
+        "respect": 0.4,
+        "fear": 0.3,
+        "romantic": 0.0,
+        "professional": "regular customer",
+        "hidden_opinion": "Suspects she overheard more than she's let on",
+        "shared_memory": "She overheard his tense conversation with Noah"
+      }
+    ],
+    "memories": [
+      {
+        "id": "mem_victor_kane_1",
+        "timestamp_str": "Day -3000",
+        "location": "Garage",
+        "importance": 6,
+        "emotion": "pride",
+        "tags": [
+          "career"
+        ],
+        "summary": "Takes over the Garage from his father"
+      },
+      {
+        "id": "mem_victor_kane_2",
+        "timestamp_str": "Day -800",
+        "location": "Apartment",
+        "importance": 10,
+        "emotion": "grief",
+        "tags": [
+          "family"
+        ],
+        "summary": "His sister's death"
+      },
+      {
+        "id": "mem_victor_kane_3",
+        "timestamp_str": "Day -799",
+        "location": "Apartment",
+        "importance": 9,
+        "emotion": "resolve",
+        "tags": [
+          "family"
+        ],
+        "summary": "Becomes his niece's guardian"
+      },
+      {
+        "id": "mem_victor_kane_4",
+        "timestamp_str": "Day -750",
+        "location": "Garage",
+        "importance": 4,
+        "emotion": "routine",
+        "tags": [
+          "community"
+        ],
+        "summary": "Fixes Ethan's cruiser for a discount"
+      },
+      {
+        "id": "mem_victor_kane_5",
+        "timestamp_str": "Day -700",
+        "location": "Court",
+        "importance": 5,
+        "emotion": "gratitude",
+        "tags": [
+          "kindness"
+        ],
+        "summary": "Fixes Marcus's car for free the week Eleanor died"
+      },
+      {
+        "id": "mem_victor_kane_6",
+        "timestamp_str": "Day -600",
+        "location": "Bank",
+        "importance": 4,
+        "emotion": "relief",
+        "tags": [
+          "favor"
+        ],
+        "summary": "Noah quietly helps him with a loan for his niece's school fees"
+      },
+      {
+        "id": "mem_victor_kane_7",
+        "timestamp_str": "Day -580",
+        "location": "Bank",
+        "importance": 8,
+        "emotion": "shock",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Witnesses Noah at the vault after hours"
+      },
+      {
+        "id": "mem_victor_kane_8",
+        "timestamp_str": "Day -560",
+        "location": "Garage",
+        "importance": 6,
+        "emotion": "guilt",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Decides to say nothing, tells himself it's \"not his business\""
+      },
+      {
+        "id": "mem_victor_kane_9",
+        "timestamp_str": "Day -500",
+        "location": "Hospital",
+        "importance": 4,
+        "emotion": "pain",
+        "tags": [
+          "injury"
+        ],
+        "summary": "Treated for a bad Garage burn"
+      },
+      {
+        "id": "mem_victor_kane_10",
+        "timestamp_str": "Day -450",
+        "location": "School",
+        "importance": 3,
+        "emotion": "warmth",
+        "tags": [
+          "family"
+        ],
+        "summary": "Emma checks in on his niece kindly"
+      },
+      {
+        "id": "mem_victor_kane_11",
+        "timestamp_str": "Day -400",
+        "location": "Cafe",
+        "importance": 4,
+        "emotion": "unease",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Sophia overhears his tense conversation with Noah"
+      },
+      {
+        "id": "mem_victor_kane_12",
+        "timestamp_str": "Day -350",
+        "location": "Garage",
+        "importance": 5,
+        "emotion": "guilt",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Starts smoking again"
+      },
+      {
+        "id": "mem_victor_kane_13",
+        "timestamp_str": "Day -300",
+        "location": "Apartment",
+        "importance": 4,
+        "emotion": "worry",
+        "tags": [
+          "family"
+        ],
+        "summary": "His niece notices he's smoking again"
+      },
+      {
+        "id": "mem_victor_kane_14",
+        "timestamp_str": "Day -250",
+        "location": "Garage",
+        "importance": 4,
+        "emotion": "unease",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Ava asks him carefully worded questions about the Bank"
+      },
+      {
+        "id": "mem_victor_kane_15",
+        "timestamp_str": "Day -200",
+        "location": "Garage",
+        "importance": 5,
+        "emotion": "fear",
+        "tags": [
+          "suspicion"
+        ],
+        "summary": "Ethan asks about his truck's tags, clearly probing"
+      },
+      {
+        "id": "mem_victor_kane_16",
+        "timestamp_str": "Day -150",
+        "location": "Bank",
+        "importance": 5,
+        "emotion": "fear",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Noah quietly asks him to \"keep things between us\""
+      },
+      {
+        "id": "mem_victor_kane_17",
+        "timestamp_str": "Day -100",
+        "location": "School",
+        "importance": 4,
+        "emotion": "worry",
+        "tags": [
+          "family"
+        ],
+        "summary": "Notices his niece growing quiet and anxious too"
+      },
+      {
+        "id": "mem_victor_kane_18",
+        "timestamp_str": "Day -70",
+        "location": "Garage",
+        "importance": 4,
+        "emotion": "guilt",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Writes a note to Noah he never sends"
+      },
+      {
+        "id": "mem_victor_kane_19",
+        "timestamp_str": "Day -30",
+        "location": "Cafe",
+        "importance": 5,
+        "emotion": "guilt",
+        "tags": [
+          "secret"
+        ],
+        "summary": "Barely eats at the counter, Sophia notices"
+      },
+      {
+        "id": "mem_victor_kane_20",
+        "timestamp_str": "Day -1",
+        "location": "Garage",
+        "importance": 6,
+        "emotion": "dread",
+        "tags": [
+          "premonition"
+        ],
+        "summary": "Decides he can't carry this much longer"
+      }
+    ],
+    "diaries": [
+      {
+        "day": -7,
+        "label": "",
+        "text": "Timmy asked why I smoke again. Didn't have a good answer for her."
+      },
+      {
+        "day": -6,
+        "label": "",
+        "text": "Ava at the Garage again, asking about the Bank in that careful voice of hers. Told her I didn't know anything. She didn't believe me. Fair enough \u2014 I don't believe me either."
+      },
+      {
+        "day": -5,
+        "label": "",
+        "text": "Ethan asked about my truck's tags. Wasn't about the tags."
+      },
+      {
+        "day": -4,
+        "label": "",
+        "text": "Wrote Noah a note tonight telling him I can't do this anymore. Didn't send it. Burned it in the Garage sink instead."
+      },
+      {
+        "day": -3,
+        "label": "",
+        "text": "Sophia gave me extra food again, said it was a \"kitchen mistake.\" Wasn't a mistake. She knows something's wrong. She always knows."
+      },
+      {
+        "day": -2,
+        "label": "",
+        "text": "Timmy quiet at dinner again. I keep telling myself she doesn't know anything's wrong. I don't think that's true anymore."
+      },
+      {
+        "day": -1,
+        "label": "",
+        "text": "Noah asked me again, quietly, to keep things \"between us.\" I said nothing, which he took as agreement. It wasn't agreement. It was me being a coward."
+      },
+      {
+        "day": -1,
+        "label": "second entry",
+        "text": "Had a strange, sharp moment tonight where it felt obvious what I should do \u2014 walk into the Police Station and just say it. Then the moment passed, like it always does."
+      },
+      {
+        "day": -1,
+        "label": "third entry",
+        "text": "If this comes out and they come asking about my finances too, I don't know what happens to Timmy. That's the only thing that actually scares me."
+      },
+      {
+        "day": -1,
+        "label": "fourth entry, midnight",
+        "text": "Can't sleep. Tomorrow feels different. I don't know why."
+      }
+    ]
+  }
+]
