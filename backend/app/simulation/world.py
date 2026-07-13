@@ -76,6 +76,8 @@ class World:
         self.scene_step: int = 0
         self.diaries: dict[str, list[dict]] = {}
 
+        from app.memory.memory_engine import MemoryEngine
+
         if not self.demo:
             from app.llm.client import OllamaClient
             from app.llm.queue import ReasoningQueue
@@ -84,10 +86,12 @@ class World:
             self.ollama_client = OllamaClient()
             self.reasoning_queue = ReasoningQueue()
             self.brain_service = BrainService(self, self.ollama_client)
+            self.memory_engine = MemoryEngine(self.brain_service.llm_service, self.memory_manager)
         else:
             self.ollama_client = None
             self.reasoning_queue = None
             self.brain_service = None
+            self.memory_engine = MemoryEngine(None, self.memory_manager)
 
     def start(self) -> None:
         """Start the simulation and publish a ``WORLD_STARTED`` event."""
