@@ -13,3 +13,10 @@ class LocationType(Enum):
 
     CAFE = "cafe"
     COURT = "court"
+    POLICE_STATION = "police_station"
+    BANK = "bank"
+    HOSPITAL = "hospital"
+    SCHOOL = "school"
+    GARAGE = "garage"
+    APARTMENT_BUILDING = "apartment_building"
+    PARK = "park"
