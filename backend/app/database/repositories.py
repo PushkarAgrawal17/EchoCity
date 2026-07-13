@@ -139,6 +139,11 @@ class SimulationRepository:
                             confidence=mem.confidence,
                             shared=mem.shared,
                             subject_id=mem.subject_id,
+                            emotion=mem.emotion,
+                            importance=mem.importance,
+                            participants=mem.participants,
+                            location=mem.location,
+                            tags=mem.tags,
                         )
                         session.add(mem_model)
 
@@ -283,6 +288,11 @@ class SimulationRepository:
                     confidence=m_model.confidence,
                     shared=m_model.shared,
                     subject_id=m_model.subject_id,
+                    emotion=m_model.emotion,
+                    importance=m_model.importance,
+                    participants=m_model.participants,
+                    location=m_model.location,
+                    tags=m_model.tags,
                 )
                 world.memory_manager.add_memory(m_model.agent_id, memory_obj)
 

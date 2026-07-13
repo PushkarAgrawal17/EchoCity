@@ -48,6 +48,56 @@ class LLMService:
         elif task_type_lower == "witness_reasoning":
             system, user = self._build_witness_reasoning_prompt(context)
             expected_keys = ["suspicion_increase", "will_report", "internal_explanation"]
+"""LLMService: performs isolated AI reasoning tasks returning structured JSON."""
+
+import json
+import logging
+from typing import Any
+from app.llm.client import OllamaClient
+
+logger = logging.getLogger(__name__)
+
+
+class LLMService:
+    """Isolated LLM reasoning service for EchoCity.
+
+    Exposes a single public method `reason(task_type, context)` that queries
+    the Ollama client using JSON mode and ensures strict structured outputs.
+    """
+
+    def __init__(self, ollama_client: OllamaClient) -> None:
+        """Create an LLMService.
+
+        Args:
+            ollama_client: Client to interact with local Ollama model.
+        """
+        self.client = ollama_client
+
+    async def reason(self, task_type: str, context: dict[str, Any]) -> dict[str, Any]:
+        """Perform an isolated AI reasoning task.
+
+        Args:
+            task_type: The category of the task (e.g. 'Conversation', 'Planning').
+            context: Context attributes used to build the prompts.
+
+        Returns:
+            A dictionary containing the parsed JSON keys.
+        """
+        task_type_lower = task_type.lower().replace(" ", "_")
+
+        # Determine prompt builders and expected output keys
+        if task_type_lower == "conversation":
+            system, user = self._build_conversation_prompt(context)
+            expected_keys = ["dialogue"]
+        elif task_type_lower == "planning":
+            system, user = self._build_planning_prompt(context)
+            expected_keys = ["goal", "focus", "expected_mood"]
+        elif task_type_lower == "crime_decision":
+            system, user = self._build_crime_decision_prompt(context)
+            expected_keys = ["commit_crime", "crime_type", "rationale", "method"]
+        elif task_type_lower == "witness_reasoning":
+            system, user = self._build_witness_reasoning_prompt(context)
+            expected_keys = ["suspicion_increase", "will_report", "internal_explanation"]
         elif task_type_lower == "diary_generation":
             system, user = self._build_diary_prompt(context)
             expected_keys = ["diary"]
@@ -60,6 +110,9 @@ class LLMService:
         elif task_type_lower == "higher_self_reasoning":
             system, user = self._build_higher_self_prompt(context)
             expected_keys = ["narrative"]
+        elif task_type_lower == "event_compression":
+            system, user = self._build_event_compression_prompt(context)
+            expected_keys = ["summary", "emotion", "importance", "tags"]
         else:
             raise ValueError(f"Unsupported task_type: {task_type}")
 
@@ -115,6 +168,14 @@ class LLMService:
             return "dismissal"
         if key == "narrative":
             return "A passing thought shifts their focus."
+        if key == "importance":
+            return 0.5
+        if key == "tags":
+            return []
+        if key == "emotion":
+            return "neutral"
+        if key == "summary":
+            return "Event observed."
         return ""
 
     # --- Prompt Builders ---
@@ -202,5 +263,14 @@ class LLMService:
             f"Nudge: {ctx.get('influence_type')}\n"
             f"State: {ctx.get('current_state')}\n"
             f"Describe psychological impact/scene description."
+        )
+        return system, user
+
+    def _build_event_compression_prompt(self, ctx: dict) -> tuple[str, str]:
+        system = "JSON only: {'summary': 'short compressed description', 'emotion': 'str', 'importance': float, 'tags': ['str']}"
+        user = (
+            f"Agent: {ctx.get('agent_name')} ({ctx.get('occupation')})\n"
+            f"Event details: {ctx.get('raw_event')}\n"
+            f"Compress this event into a memory for the agent."
         )
         return system, user

@@ -76,6 +76,11 @@ class MemoryModel(Base):
     confidence: Mapped[float] = mapped_column(Float)
     shared: Mapped[bool] = mapped_column(Boolean, default=False)
     subject_id: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    emotion: Mapped[str] = mapped_column(String(50), default="neutral")
+    importance: Mapped[float] = mapped_column(Float, default=0.5)
+    participants: Mapped[list[str]] = mapped_column(JSON, default=list)
+    location: Mapped[str] = mapped_column(String(100), default="Unknown")
+    tags: Mapped[list[str]] = mapped_column(JSON, default=list)
 
 
 class RelationshipModel(Base):
