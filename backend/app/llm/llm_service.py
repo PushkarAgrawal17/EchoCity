@@ -120,88 +120,87 @@ class LLMService:
     # --- Prompt Builders ---
 
     def _build_conversation_prompt(self, ctx: dict) -> tuple[str, str]:
-        system = "You are a narrative writer for EchoCity. Write natural character dialogue. Return ONLY a JSON object with a single 'dialogue' key."
+        system = "JSON only: {'dialogue': 'short character conversation'}"
         user = (
-            f"Generate a conversation between {ctx.get('speaker')} (a {ctx.get('speaker_occupation')}) "
-            f"and {ctx.get('listener')} (a {ctx.get('listener_occupation')}) at the {ctx.get('location')}.\n"
-            f"The speaker is sharing this memory/rumor: '{ctx.get('memory')}'\n"
-            f"Write a short, natural dialogue (2-4 lines total) matching their speech profiles. Output ONLY valid JSON."
+            f"Speaker: {ctx.get('speaker')} ({ctx.get('speaker_occupation')})\n"
+            f"Listener: {ctx.get('listener')} ({ctx.get('listener_occupation')})\n"
+            f"Location: {ctx.get('location')}\n"
+            f"Topic: {ctx.get('memory')}\n"
+            f"Generate 2-4 lines of natural dialogue."
         )
         return system, user
 
     def _build_planning_prompt(self, ctx: dict) -> tuple[str, str]:
-        system = "You are an agent reasoning engine. Plan the agent's focus. Return ONLY a JSON object with 'goal', 'focus', and 'expected_mood' keys."
+        system = "JSON only: {'goal': 'str', 'focus': 'str', 'expected_mood': 'str'}"
         user = (
-            f"Agent: {ctx.get('agent_name')} (a {ctx.get('occupation')})\n"
+            f"Agent: {ctx.get('agent_name')} ({ctx.get('occupation')})\n"
             f"Traits: {ctx.get('traits')}\n"
-            f"Current Needs: {ctx.get('needs')}\n"
-            f"Current Time: {ctx.get('time')}\n"
-            f"Scheduled Activity: {ctx.get('schedule_activity')}\n"
-            f"Determine their focus, goal, and mood for this schedule block. Output ONLY valid JSON."
+            f"Needs: {ctx.get('needs')}\n"
+            f"Time: {ctx.get('time')}\n"
+            f"Activity: {ctx.get('schedule_activity')}\n"
+            f"Plan focus, goal, and mood."
         )
         return system, user
 
     def _build_crime_decision_prompt(self, ctx: dict) -> tuple[str, str]:
-        system = "You are the crime decision engine for EchoCity. Return ONLY a JSON object with 'commit_crime' (bool), 'crime_type' (str), 'rationale' (str), and 'method' (str) keys."
+        system = "JSON only: {'commit_crime': bool, 'crime_type': 'str', 'rationale': 'str', 'method': 'str'}"
         user = (
             f"Agent: {ctx.get('agent_name')}\n"
             f"Opportunity: {ctx.get('opportunity')}\n"
-            f"Stress: {ctx.get('stress')}\n"
-            f"Suspicion: {ctx.get('suspicion')}\n"
-            f"Personality: {ctx.get('personality')}\n"
+            f"State: {ctx.get('stress')}, {ctx.get('suspicion')}\n"
+            f"Traits: {ctx.get('personality')}\n"
             f"Secrets: {ctx.get('secrets')}\n"
-            f"Determine if this agent commits a crime under these conditions. Output ONLY valid JSON."
+            f"Determine if they commit a crime."
         )
         return system, user
 
     def _build_witness_reasoning_prompt(self, ctx: dict) -> tuple[str, str]:
-        system = "You are the witness cognitive engine for EchoCity. Return ONLY a JSON object with 'suspicion_increase' (float), 'will_report' (bool), and 'internal_explanation' (str) keys."
+        system = "JSON only: {'suspicion_increase': float, 'will_report': bool, 'internal_explanation': 'str'}"
         user = (
             f"Agent: {ctx.get('agent_name')}\n"
-            f"Witnessed: '{ctx.get('witnessed_event')}' by {ctx.get('culprit_name')}\n"
-            f"Trust in culprit: {ctx.get('trust_in_culprit')}\n"
-            f"Fear of culprit: {ctx.get('fear_of_culprit')}\n"
-            f"Determine their suspicion adjustment and if they report it. Output ONLY valid JSON."
+            f"Witnessed: '{ctx.get('witnessed_event')}'\n"
+            f"Trust: {ctx.get('trust_in_culprit')} | Fear: {ctx.get('fear_of_culprit')}\n"
+            f"Determine suspicion change and if they report."
         )
         return system, user
 
     def _build_diary_prompt(self, ctx: dict) -> tuple[str, str]:
-        system = f"You are writing a private diary entry for {ctx.get('agent_name')}. Return ONLY a JSON object with a 'diary' key."
+        system = "JSON only: {'diary': 'first-person diary entry text'}"
         user = (
             f"Agent: {ctx.get('agent_name')} ({ctx.get('occupation')})\n"
-            f"Personality: {ctx.get('personality')}\n"
-            f"Today's memories:\n{ctx.get('recent_memories')}\n"
-            f"Previous entries context: {ctx.get('previous_entries')}\n"
-            f"Write a reflective first-person diary entry. Output ONLY valid JSON."
+            f"Traits: {ctx.get('personality')}\n"
+            f"Memories:\n{ctx.get('recent_memories')}\n"
+            f"Context:\n{ctx.get('previous_entries')}\n"
+            f"Write a brief reflective diary entry."
         )
         return system, user
 
     def _build_memory_compression_prompt(self, ctx: dict) -> tuple[str, str]:
-        system = "You are the memory consolidation engine. Return ONLY a JSON object with 'summarized_belief' (str), 'key_evidence' (list of str), and 'suspect_ratings' (dict mapping agent name to float 0.0-1.0) keys."
+        system = "JSON only: {'summarized_belief': 'str', 'key_evidence': ['str'], 'suspect_ratings': {'name': float}}"
         user = (
             f"Agent: {ctx.get('agent_name')}\n"
-            f"Memories to consolidate:\n{ctx.get('memories')}\n"
-            f"Compress these raw memories into a consolidated belief statement and evaluate suspect levels. Output ONLY valid JSON."
+            f"Memories:\n{ctx.get('memories')}\n"
+            f"Consolidate beliefs and suspect levels."
         )
         return system, user
 
     def _build_investigation_report_prompt(self, ctx: dict) -> tuple[str, str]:
-        system = "You are the detective investigation reporting engine. Return ONLY a JSON object with 'summary_of_charges' (str), 'prosecution_strength' (str), and 'court_recommendation' (str) keys."
+        system = "JSON only: {'summary_of_charges': 'str', 'prosecution_strength': 'str', 'court_recommendation': 'str'}"
         user = (
             f"Detective: {ctx.get('detective_name')}\n"
             f"Accused: {ctx.get('accused_name')}\n"
-            f"Collected Evidence:\n{ctx.get('evidence_summaries')}\n"
-            f"Generate an investigation summary report. Output ONLY valid JSON."
+            f"Evidence:\n{ctx.get('evidence_summaries')}\n"
+            f"Generate investigation report summary."
         )
         return system, user
 
     def _build_higher_self_prompt(self, ctx: dict) -> tuple[str, str]:
-        system = "You are describing cognitive shifts or scene actions. Return ONLY a JSON object with a single 'narrative' key."
+        system = "JSON only: {'narrative': 'short narrative text'}"
         user = (
             f"Context: {ctx.get('details')}\n"
             f"Agent: {ctx.get('agent_name')}\n"
             f"Nudge: {ctx.get('influence_type')}\n"
-            f"Current state: {ctx.get('current_state')}\n"
-            f"Describe the scene/psychological impact. Output ONLY valid JSON."
+            f"State: {ctx.get('current_state')}\n"
+            f"Describe psychological impact/scene description."
         )
         return system, user
