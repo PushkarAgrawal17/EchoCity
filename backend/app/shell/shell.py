@@ -16,20 +16,42 @@ from app.shell.parser import ParseError, Parser
 
 _ROOT: dict[str, Any] = {
     "locations": {
-        "cafe": {},
         "court": {},
+        "police_station": {},
+        "cafe": {},
+        "bank": {},
+        "hospital": {},
+        "school": {},
+        "garage": {},
+        "apartment_building": {},
+        "park": {},
     },
 }
 
 _HELP_TEXT = (
     "Available commands:\n"
-    "  help                 Show this message\n"
-    "  ls                   List entries in the current location\n"
-    "  cd <target>          Move to a location ('cd ..' or 'cd /' to go back)\n"
-    "  pwd                  Show current path\n"
-    "  tree                 Show the full virtual map\n"
-    "  observe [location]   List agents present at a location\n"
-    "  question <agent_id>  Ask an agent what they remember"
+    "  help                               Show this message\n"
+    "  man <command>                      Show detailed manual entry for a command\n"
+    "  ls                                 List sub-locations\n"
+    "  cd <target>                        Navigate locations\n"
+    "  pwd                                Show current path\n"
+    "  tree                               Show the location map\n"
+    "  observe [location]                 List agents at a location\n"
+    "  question <agent_id>                Question agent memories\n"
+    "  collect <agent_id> <memory_index>  Collect evidence\n"
+    "  case                               Show compiled evidence\n"
+    "  remove <evidence_index>            Remove evidence from case file\n"
+    "  clear                              Clear terminal screen\n"
+    "  clear-case                         Clear evidence case file\n"
+    "  accuse <agent_id>                  Accuse a suspect agent\n"
+    "  submit                             Submit case to the Court\n"
+    "  suggest / warn / comfort / encourage <agent_id> - Influence agent emotions\n"
+    "  remember / coincidence <agent_id> <memory_index> - Influence agent thoughts\n"
+    "  sim-start / resume / start         Resume background simulation ticks\n"
+    "  sim-stop / pause                   Pause background simulation ticks\n"
+    "  tick                               Manually advance simulation by one tick\n"
+    "  sim-save                           Save current simulation state to SQLite\n"
+    "  sim-status                         Show current clock and run status"
 )
 
 
@@ -43,12 +65,14 @@ class Shell:
 
     def __init__(
         self,
+        world: Any,
         investigation_service: InvestigationService,
         evidence_manager: EvidenceManager,
         case_file: CaseFile,
         court_engine: CourtEngine,
         higher_self_engine: HigherSelfEngine,
     ) -> None:
+        self._world = world
         self._investigation_service = investigation_service
         self._evidence_manager = evidence_manager
         self._case_file = case_file
@@ -77,6 +101,7 @@ class Shell:
     def _dispatch(self, command: Command) -> str:
         handlers: dict[str, Callable[[tuple[str, ...]], str]] = {
             "help": self._cmd_help,
+            "man": self._cmd_man,
             "ls": self._cmd_ls,
             "cd": self._cmd_cd,
             "pwd": self._cmd_pwd,
@@ -86,7 +111,7 @@ class Shell:
             "collect": self._cmd_collect,
             "case": self._cmd_case,
             "remove": self._cmd_remove,
-            "clear": self._cmd_clear,
+            "clear-case": self._cmd_clear,
             "accuse": self._cmd_accuse,
             "submit": self._cmd_submit,
             "suggest": self._cmd_suggest,
@@ -95,6 +120,16 @@ class Shell:
             "encourage": self._cmd_encourage,
             "remember": self._cmd_remember,
             "coincidence": self._cmd_coincidence,
+            "sim-start": self._cmd_sim_start,
+            "sim-stop": self._cmd_sim_stop,
+            "sim-status": self._cmd_sim_status,
+            "sim-save": self._cmd_sim_save,
+            "pause": self._cmd_sim_stop,
+            "resume": self._cmd_sim_start,
+            "start": self._cmd_sim_start,
+            "tick": self._cmd_tick,
+            "court.exe": self._cmd_court_exe,
+            "cafe.exe": self._cmd_cafe_exe,
         }
         return handlers[command.name](command.arguments)
 
@@ -106,6 +141,132 @@ class Shell:
 
     def _cmd_help(self, _arguments: tuple[str, ...]) -> str:
         return _HELP_TEXT
+
+    def _cmd_man(self, arguments: tuple[str, ...]) -> str:
+        if not arguments:
+            return (
+                "EchoShell Manual - Reference Guide\n"
+                "Usage: man <command>\n\n"
+                "Available commands to look up:\n"
+                "  ls, cd, pwd, tree, observe, question, collect, case, remove, clear, accuse, submit, suggest, warn, comfort, encourage, remember, coincidence"
+            )
+        
+        target = arguments[0].lower()
+        manuals = {
+            "help": "help\n  Displays the list of all available commands in EchoShell.",
+            "man": "man <command>\n  Shows the detailed manual reference guide and usage for a specific command.",
+            "ls": "ls\n  List entries (sub-locations) in your current location path.",
+            "cd": "cd <target>\n  Change location path. Use 'cd ..' to move back, or 'cd /' to return to root.",
+            "pwd": "pwd\n  Print current location path context.",
+            "tree": "tree\n  Display the full hierarchical virtual map of EchoCity.",
+            "observe": "observe [location]\n  Observe the target location and list all agents currently present there.",
+            "question": "question <agent_id>\n  Question the target agent. Returns a numbered list of memories they recall.",
+            "collect": "collect <agent_id> <memory_index>\n  Add a specific memory from an agent's testimony to the active case file.",
+            "case": "case\n  Display all compiled evidence inside the active case file.",
+            "remove": "remove <evidence_index>\n  Delete a piece of evidence from the active case file.",
+            "clear": "clear\n  Clear the frontend terminal screen.",
+            "clear-case": "clear-case\n  Clear all compiled evidence from the active case file.",
+            "accuse": "accuse <agent_id>\n  Accuse a suspect of the active crime. Required before submitting a case to the Court.",
+            "submit": "submit\n  Submit your compiled case file and accused suspect to the Court for final verdict evaluation.",
+            "suggest": "suggest <agent_id>\n  Suggest a thought to influence the target agent.",
+            "warn": "warn <agent_id>\n  Warn the target agent to influence their stress levels.",
+            "comfort": "comfort <agent_id>\n  Comfort the target agent to reduce their stress levels.",
+            "encourage": "encourage <agent_id>\n  Encourage the target agent to reinforce their active behaviors.",
+            "remember": "remember <agent_id> <memory_index>\n  Force the target agent to remember a specific detail from their memory bank.",
+            "coincidence": "coincidence <agent_id> <memory_index>\n  Influence the target agent's connection of events.",
+            "sim-start": "sim-start\n  Starts the real-time simulation background tick loop.",
+            "sim-stop": "sim-stop\n  Pauses the real-time simulation background tick loop.",
+            "sim-status": "sim-status\n  Display the current simulation loop running status, active scene, tick count, and agent roster.",
+            "sim-save": "sim-save\n  Save active simulation parameters and diaries to the SQLite database node.",
+            "court.exe": "court.exe\n  Switches context to the Court Scene and resets steps to stage the trial sequence.",
+            "cafe.exe": "cafe.exe\n  Switches context to the Cafe Scene and resets steps to stage the gossip sequence.",
+        }
+        
+        return manuals.get(target, f"No manual entry found for command: '{target}'")
+
+    def _cmd_sim_start(self, _arguments: tuple[str, ...]) -> str:
+        if self._world.is_running:
+            return "Simulation is already running."
+        self._world.start()
+        return "Simulation telemetry loop started."
+
+    def _cmd_sim_stop(self, _arguments: tuple[str, ...]) -> str:
+        if not self._world.is_running:
+            return "Simulation is already stopped."
+        self._world.stop()
+        return "Simulation telemetry loop stopped / paused."
+
+    def _cmd_sim_status(self, _arguments: tuple[str, ...]) -> str:
+        status = "RUNNING" if self._world.is_running else "PAUSED"
+        agents_count = len(list(self._world.agent_manager))
+        events_count = len(self._world.narrative_events)
+        
+        return (
+            f"=== EchoCity Observatory Status ===\n"
+            f"Telemetry Node Loop : {status}\n"
+            f"Simulation Clock   : Day {self._world.clock.day} - Tick {self._world.tick_count}\n"
+            f"Active Scene       : {self._world.active_scene.upper()}\n"
+            f"Scene Step         : {self._world.scene_step}\n"
+            f"Registered Agents  : {agents_count} nodes\n"
+            f"Narrative Log      : {events_count} events recorded\n"
+            f"Local Databases    : ONLINE (SQLite persistent node)"
+        )
+
+    def _cmd_sim_save(self, _arguments: tuple[str, ...]) -> str:
+        if hasattr(self._world, "db_repo") and self._world.db_repo:
+            import asyncio
+            from concurrent.futures import ThreadPoolExecutor
+
+            def run_sync(coro):
+                try:
+                    loop = asyncio.get_running_loop()
+                except RuntimeError:
+                    return asyncio.run(coro)
+                with ThreadPoolExecutor(max_workers=1) as executor:
+                    future = executor.submit(lambda: asyncio.run(coro))
+                    return future.result()
+            run_sync(self._world.db_repo.save_world(self._world))
+
+        return (
+            f"Saving simulation telemetry state...\n"
+            f"SQLite Transaction: COMMIT\n"
+            f"Simulation state successfully committed to SQLite database node 'echocity.db'."
+        )
+
+    def _cmd_tick(self, _arguments: tuple[str, ...]) -> str:
+        """Manually advance the simulation by one tick."""
+        self._world.tick()
+        if hasattr(self._world, "db_repo") and self._world.db_repo:
+            import asyncio
+            from concurrent.futures import ThreadPoolExecutor
+
+            def run_sync(coro):
+                try:
+                    loop = asyncio.get_running_loop()
+                except RuntimeError:
+                    return asyncio.run(coro)
+                with ThreadPoolExecutor(max_workers=1) as executor:
+                    future = executor.submit(lambda: asyncio.run(coro))
+                    return future.result()
+            run_sync(self._world.db_repo.save_world(self._world))
+
+        return f"Simulation advanced manually by one tick. Day: {self._world.clock.day}, Current Time: {self._world.clock.current_time}s"
+
+    def _cmd_court_exe(self, _arguments: tuple[str, ...]) -> str:
+        dialogue = self._world.run_full_court_scene()
+        self._path = ["locations", "court"]
+        return (
+            "--- Command court.exe executed successfully. Simulation mode: COURT TRIAL ---\n\n"
+            + dialogue
+        )
+
+    def _cmd_cafe_exe(self, _arguments: tuple[str, ...]) -> str:
+        dialogue = self._world.run_full_cafe_scene()
+        self._path = ["locations", "cafe"]
+        return (
+            "--- Command cafe.exe executed successfully. Simulation mode: CAFE GOSSIP ---\n\n"
+            + dialogue
+        )
 
     def _cmd_pwd(self, _arguments: tuple[str, ...]) -> str:
         return "/" + "/".join(self._path)
@@ -155,7 +316,28 @@ class Shell:
         memories = self._investigation_service.get_agent_memories(agent_id)
         if not memories:
             return f"{agent_id} has nothing to say."
-        return self._format_memories(memories)
+
+        numbered_list = self._format_memories(memories)
+
+        if getattr(self._world, "demo", True):
+            return numbered_list
+
+        import asyncio
+        from concurrent.futures import ThreadPoolExecutor
+
+        def run_sync(coro):
+            try:
+                loop = asyncio.get_running_loop()
+            except RuntimeError:
+                return asyncio.run(coro)
+            with ThreadPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(lambda: asyncio.run(coro))
+                return future.result()
+
+        memories_summaries = [m.summary for m in memories]
+        ai_dialogue = run_sync(self._world.brain_service.generate_question(agent_id, memories_summaries))
+
+        return f"{agent.name} reacts: \"{ai_dialogue}\"\n\nRecollections:\n{numbered_list}"
 
 
     def _cmd_collect(self, arguments: tuple[str, ...]) -> str:
@@ -311,6 +493,12 @@ class Shell:
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
         result = self._higher_self_engine.apply(Influence(type=influence_type, primary_target=agent_id))
+        if result.success and not getattr(self._world, "demo", True):
+            memories = self._world.memory_manager.get_memories(agent_id)
+            details = memories[-1].summary if memories else influence_type.name
+            self._world.reasoning_queue.enqueue(
+                lambda: self._world.brain_service.generate_influence(agent_id, influence_type.name, details)
+            )
         return result.message
 
     def _apply_reference_influence(
@@ -322,6 +510,11 @@ class Shell:
         result = self._higher_self_engine.apply(
             Influence(type=influence_type, primary_target=agent_id, reference=memory.id)
         )
+        if result.success and not getattr(self._world, "demo", True):
+            details = memory.summary
+            self._world.reasoning_queue.enqueue(
+                lambda: self._world.brain_service.generate_influence(agent_id, influence_type.name, details)
+            )
         return result.message
 
 

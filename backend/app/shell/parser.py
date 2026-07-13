@@ -4,6 +4,7 @@ from app.shell.command import Command
 
 _ARG_COUNTS: dict[str, tuple[int, int]] = {
     "help": (0, 0),
+    "man": (0, 1),
     "ls": (0, 0),
     "cd": (0, 1),
     "pwd": (0, 0),
@@ -13,7 +14,7 @@ _ARG_COUNTS: dict[str, tuple[int, int]] = {
     "collect": (2, 2),
     "case": (0, 0),
     "remove": (1, 1),
-    "clear": (0, 0),
+    "clear-case": (0, 0),
     "accuse": (1, 1),
     "submit": (0, 0),
     "suggest": (1, 1),
@@ -22,6 +23,12 @@ _ARG_COUNTS: dict[str, tuple[int, int]] = {
     "encourage": (1, 1),
     "remember": (2, 2),
     "coincidence": (2, 2),
+    "sim-start": (0, 0),
+    "sim-stop": (0, 0),
+    "sim-status": (0, 0),
+    "sim-save": (0, 0),
+    "court.exe": (0, 0),
+    "cafe.exe": (0, 0),
 }
 
 

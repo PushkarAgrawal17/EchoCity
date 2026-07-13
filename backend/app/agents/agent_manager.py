@@ -6,6 +6,7 @@ EventBus knowledge — those belong to other subsystems.
 
 import logging
 from collections.abc import Iterator
+from typing import Any
 
 from app.agents.agent import Agent
 
@@ -76,7 +77,10 @@ class AgentManager:
         """Return the number of registered agents."""
         return len(self._agents)
 
-    def update_all(self) -> None:
+    def update_all(self, current_time_seconds: float = 0.0, location_manager: Any = None) -> None:
         """Update every registered agent for the current tick."""
         for agent in self._agents.values():
-            agent.update()
+            try:
+                agent.update(current_time_seconds, location_manager)
+            except TypeError:
+                agent.update()

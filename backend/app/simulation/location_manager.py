@@ -51,3 +51,9 @@ class LocationManager:
             A list of every registered Location.
         """
         return list(self._locations.values())
+
+    def get(self, location_id: str | None) -> Location | None:
+        """Safely retrieve a location by its id, returning None if not found or id is None."""
+        if location_id is None:
+            return None
+        return self._locations.get(location_id)

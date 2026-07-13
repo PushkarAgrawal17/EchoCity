@@ -9,8 +9,15 @@ constructed once and shared, never as global mutable module state.
 
 from typing import Annotated
 
-from fastapi import Depends
+from fastapi import Depends, Request
 
+from app.bootstrap.game_factory import Game
 from app.core.config import Settings, get_settings
 
 SettingsDep = Annotated[Settings, Depends(get_settings)]
+
+
+def get_game(request: Request) -> Game:
+    """Retrieve the global Game instance from application state."""
+    return request.app.state.game
+

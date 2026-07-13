@@ -29,7 +29,8 @@ def _make_shell() -> tuple[Shell, MagicMock]:
     memory_manager = MemoryManager()
     higher_self_engine = HigherSelfEngine(memory_manager, agent_manager)
 
-    shell = Shell(service, evidence_manager, case_file, court_engine, higher_self_engine)
+    world = MagicMock()
+    shell = Shell(world, service, evidence_manager, case_file, court_engine, higher_self_engine)
     return shell, service
 
 
@@ -54,7 +55,8 @@ def _make_shell_with_higher_self() -> tuple[Shell, MagicMock, AgentManager, Memo
     memory_manager = MemoryManager()
     higher_self_engine = HigherSelfEngine(memory_manager, agent_manager)
 
-    shell = Shell(service, evidence_manager, case_file, court_engine, higher_self_engine)
+    world = MagicMock()
+    shell = Shell(world, service, evidence_manager, case_file, court_engine, higher_self_engine)
     return shell, service, agent_manager, memory_manager
 
 
@@ -249,7 +251,7 @@ def test_remove_non_numeric_index() -> None:
 
 def test_clear_empty() -> None:
     shell, _ = _make_shell()
-    assert shell.execute_line("clear") == "Case file already empty."
+    assert shell.execute_line("clear-case") == "Case file already empty."
 
 
 def test_clear_removes_all() -> None:
@@ -261,7 +263,7 @@ def test_clear_removes_all() -> None:
     service.get_agent_memories.return_value = [memory]
 
     shell.execute_line("collect emma 1")
-    result = shell.execute_line("clear")
+    result = shell.execute_line("clear-case")
 
     assert result == "Case file cleared."
     assert shell.execute_line("case") == "Case file is empty."

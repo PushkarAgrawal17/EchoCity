@@ -35,6 +35,7 @@ class GossipEngine:
         self._conversation_engine = conversation_engine
         self._tick_index = 0
         self._next_memory_index: dict[str, int] = {}
+        self.successful_conversations: list[Conversation] = []
 
     def process_tick(self, timestamp: float) -> None:
         """Run one gossip tick: pair up co-located agents and let each
@@ -48,6 +49,7 @@ class GossipEngine:
             timestamp: Current simulation time, stamped on any
                 Conversation created this tick.
         """
+        self.successful_conversations.clear()
         groups = self._group_agents_by_location()
 
         for location_id in sorted(groups):
@@ -102,4 +104,6 @@ class GossipEngine:
             memory_id=memory_id,
             timestamp=timestamp,
         )
-        self._conversation_engine.process_conversation(conversation)
+        newly_shared = self._conversation_engine.process_conversation(conversation)
+        if newly_shared:
+            self.successful_conversations.append(conversation)

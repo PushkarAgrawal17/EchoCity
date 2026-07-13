@@ -43,6 +43,10 @@ class Settings(BaseSettings):
     # --- Database (placeholder; wired up in Milestone 2) ---
     database_url: str = Field(default="sqlite+aiosqlite:///./echocity.db")
 
+    # --- Ollama ---
+    ollama_model: str = Field(default="smollm2:1.7b-instruct")
+    ollama_base_url: str = Field(default="http://localhost:11434")
+
 
 @lru_cache
 def get_settings() -> Settings:
