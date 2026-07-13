@@ -19,10 +19,15 @@ As the **Higher Self**, you observe and subtly influence the cognitions and rela
 * **Cognitive Slot Storage**: Processes raw events into structured memories storing: summary, emotion, importance, participants, location, timestamp, and tags.
 * **Latency Optimization (Rule Bypass)**: Simple, routine events (e.g. going to bed, walking) bypass the LLM and generate rule-based memories immediately to protect CPU cycles. Complex events (e.g. dialogue, crime, social interactions) are run through the `event_compression` LLM reasoning task.
 
-### 4. Context Builder
+### 4. AI Router
+* **Cognitive Decision Filter**: Determines if a request (e.g., player interrogation, NPC suggestion, background action) requires cognitive LLM reasoning or can be serviced by a deterministic engine.
+* **Deterministic Bypass**: Simple factual questions (like checking an NPC's age, job, or location) or routine scheduling actions bypass the Reasoning Queue and are resolved immediately using deterministic services, minimizing local CPU latency.
+* **Reasoning Queue Routing**: Cognitive tasks are forwarded directly to the `ReasoningQueue` for asynchronous processing. The LLM is never called directly.
+
+### 5. Context Builder
 * **Token Minimization**: Formats and minimizes prompt contexts dynamically to fit within tight CPU context windows. Condenses agent traits, formats Big Five scales (e.g., `O:80, C:50`), maps co-located relationships into compact string lists, and caps memories to the top 1-3 most relevant items.
 
-### 5. Low-Latency Prompt Templates
+### 6. Low-Latency Prompt Templates
 * **JSON mode**: All LLM prompt templates are optimized to return strict raw JSON payloads.
 * **CPU Optimized**: Prompts are kept short and direct, ensuring the combined context is typically under **200 tokens** to maximize local CPU token-generation speeds.
 
@@ -30,7 +35,7 @@ As the **Higher Self**, you observe and subtly influence the cognitions and rela
 
 ## Repository Structure
 
-*   `/backend` - FastAPI server, SQLite persistence (SQLAlchemy 2.0 ORM), local Ollama client, reasoning queue, and the 185-test suite.
+*   `/backend` - FastAPI server, SQLite persistence (SQLAlchemy 2.0 ORM), local Ollama client, reasoning queue, and the 194-test suite.
 *   `/frontend` - Next.js interactive UI dashboard console compiled using Next.js dev server.
 *   `EchoCity_NPC_Bible.md` - Core demographic, relationship, and narrative guidelines for all 8 simulation characters.
 
@@ -94,7 +99,7 @@ Verify all mock-mode fallback and architecture coverages:
 ```powershell
 .\venv\Scripts\python -m pytest
 ```
-*   **Result**: 185 / 185 test cases pass successfully.
+*   **Result**: 194 / 194 test cases pass successfully.
 
 ---
 
