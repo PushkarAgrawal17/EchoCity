@@ -1,1 +1,0 @@
-"""EchoCity backend package root."""
