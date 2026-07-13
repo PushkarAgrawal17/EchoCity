@@ -6,6 +6,7 @@ from typing import Any
 from app.conversation.conversation import Conversation
 from app.llm.client import OllamaClient
 from app.llm.llm_service import LLMService
+from app.llm.context_builder import ContextBuilder
 from app.simulation.world import World
 
 logger = logging.getLogger(__name__)
@@ -42,24 +43,20 @@ class BrainService:
             return
 
         memory = self.world.memory_manager.get_memory(conversation.speaker_id, conversation.memory_id)
-        memory_summary = memory.summary if memory else "something interesting"
         location_name = speaker.location.name if speaker.location else "Cafe"
 
-        # Build LLM Context
-        ctx = {
-            "speaker": speaker.name,
-            "speaker_occupation": speaker.occupation,
-            "speaker_speech": speaker.speech_style,
-            "listener": listener.name,
-            "listener_occupation": listener.occupation,
-            "listener_speech": listener.speech_style,
-            "location": location_name,
-            "memory": memory_summary,
-        }
+        # Build token-minimized LLM Context
+        ctx = ContextBuilder.build(
+            reasoning_task="Conversation",
+            current_agent=speaker,
+            nearby_agents=[listener],
+            current_scene=location_name,
+            relevant_memories=[memory] if memory else [],
+        )
 
         # Query isolated LLM service
         res = await self.llm_service.reason("Conversation", ctx)
-        dialogue = res.get("dialogue", f"{speaker.name} whispers to {listener.name}: '{memory_summary}'.")
+        dialogue = res.get("dialogue", f"{speaker.name} whispers to {listener.name}: '{memory.summary if memory else 'something interesting'}'.")
 
         # Find and update the placeholder event in-place
         for event in self.world.narrative_events:
@@ -86,26 +83,15 @@ class BrainService:
         if not co_located:
             return
 
-        agents_info = [
-            {
-                "name": a.name,
-                "occupation": a.occupation,
-                "goal": a.goal or "Going about their day",
-                "emotion": a.emotion,
-                "stress": a.stress,
-                "suspicion": a.suspicion,
-                "secrets": a.secrets,
-            }
-            for a in co_located
-        ]
-
-        # Build LLM Context
-        ctx = {
-            "details": f"Narrating physical location scene for agents co-located at the {location.name}.",
-            "agent_name": ", ".join(a.name for a in co_located),
-            "influence_type": "Observation",
-            "current_state": {"agents": agents_info},
-        }
+        # Build token-minimized LLM Context
+        ctx = ContextBuilder.build(
+            reasoning_task="Higher Self Reasoning",
+            current_agent=co_located[0] if co_located else None,
+            nearby_agents=co_located[1:] if len(co_located) > 1 else [],
+            relationships=co_located[0].relationships if co_located else {},
+            current_scene=location,
+            player_influence={"type": "Observation", "details": f"Narrating physical location scene for agents co-located at the {location.name}."}
+        )
 
         # Query isolated LLM service
         res = await self.llm_service.reason("Higher Self Reasoning", ctx)
@@ -133,22 +119,17 @@ class BrainService:
             return
 
         memories = self.world.memory_manager.get_memories(agent_id)
-        recent_summaries = [m.summary for m in memories]
-        if not recent_summaries:
-            recent_summaries = ["Spent the day going about my schedule quietly."]
-
         previous_diaries = [
             d["text"] for d in self.world.diaries.get(agent_id, [])
         ]
 
-        # Build LLM Context
-        ctx = {
-            "agent_name": agent.name,
-            "occupation": agent.occupation,
-            "personality": agent.personality,
-            "recent_memories": recent_summaries,
-            "previous_entries": previous_diaries,
-        }
+        # Build token-minimized LLM Context
+        ctx = ContextBuilder.build(
+            reasoning_task="Diary Generation",
+            current_agent=agent,
+            relevant_memories=memories,
+            player_influence={"previous_entries": previous_diaries}
+        )
 
         # Query isolated LLM service
         res = await self.llm_service.reason("Diary Generation", ctx)
@@ -174,20 +155,14 @@ class BrainService:
         if not agent:
             return
 
-        current_state = {
-            "goal": agent.goal,
-            "emotion": agent.emotion,
-            "stress": agent.stress,
-            "suspicion": agent.suspicion,
-        }
-
-        # Build LLM Context
-        ctx = {
-            "details": details,
-            "agent_name": agent.name,
-            "influence_type": influence_type,
-            "current_state": current_state,
-        }
+        # Build token-minimized LLM Context
+        ctx = ContextBuilder.build(
+            reasoning_task="Higher Self Reasoning",
+            current_agent=agent,
+            relationships=agent.relationships,
+            current_scene=agent.location,
+            player_influence={"type": influence_type, "details": details}
+        )
 
         # Query isolated LLM service
         res = await self.llm_service.reason("Higher Self Reasoning", ctx)
@@ -221,13 +196,14 @@ class BrainService:
         if not agent:
             return ""
 
-        # Build LLM Context
-        ctx = {
-            "details": f"Interrogating about recollections: {memories_summaries}",
-            "agent_name": agent.name,
-            "influence_type": "Interrogation",
-            "current_state": {"traits": agent.personality, "secrets": agent.secrets},
-        }
+        # Build token-minimized LLM Context
+        ctx = ContextBuilder.build(
+            reasoning_task="Higher Self Reasoning",
+            current_agent=agent,
+            relationships=agent.relationships,
+            current_scene=agent.location,
+            player_influence={"type": "Interrogation", "details": f"Interrogating about recollections: {memories_summaries}"}
+        )
 
         # Query isolated LLM service (using Higher Self Reasoning schema)
         res = await self.llm_service.reason("Higher Self Reasoning", ctx)
