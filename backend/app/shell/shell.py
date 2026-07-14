@@ -82,6 +82,19 @@ class Shell:
         self._path: list[str] = []
         self._accusation: str | None = None
 
+    def _resolve_agent_id(self, input_id: str) -> str:
+        normalized = input_id.strip().lower()
+        all_ids = [a.agent_id for a in self._world.agent_manager]
+        if normalized in all_ids:
+            return normalized
+        for aid in all_ids:
+            if aid.startswith(normalized):
+                return aid
+        for aid in all_ids:
+            if normalized in aid:
+                return aid
+        return input_id
+
     def execute_line(self, line: str) -> str:
         """Parse and execute one line of input.
 
@@ -108,9 +121,11 @@ class Shell:
             "tree": self._cmd_tree,
             "observe": self._cmd_observe,
             "question": self._cmd_question,
+            "inspect": self._cmd_inspect,
             "collect": self._cmd_collect,
             "case": self._cmd_case,
             "remove": self._cmd_remove,
+            "clear": self._cmd_clear_screen,
             "clear-case": self._cmd_clear,
             "accuse": self._cmd_accuse,
             "submit": self._cmd_submit,
@@ -308,7 +323,7 @@ class Shell:
         return "\n".join(agent.agent_id for agent in agents)
 
     def _cmd_question(self, arguments: tuple[str, ...]) -> str:
-        agent_id = arguments[0]
+        agent_id = self._resolve_agent_id(arguments[0])
         agent = self._investigation_service.get_agent(agent_id)
         if agent is None:
             return f"No such agent: '{agent_id}'."
@@ -338,6 +353,12 @@ class Shell:
         ai_dialogue = run_sync(self._world.brain_service.generate_question(agent_id, memories_summaries))
 
         return f"{agent.name} reacts: \"{ai_dialogue}\"\n\nRecollections:\n{numbered_list}"
+
+    def _cmd_inspect(self, arguments: tuple[str, ...]) -> str:
+        return self._cmd_question(arguments)
+
+    def _cmd_clear_screen(self, _arguments: tuple[str, ...]) -> str:
+        return ""
 
 
     def _cmd_collect(self, arguments: tuple[str, ...]) -> str:
@@ -379,7 +400,7 @@ class Shell:
         return "Case file cleared."
 
     def _cmd_accuse(self, arguments: tuple[str, ...]) -> str:
-        agent_id = arguments[0]
+        agent_id = self._resolve_agent_id(arguments[0])
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
 
@@ -411,7 +432,7 @@ class Shell:
         return "\n".join(lines)
 
     def _cmd_suggest(self, arguments: tuple[str, ...]) -> str:
-        agent_id = arguments[0]
+        agent_id = self._resolve_agent_id(arguments[0])
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
         result = self._higher_self_engine.apply(
@@ -420,7 +441,7 @@ class Shell:
         return result.message
 
     def _cmd_warn(self, arguments: tuple[str, ...]) -> str:
-        agent_id = arguments[0]
+        agent_id = self._resolve_agent_id(arguments[0])
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
         result = self._higher_self_engine.apply(
@@ -429,7 +450,7 @@ class Shell:
         return result.message
 
     def _cmd_comfort(self, arguments: tuple[str, ...]) -> str:
-        agent_id = arguments[0]
+        agent_id = self._resolve_agent_id(arguments[0])
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
         result = self._higher_self_engine.apply(
@@ -438,7 +459,7 @@ class Shell:
         return result.message
 
     def _cmd_encourage(self, arguments: tuple[str, ...]) -> str:
-        agent_id = arguments[0]
+        agent_id = self._resolve_agent_id(arguments[0])
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
         result = self._higher_self_engine.apply(
@@ -449,6 +470,7 @@ class Shell:
 
     def _cmd_remember(self, arguments: tuple[str, ...]) -> str:
         agent_id, index_str = arguments
+        agent_id = self._resolve_agent_id(agent_id)
 
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
@@ -470,6 +492,7 @@ class Shell:
 
     def _cmd_coincidence(self, arguments: tuple[str, ...]) -> str:
         agent_id, index_str = arguments
+        agent_id = self._resolve_agent_id(agent_id)
 
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
@@ -536,6 +559,7 @@ class Shell:
         Returns the Memory on success, or an error string on failure —
         callers should check the type before use.
         """
+        agent_id = self._resolve_agent_id(agent_id)
         if self._investigation_service.get_agent(agent_id) is None:
             return f"No such agent: '{agent_id}'."
 
