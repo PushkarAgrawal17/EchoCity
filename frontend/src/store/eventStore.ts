@@ -9,6 +9,7 @@ interface EventStoreState {
   events: CityEvent[];
   spawnRandomEvent: () => Promise<void>;
   pushManualEvent: (text: string, category: EventCategory, agentId?: string) => void;
+  setEvents: (events: CityEvent[]) => void;
 }
 
 export const useEventStore = create<EventStoreState>((set, get) => ({
@@ -22,5 +23,9 @@ export const useEventStore = create<EventStoreState>((set, get) => ({
   pushManualEvent: (text, category, agentId) => {
     const event: CityEvent = { id: generateId('evt'), text, category, timestamp: Date.now(), agentId };
     set({ events: [event, ...get().events].slice(0, MAX_EVENTS) });
+  },
+
+  setEvents: (events) => {
+    set({ events: events.slice(0, MAX_EVENTS) });
   },
 }));

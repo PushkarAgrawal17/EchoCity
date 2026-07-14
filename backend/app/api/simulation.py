@@ -158,3 +158,110 @@ def change_simulation_scene(payload: SceneRequest, game: Annotated[Game, Depends
         success=True,
         message=f"Simulation scene changed to {scene.upper()}."
     )
+
+
+@router.get("/agents")
+def get_simulation_agents(game: Annotated[Game, Depends(get_game)]):
+    """Retrieve details of all active agents in the simulation world."""
+    agents_list = []
+    for agent in game.world.agent_manager:
+        memories = game.world.memory_manager.get_memories(agent.agent_id)
+        memory_count = len(memories) if memories else 0
+        
+        relationships = []
+        for target_id, rel in agent.relationships.items():
+            if rel.friendship >= 0.7:
+                label = "Friend"
+            elif rel.trust >= 0.7:
+                label = "Trusts"
+            elif rel.respect >= 0.7:
+                label = "Respects"
+            elif rel.fear >= 0.5:
+                label = "Fears"
+            elif rel.trust <= 0.35:
+                label = "Wary of"
+            else:
+                label = "Acquaintance"
+            
+            affinity = int((rel.friendship * 0.6 + rel.trust * 0.4) * 200 - 100)
+            affinity = max(-100, min(100, affinity))
+            
+            relationships.append({
+                "agentId": target_id,
+                "label": label,
+                "affinity": affinity
+            })
+            
+        agents_list.append({
+            "agent_id": agent.agent_id,
+            "name": agent.name,
+            "state": agent.state.name,
+            "goal": agent.goal or "",
+            "location_id": agent.location.id if agent.location else None,
+            "age": agent.age,
+            "occupation": agent.occupation,
+            "home": agent.home,
+            "personality": getattr(agent, "personality", {}),
+            "stress": agent.stress,
+            "suspicion": agent.suspicion,
+            "energy": agent.energy,
+            "confidence": agent.confidence,
+            "emotion": agent.emotion,
+            "inventory": agent.inventory,
+            "memory_count": memory_count,
+            "relationships": relationships
+        })
+    return agents_list
+
+
+@router.get("/check-connections")
+async def check_connections(
+    request: Request,
+    game: Annotated[Game, Depends(get_game)]
+):
+    """Check database and Ollama (model) connection status."""
+    db_status = "failed"
+    ollama_status = "failed"
+    ollama_error = None
+    db_error = None
+    
+    # 1. Check SQLite DB
+    try:
+        if hasattr(request.app.state, "db_repo") and request.app.state.db_repo:
+            async with request.app.state.db_repo.session_maker() as session:
+                from sqlalchemy import text
+                await session.execute(text("SELECT 1"))
+                db_status = "success"
+        else:
+            db_error = "Repository not initialized"
+    except Exception as e:
+        db_error = str(e)
+        
+    # 2. Check Ollama
+    try:
+        from app.core.config import get_settings
+        settings = get_settings()
+        import httpx
+        async with httpx.AsyncClient(timeout=3.0) as client:
+            response = await client.get(f"{settings.ollama_base_url}/api/tags")
+            if response.status_code == 200:
+                ollama_status = "success"
+                models_data = response.json().get("models", [])
+                model_names = [m.get("name") for m in models_data]
+                target = settings.ollama_model
+                has_model = any(target in name or name in target for name in model_names)
+                if not has_model:
+                    ollama_status = "model_not_found"
+            else:
+                ollama_error = f"Ollama returned status {response.status_code}"
+    except Exception as e:
+        ollama_error = str(e)
+        
+    return {
+        "db": db_status,
+        "db_error": db_error,
+        "ollama": ollama_status,
+        "ollama_error": ollama_error,
+        "ollama_model": get_settings().ollama_model
+    }
+

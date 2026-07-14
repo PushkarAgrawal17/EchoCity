@@ -61,6 +61,7 @@ export interface Agent {
   route: RoutePoint[];
   spriteTint: number; // hex tint applied to the base sprite for visual distinction
   portraitSeed: string; // used to procedurally generate a stable placeholder portrait
+  inventory?: string[];
 }
 
 export interface AgentRuntimeState {

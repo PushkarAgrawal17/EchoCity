@@ -122,7 +122,7 @@ export function CitizenProfileWindow() {
 
         {tab === 'Inventory' && (
           <ul className="space-y-1.5">
-            {getInventory(agent.id).map((item) => (
+            {((agent.inventory && agent.inventory.length > 0) ? agent.inventory : getInventory(agent.id)).map((item) => (
               <li
                 key={item}
                 className="rounded-md border border-white/5 bg-white/[0.02] px-3 py-2 text-xs text-text-primary/85"
