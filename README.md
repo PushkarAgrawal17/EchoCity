@@ -36,8 +36,22 @@ As the **Higher Self**, you observe and subtly influence the cognitions and rela
 ## Repository Structure
 
 *   `/backend` - FastAPI server, SQLite persistence (SQLAlchemy 2.0 ORM), local Ollama client, reasoning queue, and the 194-test suite.
-*   `/frontend` - Next.js interactive UI dashboard console compiled using Next.js dev server.
+*   `/frontend` - Upgraded Vite SPA React dashboard console with floating windows and glassmorphism styling.
 *   `EchoCity_NPC_Bible.md` - Core demographic, relationship, and narrative guidelines for all 8 simulation characters.
+
+---
+
+## Fully Working & Operational Features
+
+1. **Setup Diagnostics & Telemetry Screen**: A diagnostic panel on startup verifying:
+   - **Local FastAPI Server Connection** (`http://127.0.0.1:8000/health`)
+   - **Persistent SQLite Database Connectivity**
+   - **Local Ollama AI Engine**: Verifies if Ollama is running and checks if the configured target model (default: `smollm2:1.7b-instruct`) is pulled.
+2. **Interactive Observatory Dashboard**: A premium modular workspace with draggable, glass-styled panels (Dossier, Relationships, Inventory, Stream of Consciousness, Synaptic Override).
+3. **Core Clock Synchronization**: Synced timekeeping that tracks active simulation days and minutes on the backend.
+4. **Agent Profile Inspection**: Displays real-time agent profiles, goals, emotions (neutral, happy, stressed, calm, anxious, focused, tired, confident), inventory slots, and relationship metrics (affinity, trust/respect levels) queried from the SQLite database.
+5. **Synaptic Override Terminal**: A fully functional command line console routing commands directly to the FastAPI server (e.g., `inspect <agent>`, `comfort <agent>`, `question <agent>`, `observe <location>`, `cd <location>`, `ls`, `tree`).
+6. **Real-time Event Stream (WebSockets)**: Continuous live broadcast of NPC narrative dialogues, gossip events, diary entries, and user interventions streamed via WebSockets (`ws://127.0.0.1:8000/api/ws`).
 
 ---
 
@@ -45,7 +59,7 @@ As the **Higher Self**, you observe and subtly influence the cognitions and rela
 
 ### 1. Requirements
 *   Python 3.12+ (managed with standard virtual environments or `uv`)
-*   Node.js (for Next.js frontend compilation)
+*   Node.js (for Vite React frontend compilation)
 *   [Ollama](https://ollama.com/) (running locally)
 
 ### 2. Pull the target model
@@ -77,12 +91,12 @@ Compile and launch the dashboard console:
 cd frontend
 
 # Install node dependencies
-pnpm install
+npm install
 
-# Start Next.js development server
-pnpm dev
+# Start Vite React development server
+npm run dev
 ```
-Open `http://localhost:3000` in your web browser.
+Open `http://localhost:5173` in your web browser.
 
 ---
 
@@ -92,6 +106,12 @@ Open `http://localhost:3000` in your web browser.
 Verify database seeding, Ollama connection, priority queuing, and SQLite saving/loading operations using the script:
 ```powershell
 .\venv\Scripts\python scripts/verify_ai_persistence.py
+```
+
+### Hackathon Simulation Command Line Demo
+Demonstrate FSM ticks, EventManager routing, MemoryEngine compression, and AI Router factual bypass logic in pure CLI:
+```powershell
+.\venv\Scripts\python scripts/hackathon_simulation.py
 ```
 
 ### Unit Tests
@@ -108,3 +128,4 @@ You can customize the model name or database location in the backend via environ
 *   `OLLAMA_MODEL` (default: `smollm2:1.7b-instruct`)
 *   `OLLAMA_BASE_URL` (default: `http://localhost:11434`)
 *   `DATABASE_URL` (default: `sqlite+aiosqlite:///./echocity.db`)
+
