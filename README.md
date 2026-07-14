@@ -65,7 +65,7 @@ As the **Higher Self**, you observe and subtly influence the cognitions and rela
 ### 2. Pull the target model
 Start your local Ollama instance, then pull the target model:
 ```bash
-ollama pull smollm2:1.7b-instruct
+ollama pull smollm2:1.7b-instruct-q4_K_M  
 ```
 
 ### 3. Backend Setup & Run
@@ -125,7 +125,7 @@ Verify all mock-mode fallback and architecture coverages:
 
 ## Configuration Settings
 You can customize the model name or database location in the backend via environment variables or a `.env` file:
-*   `OLLAMA_MODEL` (default: `smollm2:1.7b-instruct`)
+*   `OLLAMA_MODEL` (default: `smollm2:1.7b-instruct-q4_K_M`)
 *   `OLLAMA_BASE_URL` (default: `http://localhost:11434`)
 *   `DATABASE_URL` (default: `sqlite+aiosqlite:///./echocity.db`)
 
