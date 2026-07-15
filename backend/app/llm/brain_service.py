@@ -367,12 +367,13 @@ class BrainService:
             }
         })
 
-    async def generate_question(self, agent_id: str, memories_summaries: list[str]) -> str:
+    async def generate_question(self, agent_id: str, memories_summaries: list[str], question_text: str | None = None) -> str:
         """Asynchronously generate a dynamic dialogue response for agent interrogation.
 
         Args:
             agent_id: ID of the agent being questioned.
             memories_summaries: List of the summaries of memories the agent has.
+            question_text: Optional custom question text.
 
         Returns:
             The generated dialogue string from the agent.
@@ -381,13 +382,17 @@ class BrainService:
         if not agent:
             return ""
 
+        details_str = f"Interrogating about recollections: {memories_summaries}"
+        if question_text:
+            details_str = f"Interrogated with custom question: '{question_text}' | recollections context: {memories_summaries}"
+
         # 1. Build token-minimized LLM Context
         ctx = ContextBuilder.build(
             reasoning_task="Higher Self Reasoning",
             current_agent=agent,
             relationships=agent.relationships,
             current_scene=agent.location,
-            player_influence={"type": "Interrogation", "details": f"Interrogating about recollections: {memories_summaries}"}
+            player_influence={"type": "Interrogation", "details": details_str}
         )
 
         # 2. Query LLM service

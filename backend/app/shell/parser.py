@@ -1,5 +1,4 @@
-"""Parses raw player input into Command objects."""
-
+import shlex
 from app.shell.command import Command
 
 _ARG_COUNTS: dict[str, tuple[int, int]] = {
@@ -10,8 +9,8 @@ _ARG_COUNTS: dict[str, tuple[int, int]] = {
     "pwd": (0, 0),
     "tree": (0, 0),
     "observe": (0, 1),
-    "question": (1, 1),
-    "inspect": (1, 1),
+    "question": (1, 2),
+    "inspect": (1, 2),
     "collect": (2, 2),
     "case": (0, 0),
     "remove": (1, 1),
@@ -53,7 +52,11 @@ class Parser:
         Raises:
             ParseError: If the command is unknown or has invalid arguments.
         """
-        tokens = line.strip().split()
+        try:
+            tokens = shlex.split(line.strip())
+        except ValueError as e:
+            raise ParseError(f"Command parsing failed: {e}")
+
         if not tokens:
             raise ParseError("No command entered.")
 

@@ -324,6 +324,8 @@ class Shell:
 
     def _cmd_question(self, arguments: tuple[str, ...]) -> str:
         agent_id = self._resolve_agent_id(arguments[0])
+        question_text = arguments[1] if len(arguments) > 1 else None
+        
         agent = self._investigation_service.get_agent(agent_id)
         if agent is None:
             return f"No such agent: '{agent_id}'."
@@ -335,6 +337,8 @@ class Shell:
         numbered_list = self._format_memories(memories)
 
         if getattr(self._world, "demo", True):
+            if question_text:
+                return f"{agent.name} reacts: \"To tell you the truth, I'm not sure what to say about '{question_text}' right now.\"\n\nRecollections:\n{numbered_list}"
             return numbered_list
 
         import asyncio
@@ -350,7 +354,7 @@ class Shell:
                 return future.result()
 
         memories_summaries = [m.summary for m in memories]
-        ai_dialogue = run_sync(self._world.brain_service.generate_question(agent_id, memories_summaries))
+        ai_dialogue = run_sync(self._world.brain_service.generate_question(agent_id, memories_summaries, question_text))
 
         return f"{agent.name} reacts: \"{ai_dialogue}\"\n\nRecollections:\n{numbered_list}"
 
