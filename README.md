@@ -150,27 +150,16 @@ Monitor the civilization through an immersive dashboard featuring:
 
 # 📸 Screenshots
 
-> **Screenshots will be added here**
+<div align="center">
 
-```
-Dashboard
-```
 
-```
-Citizen Profile
-```
+<img src="screenshots/ss1.png" width="100%">
+<img src="screenshots/ss2.png" width="100%">
+<img src="screenshots/ss3.png" width="100%">
+<img src="screenshots/ss4.png" width="100%">
+<img src="screenshots/ss5.png" width="100%">
 
-```
-Relationship Graph
-```
-
-```
-Higher Self Terminal
-```
-
-```
-World Timeline
-```
+</div>
 
 ---
 
